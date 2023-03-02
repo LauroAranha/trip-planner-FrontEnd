@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "akamud.vscode-theme-onedark",
+        "firsttris.vscode-jest-runner",
+        "oderwat.indent-rainbow",
+        "mechatroner.rainbow-csv"
+    ]
+}

@@ -1,60 +1,81 @@
-//import ui from '../../firebase/config';
-
 import styles from './register-module.css';
+import { useState } from 'react';
 
 const Register = () => {
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const [values, setValues] = useState({
+    displayName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    error: '',
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (values.password !== confirmPassword) {
+      setValues({ ...values, error: 'Passwords are not the same!' });
+      return;
+    }
+
+    console.log(values);
+  };
+
   return (
-    <div className="">
+    <div className={styles.register}>
       <h1>Register</h1>
-      <label>
-        <form>
+      <form onSubmit={handleSubmit}>
+        <label>
           <input
             type="text"
             name="displayName"
             required
             placeholder="Enter a username"
-            value=""
-            onChange=""
+            value={values.displayName}
+            onChange={(e) =>
+              setValues({ ...values, displayName: e.target.value })
+            }
           />
-        </form>
-      </label>
-      <label>
-        <form>
+        </label>
+        {'\n'}
+        <label>
           <input
             type="email"
             name="email"
             required
-            placeholder="Enter a email"
-            onChange=""
-            value=""
+            placeholder="Enter an email"
+            value={values.email}
+            onChange={(e) => setValues({ ...values, email: e.target.value })}
           />
-        </form>
-      </label>
-      <label>
-        <form>
+        </label>
+        {'\n'}
+        <label>
           <input
             type="password"
             name="password"
             required
             placeholder="Enter a password"
-            onChange=""
-            value=""
+            value={values.password}
+            onChange={(e) => setValues({ ...values, password: e.target.value })}
           />
-        </form>
-      </label>
-      <label>
-        <form>
+        </label>
+        {'\n'}
+        <label>
           <input
             type="password"
             name="confirmPassword"
             required
             placeholder="Confirm your password"
-            onChange=""
-            value=""
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
-        </form>
-      </label>
-      <button className="btn">Enter</button>
+        </label>
+        {'\n'}
+        {values.error && <p className={styles.error}>{values.error}</p>}{' '}
+        <button className={styles.btn}>Enter</button>
+      </form>
     </div>
   );
 };

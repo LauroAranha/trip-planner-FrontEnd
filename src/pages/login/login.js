@@ -2,7 +2,7 @@
 
 import styles from './login-module.css';
 import { useState } from 'react';
-
+import axios from 'axios';
 const Login = () => { 
   const [values, setValues] = useState({
     email: "",
@@ -12,8 +12,10 @@ const Login = () => {
     e.preventDefault()
     console.log(values)
 
+    axios.post('http://localhost:3000/user/login ',values
+    )
+    
 }
-
   return (
     <div className="login__form">
       <div className="container">

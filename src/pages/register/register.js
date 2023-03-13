@@ -1,8 +1,11 @@
-import styles from './register-module.css';
+import './register-module.css';
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+
+document.body.style.overflow = 'hidden';
 
 const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -141,9 +144,9 @@ const Register = () => {
         {values.error && <p className={styles.error}>{values.error}</p>}{' '}
         <button className="register-btn">Complete</button>
         <div className="page-link">
-          <a href="" className="name-link">
+          <Link to="/" className="link-register">
             I'm already registered
-          </a>
+          </Link>
         </div>
       </form>
     </div>

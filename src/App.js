@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 // Config react-router on application
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 
 // Importing authenticators
 
@@ -25,11 +25,9 @@ const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
         <div className="container">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </div>

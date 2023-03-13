@@ -1,13 +1,139 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*{
+  user-select: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: #f6fcff;
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-family: "Montserrat", sans-serif;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+a,
+nav button {
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  color: #000;
+  transition: 0.4s;
+  font-size: 1em;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+}
+
+a:hover,
+nav button:hover {
+  color: #bbb;
+}
+
+ a:hover{
+   margin-top: -3px;
+   transition: 0.1s;
+   color:  rgb(252, 145, 57);
+}
+
+/* form styles */
+form {
+  max-width: 40%;
+  margin: 0 auto;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+label span {
+  margin-bottom: 0.3em;
+  font-weight: bold;
+  text-align: left;
+}
+
+input,
+textarea{
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+  box-sizing: border-box;
+  border: 0px;
+  width: 106%;
+  margin-left: -13px;
+  height: 71px;
+  margin-bottom: 11px;
+  padding: 0.9em 1em;
+  border-radius: 6px;
+  background-color: transparent;
+  z-index: 1;
+}
+
+input,
+textarea::placeholder{
+  color: rgb(0, 0, 0);
+}
+
+
+input::placeholder,
+textarea::placeholder {
+  color: #555555;
+  opacity: 50%;
+  font-size: 15.5px;
+}
+
+
+.btn.btn-dark {
+  background-color: #000;
+  border-radius: 0;
+}
+
+.btn.btn-outline {
+  background-color: transparent;
+  border-radius: 0;
+  color: #000;
+  border: 1px solid #000;
+  padding: 7px 30px;
+}
+
+.btn:hover {
+  background-color: #0f730c;
+  color: #fff;
+}
+
+.btn.btn-outline:hover {
+  background-color: #000;
+}
+
+.btn.btn-danger:hover {
+  background-color: #dc3545;
+}
+
+button[disabled] {
+  background-color: #aaa;
+}
+
+.container .error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+svg {
+  margin-top: -100px;
+  position: fixed;
+}
+
+.container img {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  height: 300px;
 }

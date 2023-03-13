@@ -11,6 +11,7 @@ document.body.style.overflow = 'hidden';
 const Delete = () => {
   const [values, setValues] = useState({
     id: '',
+    password:'',
   
   });
   const handleSubmit = (e) => {
@@ -52,6 +53,16 @@ const Delete = () => {
             />
           </label>
           {'\n'}
+          <label>
+            <input
+              type="password"
+              name="password"
+              required
+              placeholder="password"
+              value={values.password}
+              onChange={(e) => setValues({ ...values, password: e.target.value })}
+            />
+          </label>
           <label>
      
             <div className="page-link-login">

@@ -2,12 +2,7 @@ import styles from './register-module.css';
 
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEyeSlash, faEye, faUser } from '@fortawesome/free-solid-svg-icons';
-import {
-  faFacebook,
-  faTwitter,
-  faGoogle,
-} from '@fortawesome/free-brands-svg-icons';
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 
 const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -61,21 +56,18 @@ const Register = () => {
     console.log(values);
   };
 
-  const sites = [
-    { name: 'facebook', color: '#3B5998', icon: faFacebook },
-    { name: 'twitter', color: '#3CF', icon: faTwitter },
-    { name: 'google', color: '#DC4A38', icon: faGoogle },
-  ];
-
   return (
     <div className="page-register">
       <div className="container-register">
         <h1>Create an account</h1>
-
-        <p>You creating an account, will be able to register all your trips, <br></br>
-          in addition to being able to earn points and create groups with<br></br>
-          your friends.</p>
-    </div>
+        <p>
+          You creating an account, will be able to register all your trips,{' '}
+          <br></br>
+          in addition to being able to earn points and create groups with
+          <br></br>
+          your friends.
+        </p>
+      </div>
       <h1 className="page-title">Get started</h1>
       <form onSubmit={handleSubmit}>
         <div className="page-input">
@@ -86,9 +78,7 @@ const Register = () => {
               required
               placeholder="Enter your name"
               value={values.name}
-              onChange={(e) =>
-                setValues({ ...values, name: e.target.value })
-              }
+              onChange={(e) => setValues({ ...values, name: e.target.value })}
             />
           </label>
           {'\n'}

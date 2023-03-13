@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
-
+import axios from 'axios';
 document.body.style.overflow = 'hidden';
 
 const Register = () => {
@@ -55,8 +55,8 @@ const Register = () => {
       setValues({ ...values, error: 'Passwords are not the same!' });
       return;
     }
-
     console.log(values);
+    axios.post('http://localhost:3000/user/register ', values);
   };
 
   return (

@@ -16,7 +16,7 @@ import * as firebaseui from "firebaseui";
 import Home from './pages/home/home';
 import Login from './pages/login/login';
 import Register from './pages/register/register';
-
+import Delete from './pages/delete/delete';
 // Importing components
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -29,6 +29,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/delete" element={<Delete />} />
           </Routes>
         </div>
         <Footer />

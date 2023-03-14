@@ -10,14 +10,14 @@ document.body.style.overflow = 'hidden';
 
 const Delete = () => {
   const [values, setValues] = useState({
-    id: '',
-    password:'',
-  
+    email: '',
+    password: '',
   });
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(values);
-    axios.post('http://localhost:3000/user/login ', values);
+    axios.post('http://localhost:3005/user/delete', values);
   };
 
   const [type, setType] = useState('password');
@@ -44,12 +44,12 @@ const Delete = () => {
         <form onSubmit={handleSubmit}>
           <label>
             <input
-              type="id"
-              name="id"
+              type="email"
+              name="email"
               required
-              placeholder="id"
-              value={values.id}
-              onChange={(e) => setValues({ ...values, id: e.target.value })}
+              placeholder="email"
+              value={values.email}
+              onChange={(e) => setValues({ ...values, email: e.target.value })}
             />
           </label>
           {'\n'}
@@ -60,18 +60,16 @@ const Delete = () => {
               required
               placeholder="password"
               value={values.password}
-              onChange={(e) => setValues({ ...values, password: e.target.value })}
+              onChange={(e) =>
+                setValues({ ...values, password: e.target.value })
+              }
             />
           </label>
           <label>
-     
-            <div className="page-link-login">
-     
-            </div>
+            <div className="page-link-login"></div>
           </label>
           {'\n'}
           <button className="login-btn">DELETE</button>
-       
         </form>
       </div>
     </div>

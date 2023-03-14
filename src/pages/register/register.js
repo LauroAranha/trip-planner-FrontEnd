@@ -56,7 +56,7 @@ const Register = () => {
       return;
     }
     console.log(values);
-    axios.post('http://localhost:3000/user/register ', values);
+    axios.post('http://localhost:3005/user/register', values);
   };
 
   return (

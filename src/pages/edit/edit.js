@@ -41,7 +41,8 @@ const Edit = () => {
   };
 
   const [values, setValues] = useState({
-    id: '',
+    currentEmail: '',
+    currentPassword: '',
     name: '',
     lastName: '',
     email: '',
@@ -53,9 +54,8 @@ const Edit = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
- 
     console.log(values);
-    
+    axios.post('http://localhost:3005/user/edit', values);
   };
 
   return (
@@ -63,29 +63,44 @@ const Edit = () => {
       <div className="container-register">
         <h1>Update an account</h1>
         <p>
-          You are editing an account,{' '}
-          <br></br>
+          You are editing an account, <br></br>
           press Update to submit your changes.
-          
         </p>
       </div>
       <h1 className="page-title">Edit</h1>
       <form onSubmit={handleSubmit}>
         <div className="page-input-edit">
           <label>
-          <input
-              type="id"
-              name="id"
+            <input
+              type="email"
+              name="currentEmail"
               required
-              placeholder="id"
-              value={values.id}
-              onChange={(e) => setValues({ ...values, id: e.target.value })}
+              placeholder="Enter your current email"
+              value={values.currentEmail}
+              onChange={(e) =>
+                setValues({ ...values, currentEmail: e.target.value })
+              }
             />
+          </label>
+          {'\n'}
+          <label>
+            <input
+              type="password"
+              name="currentPassword"
+              required
+              placeholder="Enter your current password"
+              value={values.currentPassword}
+              onChange={(e) =>
+                setValues({ ...values, currentPassword: e.target.value })
+              }
+            />
+          </label>
+          {'\n'}
+          <label>
             <input
               type="text"
               name="displayName"
-              required
-              placeholder="Enter your name"
+              placeholder="Enter your new name"
               value={values.name}
               onChange={(e) => setValues({ ...values, name: e.target.value })}
             />
@@ -95,8 +110,7 @@ const Edit = () => {
             <input
               type="text"
               name="displayName"
-              required
-              placeholder="Enter your last name"
+              placeholder="Enter your new last name"
               value={values.lastName}
               onChange={(e) =>
                 setValues({ ...values, lastName: e.target.value })
@@ -108,8 +122,7 @@ const Edit = () => {
             <input
               type="email"
               name="email"
-              required
-              placeholder="Enter a email"
+              placeholder="Enter your new email"
               value={values.email}
               onChange={(e) => setValues({ ...values, email: e.target.value })}
             />
@@ -119,27 +132,21 @@ const Edit = () => {
             <input
               type={type}
               name="password"
-              required
-              placeholder="Enter a password"
+              placeholder="Enter your new password"
               value={values.password}
               onChange={(e) =>
                 setValues({ ...values, password: e.target.value })
               }
             />
-        
           </label>
           {'\n'}
-
-       
-            <span onClick={handleToggleConfirmPassword}>
-              <FontAwesomeIcon icon={iconConfirm} />
-            </span>
-     
+          <span onClick={handleToggleConfirmPassword}>
+            <FontAwesomeIcon icon={iconConfirm} />
+          </span>
         </div>
         {'\n'}
         {values.error && <p className={styles.error}>{values.error}</p>}{' '}
         <button className="edit-btn">Update</button>
-    
       </form>
     </div>
   );

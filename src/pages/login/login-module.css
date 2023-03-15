@@ -6,6 +6,9 @@
     user-select: none;
     
 }
+body{ 
+    background-image: linear-gradient(to right, #37b0e8 50%, #EFFFFD 50%);
+}
 
 .container-login h1 {
     color: white;
@@ -16,6 +19,10 @@
     font-family: 'Pacifico', sans-serif;
 }
 
+.page-login{
+    padding: 20% !important;
+}
+
 .page-title-login {
     margin-top: -230px !important;
     color: #42B0FF;
@@ -24,16 +31,6 @@
     font-family: 'Poppins', sans-serif;
     margin-left: 52%;
     margin-bottom: 90px;
-}
-
-.page-login {
-    background-image: linear-gradient(to right, #37b0e8 50%, #EFFFFD 50%);
-    margin-top: -9px !important;
-    margin: -260px;
-    padding: 350px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
 }
 
 .page-input-login{

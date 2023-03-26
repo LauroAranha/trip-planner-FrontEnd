@@ -1,10 +1,11 @@
+/**
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@600&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 * {
     user-select: none;
-
 }
 
 .container-login h1 {
@@ -109,12 +110,10 @@
 
 .login-btn:not([disabled]):focus {
     box-shadow: 0 0 .5rem #98f4f9, -.125rem -.125rem 1rem #98f4f9, .125rem .125rem 1rem rgba(66, 194, 255, 1);
-    text-shadow: 0 0 5px #fff;
 }
 
 .login-btn:not([disabled]):hover {
     box-shadow: 0 0 .5rem #aff0f4, -.125rem -.125rem 1rem #98f4f9, .125rem .125rem 1rem rgba(66, 194, 255, 1);
-    text-shadow: 0 0 5px #fff;
 }
 
 .page-link-login {
@@ -166,4 +165,4 @@
     color: #42B0FF;
     transform: scale(1.0);
     outline: none;
-}
+} */

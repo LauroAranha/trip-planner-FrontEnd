@@ -34,7 +34,7 @@ const Login = () => {
   };
 
   return (
-    <div className="page-login">
+    <body className="page-login">
       <div className="container-login">
         <h1>📍 Trip Planner</h1>
       </div>
@@ -63,7 +63,7 @@ const Login = () => {
                 setValues({ ...values, password: e.target.value })
               }
             />
-            <span onClick={handleToggle}>
+            <span onClick={handleToggle} className="icon-eye">
               <FontAwesomeIcon icon={icon} />
             </span>
             <div className="page-link-login">
@@ -75,12 +75,14 @@ const Login = () => {
           {'\n'}
           <button className="login-btn">Enter</button>
           <div className="create-account">
-            <span>Don't have an account?</span>
-            <Link to="/register" className="link-login" >Sign up now</Link>
+            <span className="login-sign-in">Don't have an account?</span>
+            <Link to="/register" className="link-login">
+              Sign up now
+            </Link>
           </div>
         </form>
       </div>
-    </div>
+    </body>
   );
 };
 

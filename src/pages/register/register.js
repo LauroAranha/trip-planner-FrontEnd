@@ -60,7 +60,7 @@ const Register = () => {
   };
 
   return (
-    <div className="page-register">
+    <body className="page-register">
       <div className="container-register">
         <h1>Create an account</h1>
         <p>
@@ -71,9 +71,9 @@ const Register = () => {
           your friends.
         </p>
       </div>
-      <h1 className="page-title">Get started</h1>
+      <h1 className="page-title-register">Get started</h1>
       <form onSubmit={handleSubmit}>
-        <div className="page-input">
+        <div className="page-input-register">
           <label>
             <input
               type="text"
@@ -120,7 +120,7 @@ const Register = () => {
                 setValues({ ...values, password: e.target.value })
               }
             />
-            <span onClick={handleToggle}>
+            <span onClick={handleToggle} className="icon-eye-register">
               <FontAwesomeIcon icon={icon} />
             </span>
           </label>
@@ -135,7 +135,10 @@ const Register = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <span onClick={handleToggleConfirmPassword}>
+            <span
+              onClick={handleToggleConfirmPassword}
+              className="icon-eye-register"
+            >
               <FontAwesomeIcon icon={iconConfirm} />
             </span>
           </label>
@@ -149,7 +152,7 @@ const Register = () => {
           </Link>
         </div>
       </form>
-    </div>
+    </body>
   );
 };
 

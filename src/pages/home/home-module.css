@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.square-title {
+    font-family: 'Poppins', sans-serif; 
+    font-weight: none;
+}
+
+
+.squares-container {
+    display: flex;
+}
+
+.square {
+    width: 520px;
+    height: 380px;
+    background-color: #42B0FF;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    margin: 20px;
+}
+
+.square img {
+    margin-top: 18px;
+    width: 470px;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.square h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.square p {
+    font-size: 16px;
+    text-align: center;
+}
+.square h2, p {
+   margin-bottom: 20px;
+    margin-right: 360px;
+}

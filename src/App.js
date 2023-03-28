@@ -11,6 +11,7 @@ import Edit from './pages/edit/edit';
 
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import MapContainer from './components/Map/MapContainer';
 
 const App = () => {
   return (
@@ -20,18 +21,34 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/home" element={<>
-              <Navbar />
-              <Home />
-            </>} />
-            <Route path="/delete" element={<>
-              <Navbar />
-              <Delete />
-            </>} />
-            <Route path="/edit" element={<>
-              <Navbar />
-              <Edit />
-            </>} />
+            <Route
+              path="/home"
+              element={
+                <>
+                  <Navbar />
+                  <Home />
+                  <MapContainer />
+                </>
+              }
+            />
+            <Route
+              path="/delete"
+              element={
+                <>
+                  <Navbar />
+                  <Delete />
+                </>
+              }
+            />
+            <Route
+              path="/edit"
+              element={
+                <>
+                  <Navbar />
+                  <Edit />
+                </>
+              }
+            />
           </Routes>
         </div>
         <Footer />

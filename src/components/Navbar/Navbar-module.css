@@ -81,7 +81,7 @@
 .profile-interface {
     position: absolute;
     bottom: 0;
-    top: 6.4%;
+    top: 6.6%;
     left: 90%;
     transform: translateX(-50%);
     width: 290px;
@@ -143,5 +143,11 @@
 @media screen and (max-width: 1920px) {
     .links_list li a {
         padding: 1em 1em;
+    }
+}
+
+@media screen and (max-width: 1650px) {
+    .links_list li a {
+        padding: 0.6em 0.3em;
     }
 }

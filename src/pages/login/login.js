@@ -2,22 +2,54 @@ import './login-module.css';
 
 import { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEyeSlash, faEye, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 
 document.body.style.overflow = 'hidden';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     email: '',
     password: '',
   });
-  const handleSubmit = (e) => {
+
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(values);
-    axios.post('http://localhost:3000/user/login ', values);
+
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/user/login',
+        values
+      );
+
+      if (response.status === 200) {
+        navigate('/home');
+      } else {
+        setErrorMessage('Invalid username or password');
+      }
+    } catch (error) {
+      setErrorMessage(JSON.stringify(error.response.data).slice(1, -1));
+    }
   };
+
+  const errorMessageDiv = (
+    <p
+      style={{
+        color: 'red',
+        margin: 'auto',
+        fontSize: '26px',
+        fontFamily: 'sans-serif',
+        marginLeft: '100px',
+      }}
+    >
+      {errorMessage}
+    </p>
+  );
 
   const [type, setType] = useState('password');
   const [icon, setIcon] = useState(faEyeSlash);
@@ -73,7 +105,10 @@ const Login = () => {
             </div>
           </label>
           {'\n'}
-          <button className="login-btn">Enter</button>
+          <button type="submit" className="login-btn">
+            Enter
+          </button>
+          {errorMessage && errorMessageDiv}
           <div className="create-account">
             <span className="login-sign-in">Don't have an account?</span>
             <Link to="/register" className="link-login">

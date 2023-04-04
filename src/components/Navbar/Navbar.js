@@ -1,9 +1,7 @@
-// Importing atributes
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './Navbar-module.css';
 
-// Importing custom, fonts & icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHouse,
@@ -12,33 +10,37 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import profilePic from './img/profile-pic.png';
-
-// Importing img
 import logo from './img/logo.png';
 
 const Navbar = () => {
   const [showInterface, setShowInterface] = useState(false);
+  const [navClass, setNavClass] = useState('');
 
   const handleArrowClick = () => {
     setShowInterface(!showInterface);
   };
 
+  const handleLinkClick = () => {
+    setNavClass('fade-in');
+    setShowInterface(false);
+  };
+
   return (
-    <nav className="navbar">
-      <NavLink className="brand" to="/home">
+    <nav className={`navbar ${navClass}`}>
+      <Link className="brand" to="/home">
         <img src={logo} alt="logo" className="nav-logo" />
-      </NavLink>
+      </Link>
       <ul className="links_list">
         <li>
-          <NavLink to="/home" className="option">
+          <Link to="/home" className="option" onClick={handleLinkClick}>
             <FontAwesomeIcon icon={faHouse} className="nav-icon" /> Home{' '}
-          </NavLink>
+          </Link>
         </li>
         <li>
-          <NavLink to="/roadmaps" className="option">
+          <Link to="/roadmaps" className="option" onClick={handleLinkClick}>
             <FontAwesomeIcon icon={faMapLocationDot} className="nav-icon" />{' '}
             Road Maps{' '}
-          </NavLink>
+          </Link>
         </li>
       </ul>
       <li className="profile">
@@ -48,13 +50,18 @@ const Navbar = () => {
           className={`down-arrow ${showInterface ? 'rotate' : ''}`}
           onClick={handleArrowClick}
         />
-
         {showInterface && (
           <div className="profile-interface">
             <ul>
-              <li className="profile-option">Configurações</li>
-              <li className="profile-option">Editar Perfil</li>
-              <li className="profile-option" style={{ color: 'red' }}>Sair</li>
+              <Link to="/config" className="" onClick={handleLinkClick}>
+                <li className="profile-option">Configurações</li>
+              </Link>
+              <Link to="/edit" className="" onClick={handleLinkClick}>
+                <li className="profile-option">Editar Perfil</li>
+              </Link>
+              <li className="profile-option" style={{ color: 'red' }}>
+                Sair
+              </li>
             </ul>
           </div>
         )}

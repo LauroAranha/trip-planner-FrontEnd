@@ -7,7 +7,7 @@ import Home from './pages/home/home';
 import Login from './pages/login/login';
 import Register from './pages/register/register';
 import Delete from './pages/delete/delete';
-import Edit from './pages/edit/edit';
+import Edit from './pages/config/edit';
 
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';

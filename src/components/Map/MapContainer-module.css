@@ -2,26 +2,17 @@
 
 .map-container {
   display: flex;
-  margin-left: 5%;
-  margin-top: 30px;
-  border-radius: 50px;
+  flex-direction: column;
   justify-content: center;
-}
-
-.column-container h2 {
-  top: 2px;
 }
 
 .map-options {
   display: flex;
   justify-content: space-between;
   font-family: 'Poppins', sans-serif;
-  width: 50%;
   padding: 0;
-  margin: 0;
-  margin-right: 55%;
-  margin-top: -10px;
   list-style: none;
+  width: 50%;
 }
 
 .map-options li {
@@ -33,13 +24,17 @@
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
+  justify-content: space-evenly;
 }
 
 .map-options li:hover {
   background-color: #85F4FF;
-
 }
 
-.map {
-  margin-top: 40px;
+.map-styles {
+  display: 'flex';
+  display: block;
+  overflow: hidden;
+  width: 80%;
+  height: 40vh;
 }

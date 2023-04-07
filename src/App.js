@@ -8,6 +8,7 @@ import Login from './pages/login/login';
 import Register from './pages/register/register';
 import Delete from './pages/delete/delete';
 import Edit from './pages/edit/edit';
+
 import Roteiro from './pages/roteiro/roteiro';
 
 import Navbar from './components/Navbar/Navbar';

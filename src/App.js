@@ -18,7 +18,7 @@ const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <div className="container">
+        <div>
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -28,8 +28,10 @@ const App = () => {
               element={
                 <>
                   <Navbar />
-                  <Home />
-                  <MapContainer />
+                  <div className="container">
+                    <Home />
+                    <MapContainer />
+                  </div>
                 </>
               }
             />

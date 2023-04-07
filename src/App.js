@@ -9,6 +9,8 @@ import Register from './pages/register/register';
 import Delete from './pages/delete/delete';
 import Edit from './pages/config/edit';
 
+import Roteiro from './pages/roteiro/roteiro';
+
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
@@ -17,17 +19,20 @@ const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <div className="container">
+        <div>
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/roteiro" element={<Roteiro />} />
             <Route
               path="/home"
               element={
                 <>
                   <Navbar />
-                  <Home />
-                  <MapContainer />
+                  <div className="container">
+                    <Home />
+                    <MapContainer />
+                  </div>
                 </>
               }
             />

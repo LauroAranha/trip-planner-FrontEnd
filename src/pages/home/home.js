@@ -8,7 +8,7 @@ import image4 from './img/parque-ibirapuera.png';
 
 const Home = () => {
   return (
-    <body>
+    <div className="mainContainer">
       <h1 className="square-title">Recommended Road Maps</h1>
       <div className="squares-container">
         <div className="square">
@@ -45,7 +45,7 @@ const Home = () => {
         </div>
       </div>
       <h1 className="map-title">Nearby attractions</h1>
-    </body>
+    </div>
   );
 };
 

@@ -1,46 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-.map-container{
-    display: flex;
-    margin-left: 5%;
-    margin-top: 30px;
-    border-radius: 50px;
-    justify-content: center;
-}
-
-.column-container h2{
-    top: 2px;
+.map-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .map-options {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Poppins', sans-serif; 
-    width: 50%;
-    padding: 0;
-    margin: 0;
-    margin-right: 55%;
-    margin-top: -10px;
-    list-style: none;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  list-style: none;
+  width: 50%;
 }
 
 .map-options li {
-    background-color: #42B0FF;
-    color: white;
-    border-radius: 40px;
-    padding: 18px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
+  background-color: #42B0FF;
+  color: white;
+  border-radius: 40px;
+  padding: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  justify-content: space-evenly;
 }
 
-  .map-options li:hover {
-    background-color: #85F4FF;
-    
-  }
-  
-  .map {
-    margin-top: 40px;
-  }
-  
+.map-options li:hover {
+  background-color: #85F4FF;
+}
+
+.map-styles {
+  display: 'flex';
+  display: block;
+  overflow: hidden;
+  width: 80%;
+  height: 40vh;
+}

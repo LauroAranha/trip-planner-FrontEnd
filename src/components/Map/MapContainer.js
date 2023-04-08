@@ -11,7 +11,7 @@ const MapContainer = () => {
     // Load Google Maps JavaScript API
     const script = document.createElement('script');
     script.src =
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBKsYdHxVPivYhamvSD_TkYXJuJbIJ1W1U&callback=initAutocomplete&libraries=places&v=weekly';
+      'https://maps.googleapis.com/maps/api/js?key=&callback=initAutocomplete&libraries=places&v=weekly';
     script.defer = true;
     document.body.appendChild(script);
 

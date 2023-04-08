@@ -36,6 +36,7 @@ const Home = () => {
           })
         )}
       </div>
+      <h1 className="square-title">Nearby Attractions</h1>
     </div>
   );
 };

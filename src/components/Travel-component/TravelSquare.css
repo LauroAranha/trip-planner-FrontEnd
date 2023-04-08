@@ -5,7 +5,17 @@
     margin: 10px;
     background-color: #42B0FF;
     font-family: 'Inter', sans-serif;
+}
 
+.square:first-child {
+    display: inline-block;
+    height: 30vh;
+    width: 300px;
+    margin: 10px;
+    background-color: #42B0FF;
+    font-family: 'Inter', sans-serif;
+
+    margin-left: 0px;
 }
 
 .square img {

@@ -36,5 +36,12 @@
   display: block;
   overflow: hidden;
   width: 80%;
-  height: 40vh;
+  height: 70vh;
+}
+
+.controls {
+  width: 70%;
+  height: 5.4%;
+  border: 1px solid rgba(0, 0, 0, 0.146);
+  margin-top: 1%;
 }

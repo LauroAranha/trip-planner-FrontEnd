@@ -10,6 +10,7 @@
     background-image: linear-gradient(to right, #37b0e8 50%, #EFFFFD 50%);
     padding: 18%;
     margin: -20px;
+    height: 100vh;
 }
 
 .container-login h1 {
@@ -177,17 +178,18 @@
         margin: -20px;
         background-image: linear-gradient(to right, #37b0e8 50%, #EFFFFD 50%);
     }
-    
-    .page-title-login{
+
+    .page-title-login {
         margin-left: 86%;
     }
+
     .page-input-login {
         position: relative;
         margin-left: 500px;
     }
 
     .page-input-login input {
-        width: 40%;       
+        width: 40%;
     }
 
     .page-input-login .icon-eye {
@@ -215,8 +217,8 @@
         margin-left: 76% !important;
     }
 
-    .container-login{
-        margin-top:  65px ;
+    .container-login {
+        margin-top: 65px;
         margin-left: -15%;
     }
 }

@@ -7,46 +7,8 @@
 }
 
 .squares-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    justify-content: space-evenly;
-    width: 100%;
-}
-
-.square {
-    height: 340px;
-    max-width: 20%;
-    max-width: 22%;
-    background-color: #42B0FF;
-    font-family: 'Inter', sans-serif;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-    align-items: center;
-}
-
-.square img {
-    display: block;
-    width: 94%;
-    height: 57%;
-}
-
-.square h2 {
-    font-weight: bold;
-    color: white;
-    font-size: 22px;
-    margin-bottom: 9px;
-}
-
-.square p {
-    color: white;
-    text-align: left;
-    font-size: 16px;
-    margin-left: 14px;
-    margin-top: 6px;
+    overflow: auto;
+    white-space: nowrap;
 }
 
 .map-title {

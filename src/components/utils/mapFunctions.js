@@ -1,10 +1,26 @@
 // if you fill it with out apikey, please dont commit it.
 // Only use it to test occasionally in order to limit our usage of the request limit while developing and testing
 const mapApiKey = '';
-// eslint-disable-next-line import/prefer-default-export
+
+// This function will initialize the google maps api via a script, passing as a parameter a
+// function name that will be used as callback
+export function initGoogleMapApiScript(scriptName) {
+    // Load Google Maps JavaScript API
+    let scriptCallback = '';
+    if (scriptName) {
+        scriptCallback = `&callback=${scriptName}`;
+    }
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${mapApiKey}${scriptCallback}&libraries=places&v=weekly`;
+    script.defer = true;
+    document.body.appendChild(script);
+    return script;
+}
+
 export const initMapWithAutocompleteField = () => {
+    // Makes map render in certain coordinate (currently is set to fatec)
     const map = new window.google.maps.Map(document.getElementById('map'), {
-        center: { lat: -33.8688, lng: 151.2195 },
+        center: { lat: -23.521518735620543, lng: -46.476514255821115 },
         zoom: 13,
         mapTypeId: 'roadmap',
     });
@@ -66,12 +82,10 @@ export const initMapWithAutocompleteField = () => {
         });
         map.fitBounds(bounds);
     });
+    const options = {
+        componentRestrictions: { country: 'br' },
+        types: ['establishment'],
+    };
+    // eslint-disable-next-line no-new
+    new window.google.maps.places.Autocomplete(input, options);
 };
-
-export function initGoogleMapApi() {
-    // Load Google Maps JavaScript API
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${mapApiKey}&callback=initMapWithAutocomplete&libraries=places&v=weekly`;
-    script.defer = true;
-    document.body.appendChild(script);
-}

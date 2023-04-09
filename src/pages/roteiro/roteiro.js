@@ -1,5 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 import './roteiro-module.css';
 
 import { useForm } from 'react-hook-form';
@@ -7,6 +10,8 @@ import AutoCompleteField from '../../components/AutoCompleteMapField/AutoComplet
 import { initGoogleMapApi } from '../../components/utils/mapFunctions';
 
 const Roteiro = () => {
+    const navigate = useNavigate();
+
     const [inputCount, setInputCount] = useState(0);
     const [autoCompleteField, setAutoCompleteField] = useState(0);
 
@@ -27,15 +32,40 @@ const Roteiro = () => {
         initGoogleMapApi();
     }, []);
     useEffect(() => {
+        const autoCompleteOptions = {
+            componentRestrictions: { country: 'br' },
+            types: ['establishment'],
+        };
         if (autoCompleteField) {
             // eslint-disable-next-line no-new
             new window.google.maps.places.Autocomplete(
-                document.getElementById(`inputFieldAut${autoCompleteField - 1}`)
+                document.getElementById(
+                    `inputFieldAut${autoCompleteField - 1}`
+                ),
+                autoCompleteOptions
             );
         }
     }, [inputCount]);
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = async (data) => {
+        console.log(data);
+
+        try {
+            const response = await axios.post(
+                'http://localhost:3001/travel/add',
+                data
+            );
+
+            if (response.status === 200) {
+                console.log(response);
+                navigate('/home');
+            } else {
+                console.log('Some pepino occurred debug it');
+            }
+        } catch (error) {
+            console.log(JSON.stringify(error.response.data).slice(1, -1));
+        }
+    };
 
     return (
         <div className="formBox">
@@ -46,14 +76,25 @@ const Roteiro = () => {
                     type="text"
                     placeholder="Nome do roteiro"
                     className="form__input"
-                    {...register('nomeRoteiro', {})}
+                    {...register('title', {})}
                 />
 
                 <label className="fieldLabel">Descrição do roteiro</label>
                 <textarea
                     required
                     className="form__textarea"
-                    {...register('descricaoRoteiro', {})}
+                    {...register('description', {})}
+                />
+
+                <label className="fieldLabel">
+                    Imagem thumb roteiro (só coloque links)
+                </label>
+                <input
+                    required
+                    type="text"
+                    placeholder="Link imagem"
+                    className="form__input"
+                    {...register('image', {})}
                 />
 
                 <label className="fieldLabel">Cidade do roteiro</label>

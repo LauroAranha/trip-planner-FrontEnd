@@ -7,7 +7,7 @@ import './roteiro-module.css';
 
 import { useForm } from 'react-hook-form';
 import AutoCompleteField from '../../components/AutoCompleteMapField/AutoCompleteField';
-import { initGoogleMapApi } from '../../components/utils/mapFunctions';
+import { initGoogleMapApiScript } from '../../components/utils/mapFunctions';
 
 const Roteiro = () => {
     const navigate = useNavigate();
@@ -29,7 +29,12 @@ const Roteiro = () => {
     };
 
     useEffect(() => {
-        initGoogleMapApi();
+        const scriptReturned = initGoogleMapApiScript();
+        return () => {
+            // Clean up by removing the script and window property
+            document.body.removeChild(scriptReturned);
+            delete window.scriptReturned;
+        };
     }, []);
     useEffect(() => {
         const autoCompleteOptions = {

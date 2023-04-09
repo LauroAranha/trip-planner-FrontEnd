@@ -11,23 +11,22 @@ import {
     faClock,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { initMapWithAutocompleteField } from '../utils/mapFunctions';
+import {
+    initGoogleMapApiScript,
+    initMapWithAutocompleteField,
+} from '../utils/mapFunctions';
 
 const MapContainer = () => {
     useEffect(() => {
         window.initMapWithAutocompleteField = initMapWithAutocompleteField;
-
-        const script = document.createElement('script');
-        const mapApiKey = '';
-        // Be careful with callback=initMapWithAutocompleteField param!
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${mapApiKey}&callback=initMapWithAutocompleteField&libraries=places&v=weekly`;
-        script.defer = true;
-        document.body.appendChild(script);
+        const scriptReturned = initGoogleMapApiScript(
+            initMapWithAutocompleteField.name
+        );
 
         return () => {
             // Clean up by removing the script and window property
-            document.body.removeChild(script);
-            delete window.initMapWithAutocompleteField;
+            document.body.removeChild(scriptReturned);
+            delete window.scriptReturned;
         };
     }, []);
 

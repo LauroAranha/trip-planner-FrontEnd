@@ -26,7 +26,7 @@
   text-transform: uppercase;
   cursor: pointer;
   justify-content: space-evenly;
-  position: relative; 
+  position: relative;
 }
 
 .map-options li:hover::after {
@@ -36,7 +36,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
   background-color: #60b8f3;
   border-radius: 45px;
 }

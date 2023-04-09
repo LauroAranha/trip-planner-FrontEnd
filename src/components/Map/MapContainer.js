@@ -1,8 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import './MapContainer-module.css';
-
-import { Loader } from '@googlemaps/js-api-loader';
-import { initAutocomplete } from '../utils/mapFunctions';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -13,6 +10,8 @@ import {
     faShoppingBasket,
     faClock,
 } from '@fortawesome/free-solid-svg-icons';
+
+import { initMapWithAutocompleteField } from '../utils/mapFunctions';
 
 const MapContainer = () => {
     useEffect(() => {

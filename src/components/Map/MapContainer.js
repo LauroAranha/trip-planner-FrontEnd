@@ -17,10 +17,10 @@ const MapContainer = () => {
     useEffect(() => {
         window.initMapWithAutocompleteField = initMapWithAutocompleteField;
 
-        // Load Google Maps JavaScript API
         const script = document.createElement('script');
         const mapApiKey = '';
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${mapApiKey}&callback=initMapWithAutocomplete&libraries=places&v=weekly`;
+        // Be careful with callback=initMapWithAutocompleteField param!
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${mapApiKey}&callback=initMapWithAutocompleteField&libraries=places&v=weekly`;
         script.defer = true;
         document.body.appendChild(script);
 

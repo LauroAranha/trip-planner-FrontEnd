@@ -15,19 +15,19 @@ import { initMapWithAutocompleteField } from '../utils/mapFunctions';
 
 const MapContainer = () => {
     useEffect(() => {
-        window.initAutocomplete = initAutocomplete;
+        window.initMapWithAutocompleteField = initMapWithAutocompleteField;
 
         // Load Google Maps JavaScript API
         const script = document.createElement('script');
         script.src =
-            'https://maps.googleapis.com/maps/api/js?key=&callback=initAutocomplete&libraries=places&v=weekly';
+            'https://maps.googleapis.com/maps/api/js?key=&callback=initMapWithAutocompleteField&libraries=places&v=weekly';
         script.defer = true;
         document.body.appendChild(script);
 
         return () => {
             // Clean up by removing the script and window property
             document.body.removeChild(script);
-            delete window.initAutocomplete;
+            delete window.initMapWithAutocompleteField;
         };
     }, []);
 

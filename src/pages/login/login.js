@@ -29,6 +29,7 @@ const Login = () => {
 
             if (response.status === 200) {
                 console.log(response);
+                navigate('/home');
             } else {
                 setErrorMessage('Invalid username or password');
             }

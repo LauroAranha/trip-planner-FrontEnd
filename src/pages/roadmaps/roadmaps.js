@@ -1,3 +1,6 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/button-has-type */
 import './roadmaps-module.css';
 
@@ -5,7 +8,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { MdDelete, MdEditDocument, MdAdd } from 'react-icons/md';
-import TravelSquare from '../../components/Travel-component/TravelSquare';
 import { auth } from '../../firebase';
 
 const Roadmap = () => {
@@ -78,8 +80,7 @@ const Roadmap = () => {
                                                 Delete
                                                 <MdDelete
                                                     style={{
-                                                        'vertical-align':
-                                                            'middle',
+                                                        verticalAlign: 'middle',
                                                     }}
                                                 />
                                             </Link>

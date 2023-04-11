@@ -4,6 +4,7 @@
 .square-title {
     font-family: 'Poppins', sans-serif;
     font-weight: none;
+    margin-left: 1.2vw;
 }
 
 .square {
@@ -14,6 +15,7 @@
     background-color: #42B0FF;
     font-family: 'Inter', sans-serif;
 }
+
 .square:first-child {
     display: inline-block;
     height: 100%;
@@ -28,19 +30,6 @@
     white-space: nowrap;
 }
 
-.button {
-    background-color: #42B0FF;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 22px;
-    font-weight: bold;
-   
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-  margin-bottom: 20px;
-  }
 .squares-container {
     overflow: auto;
     white-space: nowrap;
@@ -55,4 +44,39 @@
     .links_list li a {
         padding: 1em 1em;
     }
+}
+
+.addButton {
+    background-color: #00ce0e;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    position: relative;
+    width: 20%;
+    margin-left: 1.2vw;
+}
+
+.deleteButton {
+    background-color: #ce1100;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    position: relative;
+    width: 35%;
+    margin-left: 1.2vw;
+    border: none;
+}
+
+.buttonText {
+    color: #ffffff;
+    text-decoration: none;
+    vertical-align: middle;
 }

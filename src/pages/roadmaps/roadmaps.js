@@ -1,19 +1,25 @@
+/* eslint-disable react/button-has-type */
 import './roadmaps-module.css';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { MdDelete, MdEditDocument } from 'react-icons/md';
+import { MdDelete, MdEditDocument, MdAdd } from 'react-icons/md';
 import TravelSquare from '../../components/Travel-component/TravelSquare';
+import { auth } from '../../firebase';
 
-const Home = () => {
+const Roadmap = () => {
     const [travelList, setTravelList] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [triggerUpdate, setTriggerUpdate] = useState(true);
+
+    const user = auth.currentUser;
+    const email = user.reloadUserInfo.email;
 
     useEffect(() => {
-        const teste = axios
+        axios
             .post('http://localhost:3001/travel/getCurrentUserTravels', {
-                currentUserId: '2Rp0A5n0gvhjvMIZ0PfE',
+                userCreatorId: email,
             })
             .then((res) => {
                 const responseData = res.data.data;
@@ -21,17 +27,34 @@ const Home = () => {
                 setTravelList(responseData);
                 setIsLoading(false);
             });
-    }, []);
+        setTriggerUpdate(false);
+    }, [triggerUpdate]);
+
+    const handleDelete = (docId) => {
+        axios
+            .post('http://localhost:3001/travel/delete', {
+                travelId: docId,
+            })
+            .then((res) => {
+                const responseData = res.data.data;
+                console.log(responseData);
+                setTravelList(responseData);
+                setIsLoading(false);
+                setTriggerUpdate(true);
+            });
+    };
 
     return (
-        <div className="mainContainer">
-            <h1 className="square-title">My Road Maps</h1>
-            <Link to="/roteiro" className="button">
-                + NEW ROADMAP
-            </Link>
-            <Link to="/roteiro" className="button"></Link>
+        <div>
             <div className="squares-container">
                 <div className="mainContainer">
+                    <h1 className="square-title">My Road Maps</h1>
+                    <div className="addButton">
+                        <Link to="/roteiro" className="buttonText">
+                            New roadmap
+                            <MdAdd />
+                        </Link>
+                    </div>
                     <div className="squares-container">
                         {isLoading ? (
                             <p>carregando</p>
@@ -39,12 +62,28 @@ const Home = () => {
                             travelList &&
                             travelList.map((object) => {
                                 return (
-                                    <div className="square">
+                                    <div className="square" id={object.docId}>
                                         <p> {object.title} </p>
                                         <img src={object.image} />
                                         <p>{object.description}</p>
                                         <p>{object.recomendacaoTransporte}</p>
                                         <p>{object.custoMedio}</p>
+                                        <button
+                                            className="deleteButton"
+                                            onClick={() =>
+                                                handleDelete(object.docId)
+                                            }
+                                        >
+                                            <Link className="buttonText">
+                                                Delete
+                                                <MdDelete
+                                                    style={{
+                                                        'vertical-align':
+                                                            'middle',
+                                                    }}
+                                                />
+                                            </Link>
+                                        </button>
                                     </div>
                                 );
                             })
@@ -56,4 +95,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Roadmap;

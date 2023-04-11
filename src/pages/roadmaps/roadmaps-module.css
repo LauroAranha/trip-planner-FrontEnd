@@ -8,7 +8,7 @@
 }
 
 .square {
-    display: inline-block;
+    display: inline-table;
     height: 100%;
     width: 300px;
     margin: 10px;
@@ -17,7 +17,7 @@
 }
 
 .square:first-child {
-    display: inline-block;
+    display: inline-table;
     height: 100%;
     width: 300px;
     margin: 10px;
@@ -70,9 +70,21 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 10px;
     position: relative;
-    width: 35%;
-    margin-left: 1.2vw;
     border: none;
+}
+
+.editButton {
+    background-color: #0048ce;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    position: relative;
+    border: none;
+    width: 63.7%;
 }
 
 .buttonText {

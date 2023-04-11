@@ -7,7 +7,7 @@ import './roadmaps-module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { MdDelete, MdEditDocument, MdAdd } from 'react-icons/md';
+import { MdDelete, MdEditDocument, MdAdd, MdEdit } from 'react-icons/md';
 import { auth } from '../../firebase';
 
 const Roadmap = () => {
@@ -79,6 +79,27 @@ const Roadmap = () => {
                                             <Link className="buttonText">
                                                 Delete
                                                 <MdDelete
+                                                    style={{
+                                                        verticalAlign: 'middle',
+                                                    }}
+                                                />
+                                            </Link>
+                                        </button>
+                                        <button
+                                            className="editButton"
+                                            // onClick={() =>
+                                            //    console.log("teste")
+                                            // }
+                                        >
+                                            <Link
+                                                to="/roteiro/editar"
+                                                className="buttonText"
+                                                params={{
+                                                    docId: object.docId,
+                                                }}
+                                            >
+                                                Edit roadmap
+                                                <MdEdit
                                                     style={{
                                                         verticalAlign: 'middle',
                                                     }}

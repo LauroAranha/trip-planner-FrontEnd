@@ -3,7 +3,7 @@ import './roadmaps-module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-//import { MdDelete, MdEditDocument } from 'react-icons/md';
+import { MdDelete, MdEditDocument } from 'react-icons/md';
 import TravelSquare from '../../components/Travel-component/TravelSquare';
 
 const Home = () => {
@@ -19,7 +19,7 @@ const Home = () => {
                 const responseData = res.data.data;
                 console.log(responseData);
                 setTravelList(responseData);
-                // setIsLoading(false);
+                setIsLoading(false);
             });
     }, []);
 
@@ -38,11 +38,11 @@ const Home = () => {
                     travelList.map((object) => {
                         return (
                             <div className="square">
-                                {object.data.title}
-                                {object.data.image}
-                                {object.data.description}
-                                {object.data.recomendacaoTransporte}
-                                {object.data.custoMedio}
+                                <p> {object.title} </p>
+                                <img src={object.image} />
+                                <p>{object.description}</p>
+                                <p>{object.recomendacaoTransporte}</p>
+                                <p>{object.custoMedio}</p>
                             </div>
                         );
                     })

@@ -6,13 +6,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 
+import { getAuth, signInWithCustomToken } from 'firebase/auth';
+
+import { auth } from '../../firebase';
+
 document.body.style.overflow = 'hidden';
 
 const Login = () => {
     const navigate = useNavigate();
     const [values, setValues] = useState({
-        email: '',
-        currentPassword: '',
+        email: 'lauro@lauro.com',
+        password: 'lauro123',
     });
 
     const [errorMessage, setErrorMessage] = useState('');
@@ -21,20 +25,24 @@ const Login = () => {
         e.preventDefault();
         console.log(values);
 
-        try {
-            const response = await axios.post(
-                'http://localhost:3001/user/login',
-                values
-            );
+        const response = await axios.post(
+            'http://localhost:3001/user/login',
+            values
+        );
 
-            if (response.status === 200) {
-                console.log(response);
-                navigate('/home');
-            } else {
-                setErrorMessage('Invalid username or password');
-            }
-        } catch (error) {
-            setErrorMessage(JSON.stringify(error.response.data).slice(1, -1));
+        if (response.status === 200) {
+            const token = response.data.data;
+            console.log(token);
+            signInWithCustomToken(auth, token)
+                .then((userCredential) => {
+                    // Signed in
+                    navigate('/home');
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        } else {
+            setErrorMessage('Invalid username or password');
         }
     };
 
@@ -52,7 +60,7 @@ const Login = () => {
         </p>
     );
 
-    const [type, setType] = useState('currentPassword');
+    const [type, setType] = useState('password');
     const [icon, setIcon] = useState(faEyeSlash);
 
     const handleToggle = () => {
@@ -90,14 +98,14 @@ const Login = () => {
                     <label>
                         <input
                             type={type}
-                            name="currentPassword"
+                            name="password"
                             required
                             placeholder="Enter your password"
-                            value={values.currentPassword}
+                            value={values.password}
                             onChange={(e) =>
                                 setValues({
                                     ...values,
-                                    currentPassword: e.target.value,
+                                    password: e.target.value,
                                 })
                             }
                         />

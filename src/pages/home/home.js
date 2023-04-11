@@ -3,6 +3,8 @@ import './home-module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import { auth } from '../../firebase';
+
 import TravelSquare from '../../components/Travel-component/TravelSquare';
 
 const Home = () => {
@@ -14,10 +16,11 @@ const Home = () => {
             .get('http://localhost:3001/travel/recommendedTravels')
             .then((res) => {
                 const responseData = res.data.data;
-                console.log(responseData);
                 setTravelList(responseData);
                 setIsLoading(false);
             });
+        const user = auth.currentUser;
+        console.log(user);
     }, []);
 
     return (

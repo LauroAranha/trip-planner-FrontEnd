@@ -22,7 +22,6 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/roadmaps" element={<Roadmaps />} />
                         <Route path="/roteiro" element={<Roteiro />} />
                         <Route
                             path="/home"
@@ -32,6 +31,17 @@ const App = () => {
                                     <div className="container">
                                         <Home />
                                         <MapContainer />
+                                    </div>
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/roadmaps"
+                            element={
+                                <>
+                                    <Navbar />
+                                    <div className="container">
+                                        <Roadmaps />
                                     </div>
                                 </>
                             }

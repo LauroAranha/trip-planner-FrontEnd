@@ -2,7 +2,7 @@ import './home-module.css';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { Helmet } from 'react-helmet';
 import TravelSquare from '../../components/Travel-component/TravelSquare';
 
 const Home = () => {
@@ -22,6 +22,14 @@ const Home = () => {
 
     return (
         <div className="mainContainer">
+            <Helmet>
+                <link
+                    rel="stylesheet"
+                    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+                    crossOrigin="anonymous"
+                />
+            </Helmet>
             <h1 className="square-title">Recommended Road Maps</h1>
             <div className="squares-container">
                 {isLoading ? (

@@ -8,16 +8,26 @@
 
 .square {
     display: inline-block;
-    height: 50vh;
+    height: 100%;
+    width: 300px;
+    margin: 10px;
+    background-color: #42B0FF;
+    font-family: 'Inter', sans-serif;
+}
+.square:first-child {
+    display: inline-block;
+    height: 100%;
     width: 300px;
     margin: 10px;
     background-color: #42B0FF;
     font-family: 'Inter', sans-serif;
 }
 
-.square:first-child{
-    height: 50vh;
+.squares-container {
+    overflow: auto;
+    white-space: nowrap;
 }
+
 .button {
     background-color: #42B0FF;
     color: #ffffff;

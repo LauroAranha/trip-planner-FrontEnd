@@ -31,22 +31,26 @@ const Home = () => {
             </Link>
             <Link to="/roteiro" className="button"></Link>
             <div className="squares-container">
-                {isLoading ? (
-                    <p>carregando</p>
-                ) : (
-                    travelList &&
-                    travelList.map((object) => {
-                        return (
-                            <div className="square">
-                                <p> {object.title} </p>
-                                <img src={object.image} />
-                                <p>{object.description}</p>
-                                <p>{object.recomendacaoTransporte}</p>
-                                <p>{object.custoMedio}</p>
-                            </div>
-                        );
-                    })
-                )}
+                <div className="mainContainer">
+                    <div className="squares-container">
+                        {isLoading ? (
+                            <p>carregando</p>
+                        ) : (
+                            travelList &&
+                            travelList.map((object) => {
+                                return (
+                                    <div className="square">
+                                        <p> {object.title} </p>
+                                        <img src={object.image} />
+                                        <p>{object.description}</p>
+                                        <p>{object.recomendacaoTransporte}</p>
+                                        <p>{object.custoMedio}</p>
+                                    </div>
+                                );
+                            })
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );

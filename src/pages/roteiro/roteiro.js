@@ -8,9 +8,13 @@ import './roteiro-module.css';
 import { useForm } from 'react-hook-form';
 import AutoCompleteField from '../../components/AutoCompleteMapField/AutoCompleteField';
 import { initGoogleMapApiScript } from '../../components/utils/mapFunctions';
+import { auth } from '../../firebase';
 
 const Roteiro = () => {
     const navigate = useNavigate();
+
+    const user = auth.currentUser;
+    const email = user.reloadUserInfo.email;
 
     const [inputCount, setInputCount] = useState(0);
     const [autoCompleteField, setAutoCompleteField] = useState(0);
@@ -54,7 +58,7 @@ const Roteiro = () => {
 
     const onSubmit = async (data) => {
         console.log(data);
-
+        data.userCreatorId = email;
         try {
             const response = await axios.post(
                 'http://localhost:3001/travel/add',

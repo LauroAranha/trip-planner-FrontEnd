@@ -13,6 +13,7 @@ import Roteiro from './pages/roteiro/roteiro';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
+import EditRoadMap from './pages/roadmaps/edit-roadmap';
 
 const App = () => {
     return (
@@ -23,6 +24,10 @@ const App = () => {
                         <Route path="/" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/roteiro" element={<Roteiro />} />
+                        <Route
+                            path="/roteiro/editar"
+                            element={<EditRoadMap />}
+                        />
                         <Route
                             path="/home"
                             element={

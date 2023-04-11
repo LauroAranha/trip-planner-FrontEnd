@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans:wght@500&display=swap');
+
 
 /** Main Input Style */
 .page-input-edit {
@@ -110,3 +112,82 @@
     top: -40px;
     position: relative;
 }
+
+/* Style Labels */
+
+.label-name-container {
+  display: flex;
+  align-items: center;
+  margin-left: 313px;
+}
+
+.label-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+
+}
+
+.label-name,
+.label-last-name {
+  flex-basis: 50%;
+}
+
+.input-wrapper input {
+  width: 400%; /* Ajustando a largura para preencher todo o espaço disponível em cada label wrapper */
+}
+
+.label-name {
+  width: 350%;
+  margin-right: -30px; /* Diminuindo a margem para reduzir o espaçamento entre as label wrappers */
+}
+
+.label-last-name {
+  width: 340%;
+  margin-top: 12px;
+}
+
+.label-last-name h3 {
+  margin-top: 3px;
+  font-size: 16px;
+}
+
+.page-edit {
+  padding: 28%;
+  margin-top: -30%;
+  height: 250vh;
+}
+
+
+/* Boostrap Refactor Style */
+
+.form input, .form textarea, .form select {
+  border-radius: 18px !important;
+  border: 2.5px solid rgb(215, 215, 215) !important;
+  padding: 20px !important;
+}
+.form-control:focus {
+  box-shadow: 0 0 10px 0 #42B0FF !important;
+}
+
+
+.btn btn-primary { 
+  border-radius: 30px !important;
+}
+
+.panel-title {
+  font-size: 30px;
+  font-family: 'Inter', sans-serif ;
+  font-family: 'Noto Sans', sans-serif;
+  margin-bottom: 50px;
+}
+
+.form-group {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.save-btn {
+  background-color: #42B0FF;
+}
+
+

@@ -125,3 +125,5 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+donotcommit/trip-planner-b0.json
+src/firebase.js

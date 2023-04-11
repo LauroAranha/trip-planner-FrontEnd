@@ -3,15 +3,17 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import './roteiro-module.css';
+import './edit-roadmap-module.css';
 
 import { useForm } from 'react-hook-form';
 import AutoCompleteField from '../../components/AutoCompleteMapField/AutoCompleteField';
 import { initGoogleMapApiScript } from '../../components/utils/mapFunctions';
 import { auth } from '../../firebase';
 
-const Roteiro = () => {
+const EditRoadMap = (props) => {
     const navigate = useNavigate();
+
+    console.log(props.docId);
 
     const user = auth.currentUser;
     const email = user.reloadUserInfo.email;
@@ -57,8 +59,8 @@ const Roteiro = () => {
     }, [inputCount]);
 
     const onSubmit = async (data) => {
-        console.log(data);
-        data.userCreatorId = email;
+        // console.log(data);
+        // data.userCreatorId = email;
         try {
             const response = await axios.post(
                 'http://localhost:3001/travel/add',
@@ -193,4 +195,4 @@ const Roteiro = () => {
     );
 };
 
-export default Roteiro;
+export default EditRoadMap;

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.square-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: none;
+}
+
+.square {
+    display: inline-block;
+    height: 50vh;
+    width: 300px;
+    margin: 10px;
+    background-color: #42B0FF;
+    font-family: 'Inter', sans-serif;
+}
+.button {
+    background-color: #42B0FF;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 22px;
+    font-weight: bold;
+   
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  margin-bottom: 20px;
+  }
+.squares-container {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.map-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: none;
+}
+
+@media screen and (max-width: 1650px) {
+    .links_list li a {
+        padding: 1em 1em;
+    }
+}

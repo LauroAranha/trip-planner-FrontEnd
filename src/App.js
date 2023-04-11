@@ -7,7 +7,7 @@ import Home from './pages/home/home';
 import Login from './pages/login/login';
 import Register from './pages/register/register';
 import Edit from './pages/config/edit';
-
+import Roadmaps from './pages/roadmaps/roadmaps';
 import Roteiro from './pages/roteiro/roteiro';
 
 import Navbar from './components/Navbar/Navbar';
@@ -22,6 +22,7 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<Login />} />
                         <Route path="/register" element={<Register />} />
+                        <Route path="/roadmaps" element={<Roadmaps />} />
                         <Route path="/roteiro" element={<Roteiro />} />
                         <Route
                             path="/home"

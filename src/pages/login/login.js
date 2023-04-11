@@ -34,8 +34,7 @@ const Login = () => {
             const token = response.data.data;
             console.log(token);
             signInWithCustomToken(auth, token)
-                .then((userCredential) => {
-                    // Signed in
+                .then(() => {
                     navigate('/home');
                 })
                 .catch((error) => {

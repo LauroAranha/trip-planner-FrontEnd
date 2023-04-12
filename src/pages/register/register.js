@@ -41,22 +41,16 @@ const Register = () => {
 
   const [values, setValues] = useState({
     name: '',
-    lastName: '',
     email: '',
-    password: '',
-    confirmPassword: '',
+    currentPassword: '',
     error: '',
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (values.password !== confirmPassword) {
-      setValues({ ...values, error: 'Passwords are not the same!' });
-      return;
-    }
     console.log(values);
-    axios.post('http://localhost:3005/user/register', values);
+    axios.post('http://localhost:3001/user/register', values);
   };
 
   return (
@@ -115,9 +109,9 @@ const Register = () => {
               name="password"
               required
               placeholder="Enter a password"
-              value={values.password}
+              value={values.currentPassword}
               onChange={(e) =>
-                setValues({ ...values, password: e.target.value })
+                setValues({ ...values, currentPassword: e.target.value })
               }
             />
             <span onClick={handleToggle} className="icon-eye-register">

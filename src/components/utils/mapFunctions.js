@@ -1,6 +1,6 @@
 // if you fill it with out apikey, please dont commit it.
 // Only use it to test occasionally in order to limit our usage of the request limit while developing and testing
-const mapApiKey = 'AIzaSyBKsYdHxVPivYhamvSD_TkYXJuJbIJ1W1U';
+const mapApiKey = '';
 
 // This function will initialize the google maps api via a script, passing as a parameter a
 // function name that will be used as callback

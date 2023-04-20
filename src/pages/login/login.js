@@ -23,23 +23,16 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(values);
-
         const response = await axios.post(
             'http://localhost:3001/user/login',
             values
         );
-
         if (response.status === 200) {
-            const token = response.data.data;
-            console.log(token);
-            signInWithCustomToken(auth, token)
-                .then(() => {
-                    navigate('/home');
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+            sessionStorage.setItem('userToken', response.data.data.token);
+            sessionStorage.setItem(
+                'currentUserInfo',
+                JSON.stringify(response.data.data.currentUserInfo)
+            );
         } else {
             setErrorMessage('Invalid username or password');
         }
@@ -74,7 +67,7 @@ const Login = () => {
     };
 
     return (
-        <body className="page-login">
+        <div className="page-login">
             <div className="container-login">
                 <h1>📍 Trip Planner</h1>
             </div>
@@ -132,7 +125,7 @@ const Login = () => {
                     </div>
                 </form>
             </div>
-        </body>
+        </div>
     );
 };
 

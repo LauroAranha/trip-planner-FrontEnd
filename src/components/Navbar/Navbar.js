@@ -44,7 +44,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <Link
-                        to="/roadmaps"
+                        to="/roadmap"
                         className="option"
                         onClick={handleLinkClick}
                     >

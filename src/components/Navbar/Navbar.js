@@ -4,70 +4,101 @@ import styles from './Navbar-module.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faHouse,
-  faMapLocationDot,
-  faAngleDown,
+    faHouse,
+    faMapLocationDot,
+    faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import profilePic from './img/profile-pic.png';
 import logo from './img/logo.png';
 
 const Navbar = () => {
-  const [showInterface, setShowInterface] = useState(false);
-  const [navClass, setNavClass] = useState('');
+    const [showInterface, setShowInterface] = useState(false);
+    const [navClass, setNavClass] = useState('');
 
-  const handleArrowClick = () => {
-    setShowInterface(!showInterface);
-  };
+    const handleArrowClick = () => {
+        setShowInterface(!showInterface);
+    };
 
-  const handleLinkClick = () => {
-    setNavClass('fade-in');
-    setShowInterface(false);
-  };
+    const handleLinkClick = () => {
+        setNavClass('fade-in');
+        setShowInterface(false);
+    };
 
-  return (
-    <nav className={`navbar ${navClass}`}>
-      <Link className="brand" to="/home">
-        <img src={logo} alt="logo" className="nav-logo" />
-      </Link>
-      <ul className="links_list">
-        <li>
-          <Link to="/home" className="option" onClick={handleLinkClick}>
-            <FontAwesomeIcon icon={faHouse} className="nav-icon" /> Home{' '}
-          </Link>
-        </li>
-        <li>
-          <Link to="/roadmaps" className="option" onClick={handleLinkClick}>
-            <FontAwesomeIcon icon={faMapLocationDot} className="nav-icon" />{' '}
-            Road Maps{' '}
-          </Link>
-        </li>
-      </ul>
-      <li className="profile">
-        <img src={profilePic} alt="Profile Pic" className="profile-pic" />
-        <FontAwesomeIcon
-          icon={faAngleDown}
-          className={`down-arrow ${showInterface ? 'rotate' : ''}`}
-          onClick={handleArrowClick}
-        />
-        {showInterface && (
-          <div className="profile-interface">
-            <ul>
-              <Link to="/config" className="" onClick={handleLinkClick}>
-                <li className="profile-option">Configurações</li>
-              </Link>
-              <Link to="/edit" className="" onClick={handleLinkClick}>
-                <li className="profile-option">Editar Perfil</li>
-              </Link>
-              <li className="profile-option" style={{ color: 'red' }}>
-                Sair
-              </li>
+    return (
+        <nav className={`navbar ${navClass}`}>
+            <Link className="brand" to="/home">
+                <img src={logo} alt="logo" className="nav-logo" />
+            </Link>
+            <ul className="links_list">
+                <li>
+                    <Link
+                        to="/home"
+                        className="option"
+                        onClick={handleLinkClick}
+                    >
+                        <FontAwesomeIcon icon={faHouse} className="nav-icon" />{' '}
+                        Home{' '}
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/roadmaps"
+                        className="option"
+                        onClick={handleLinkClick}
+                    >
+                        <FontAwesomeIcon
+                            icon={faMapLocationDot}
+                            className="nav-icon"
+                        />{' '}
+                        Road Maps{' '}
+                    </Link>
+                </li>
             </ul>
-          </div>
-        )}
-      </li>
-    </nav>
-  );
+            <li className="profile">
+                <img
+                    src={profilePic}
+                    alt="Profile Pic"
+                    className="profile-pic"
+                />
+                <FontAwesomeIcon
+                    icon={faAngleDown}
+                    className={`down-arrow ${showInterface ? 'rotate' : ''}`}
+                    onClick={handleArrowClick}
+                />
+                {showInterface && (
+                    <div className="profile-interface">
+                        <ul>
+                            <Link
+                                to="/config"
+                                className=""
+                                onClick={handleLinkClick}
+                            >
+                                <li className="profile-option">
+                                    Configurações
+                                </li>
+                            </Link>
+                            <Link
+                                to="/edit"
+                                className=""
+                                onClick={handleLinkClick}
+                            >
+                                <li className="profile-option">
+                                    Editar Perfil
+                                </li>
+                            </Link>
+                            <li
+                                className="profile-option"
+                                style={{ color: 'red' }}
+                            >
+                                Sair
+                            </li>
+                        </ul>
+                    </div>
+                )}
+            </li>
+        </nav>
+    );
 };
 
 export default Navbar;

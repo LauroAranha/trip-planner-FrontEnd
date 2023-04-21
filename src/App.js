@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import axios from 'axios';
 
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
 import EditRoadMap from './pages/roadmaps/edit-roadmap';
 
+axios.defaults.baseURL = 'http://localhost:3001/';
 const App = () => {
     return (
         <div className="App">

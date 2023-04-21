@@ -4,23 +4,19 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 
-import { auth } from '../../firebase';
-
 import TravelSquare from '../../components/Travel-component/TravelSquare';
 
 const Home = () => {
-  const [travelList, setTravelList] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+    const [travelList, setTravelList] = useState();
+    const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    axios.get('http://localhost:3001/travel/recommendedTravels').then((res) => {
-      const responseData = res.data.data;
-      setTravelList(responseData);
-      setIsLoading(false);
-    });
-    const user = auth.currentUser;
-    console.log(user);
-  }, []);
+    useEffect(() => {
+        axios.get('travel/recommendedTravels').then((res) => {
+            const responseData = res.data.data;
+            setTravelList(responseData);
+            setIsLoading(false);
+        });
+    }, []);
 
   return (
     <div className="mainContainer">

@@ -11,9 +11,9 @@ import { MdDelete, MdEditDocument, MdAdd, MdEdit } from 'react-icons/md';
 import { getCurrentUserInformation } from '../../components/utils/userUtils';
 
 const Roadmap = () => {
-  const [travelList, setTravelList] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [triggerUpdate, setTriggerUpdate] = useState(true);
+    const [travelList, setTravelList] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+    const [triggerUpdate, setTriggerUpdate] = useState(true);
 
     const user = getCurrentUserInformation();
     const userId = user.uid;
@@ -36,67 +36,6 @@ const Roadmap = () => {
         fetchCurrentUserTravels();
     }, [triggerUpdate]);
 
-  return (
-    <div>
-      <div className="squares-container">
-        <div className="mainContainer">
-          <h1 className="square-title">My Road Maps</h1>
-          <div className="addButton">
-            <Link to="/roteiro" className="buttonText">
-              New roadmap
-              <MdAdd />
-            </Link>
-          </div>
-          <div className="squares-container">
-            {isLoading ? (
-              <p>carregando</p>
-            ) : (
-              travelList &&
-              travelList.map((object) => {
-                return (
-                  <div className="square" id={object.docId}>
-                    <p> {object.title} </p>
-                    <img src={object.image} />
-                    <p>{object.description}</p>
-                    <p>{object.recomendacaoTransporte}</p>
-                    <p>{object.custoMedio}</p>
-                    <button
-                      className="deleteButton"
-                      onClick={() => handleDelete(object.docId)}
-                    >
-                      <Link className="buttonText">
-                        Delete
-                        <MdDelete
-                          style={{
-                            verticalAlign: 'middle',
-                          }}
-                        />
-                      </Link>
-                    </button>
-                    <button
-                      className="editButton"
-                      // onClick={() =>
-                      //    console.log("teste")
-                      // }
-                    >
-                      <Link
-                        to={{ pathname: '/roteiro/editar', state: 'cu' }}
-                        state={{ from: object.docId }}
-                        className="buttonText"
-                      >
-                        Edit roadmap
-                        <MdEdit
-                          style={{
-                            verticalAlign: 'middle',
-                          }}
-                        />
-                      </Link>
-                    </button>
-                  </div>
-                );
-              })
-            )}
-          </div>
     const handleDelete = (docId) => {
         const deleteTravel = async () => {
             try {
@@ -113,10 +52,78 @@ const Roadmap = () => {
         };
 
         deleteTravel();
+    };
+
+    return (
+        <div>
+            <div className="squares-container">
+                <div className="mainContainer">
+                    <h1 className="square-title">My Road Maps</h1>
+                    <div className="addButton">
+                        <Link to="/roteiro" className="buttonText">
+                            New roadmap
+                            <MdAdd />
+                        </Link>
+                    </div>
+                    <div className="squares-container">
+                        {isLoading ? (
+                            <p>carregando</p>
+                        ) : (
+                            travelList &&
+                            travelList.map((object) => {
+                                return (
+                                    <div className="square" id={object.docId}>
+                                        <p> {object.title} </p>
+                                        <img src={object.image} />
+                                        <p>{object.description}</p>
+                                        <p>{object.recomendacaoTransporte}</p>
+                                        <p>{object.custoMedio}</p>
+                                        <button
+                                            className="deleteButton"
+                                            onClick={() =>
+                                                handleDelete(object.docId)
+                                            }
+                                        >
+                                            <Link className="buttonText">
+                                                Delete
+                                                <MdDelete
+                                                    style={{
+                                                        verticalAlign: 'middle',
+                                                    }}
+                                                />
+                                            </Link>
+                                        </button>
+                                        <button
+                                            className="editButton"
+                                            // onClick={() =>
+                                            //    console.log("teste")
+                                            // }
+                                        >
+                                            <Link
+                                                to={{
+                                                    pathname: '/roteiro/editar',
+                                                    state: 'cu',
+                                                }}
+                                                state={{ from: object.docId }}
+                                                className="buttonText"
+                                            >
+                                                Edit roadmap
+                                                <MdEdit
+                                                    style={{
+                                                        verticalAlign: 'middle',
+                                                    }}
+                                                />
+                                            </Link>
+                                        </button>
+                                    </div>
+                                );
+                            })
+                        )}
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Roadmap;

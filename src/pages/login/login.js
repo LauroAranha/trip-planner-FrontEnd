@@ -6,34 +6,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 
-import { getAuth, signInWithCustomToken } from 'firebase/auth';
-
-import { auth } from '../../firebase';
-
-document.body.style.overflow = 'hidden';
-
 const Login = () => {
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
+    const [type, setType] = useState('password');
+    const [icon, setIcon] = useState(faEyeSlash);
     const [values, setValues] = useState({
         email: 'lauro@lauro.com',
         password: 'lauro123',
     });
 
-    const [errorMessage, setErrorMessage] = useState('');
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await axios.post(
-            'http://localhost:3001/user/login',
-            values
-        );
-        if (response.status === 200) {
-            sessionStorage.setItem('userToken', response.data.data.token);
-            sessionStorage.setItem(
-                'currentUserInfo',
-                JSON.stringify(response.data.data.currentUserInfo)
-            );
-        } else {
+        try {
+            const response = await axios.post('user/login', values);
+            if (response.status === 200) {
+                sessionStorage.setItem('userToken', response.data.data.token);
+                sessionStorage.setItem(
+                    'currentUserInfo',
+                    JSON.stringify(response.data.data.currentUserInfo)
+                );
+                navigate('/home');
+            }
+        } catch (error) {
             setErrorMessage('Invalid username or password');
         }
     };
@@ -52,11 +47,7 @@ const Login = () => {
         </p>
     );
 
-    const [type, setType] = useState('password');
-    const [icon, setIcon] = useState(faEyeSlash);
-
     const handleToggle = () => {
-        // For the main password field
         if (type === 'password') {
             setIcon(faEye);
             setType('text');

@@ -10,6 +10,7 @@ import Register from './pages/register/register';
 import Edit from './pages/config/edit';
 import Roadmaps from './pages/roadmaps/roadmaps';
 import Roteiro from './pages/roteiro/roteiro';
+import RoadmapDetails from './pages/roadmaps-details/roadmap-details';
 
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -59,6 +60,17 @@ const App = () => {
                                 <>
                                     <Navbar />
                                     <Edit />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/travel/:travelId"
+                            element={
+                                <>
+                                    <Navbar />
+                                    <div className="container">
+                                        <RoadmapDetails />
+                                    </div>
                                 </>
                             }
                         />

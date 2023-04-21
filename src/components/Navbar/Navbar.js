@@ -11,6 +11,7 @@ import {
 import { library } from '@fortawesome/fontawesome-svg-core';
 import profilePic from './img/profile-pic.png';
 import logo from './img/logo.png';
+import { getCurrentUserInformation } from '../utils/userUtils';
 
 const Navbar = () => {
     const [showInterface, setShowInterface] = useState(false);
@@ -57,7 +58,7 @@ const Navbar = () => {
             </ul>
             <li className="profile">
                 <img
-                    src={profilePic}
+                    src={getCurrentUserInformation().photoURL}
                     alt="Profile Pic"
                     className="profile-pic"
                 />

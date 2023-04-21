@@ -8,43 +8,33 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { MdDelete, MdEditDocument, MdAdd, MdEdit } from 'react-icons/md';
-import { auth } from '../../firebase';
+import { getCurrentUserInformation } from '../../components/utils/userUtils';
 
 const Roadmap = () => {
   const [travelList, setTravelList] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [triggerUpdate, setTriggerUpdate] = useState(true);
 
-  const user = auth.currentUser;
-  const email = user.reloadUserInfo.email;
+    const user = getCurrentUserInformation();
+    const userId = user.uid;
 
-  useEffect(() => {
-    axios
-      .post('http://localhost:3001/travel/getCurrentUserTravels', {
-        userCreatorId: email,
-      })
-      .then((res) => {
-        const responseData = res.data.data;
-        console.log(responseData);
-        setTravelList(responseData);
-        setIsLoading(false);
-      });
-    setTriggerUpdate(false);
-  }, [triggerUpdate]);
+    useEffect(() => {
+        const fetchCurrentUserTravels = async () => {
+            try {
+                const res = await axios.get(
+                    `travel/getCurrentUserTravels/${userId}`
+                );
+                const responseData = res.data.data;
+                setTravelList(responseData);
+                setIsLoading(false);
+                setTriggerUpdate(false);
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
-  const handleDelete = (docId) => {
-    axios
-      .post('http://localhost:3001/travel/delete', {
-        travelId: docId,
-      })
-      .then((res) => {
-        const responseData = res.data.data;
-        console.log(responseData);
-        setTravelList(responseData);
-        setIsLoading(false);
-        setTriggerUpdate(true);
-      });
-  };
+        fetchCurrentUserTravels();
+    }, [triggerUpdate]);
 
   return (
     <div>
@@ -107,6 +97,22 @@ const Roadmap = () => {
               })
             )}
           </div>
+    const handleDelete = (docId) => {
+        const deleteTravel = async () => {
+            try {
+                const res = await axios.delete(`travel/delete/${docId}`);
+                const responseData = res.data.data;
+
+                if (responseData === 1) {
+                    setIsLoading(false);
+                    setTriggerUpdate(true);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        deleteTravel();
         </div>
       </div>
     </div>

@@ -19,67 +19,64 @@ import EditRoadMap from './pages/roadmaps/edit-roadmap';
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 const App = () => {
-    return (
-        <div className="App">
-            <BrowserRouter>
-                <div>
-                    <Routes>
-                        <Route path="/" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/roteiro" element={<Roteiro />} />
-                        <Route
-                            path="/roteiro/editar"
-                            element={<EditRoadMap />}
-                        />
-                        <Route
-                            path="/home"
-                            element={
-                                <>
-                                    <Navbar />
-                                    <div className="container">
-                                        <Home />
-                                        <MapContainer />
-                                    </div>
-                                </>
-                            }
-                        />
-                        <Route
-                            path="/roadmaps"
-                            element={
-                                <>
-                                    <Navbar />
-                                    <div className="container">
-                                        <Roadmaps />
-                                    </div>
-                                </>
-                            }
-                        />
-                        <Route
-                            path="/edit"
-                            element={
-                                <>
-                                    <Navbar />
-                                    <Edit />
-                                </>
-                            }
-                        />
-                        <Route
-                            path="/travel/:travelId"
-                            element={
-                                <>
-                                    <Navbar />
-                                    <div className="container">
-                                        <RoadmapDetails />
-                                    </div>
-                                </>
-                            }
-                        />
-                    </Routes>
-                </div>
-                <Footer />
-            </BrowserRouter>
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <div>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/roteiro" element={<Roteiro />} />
+            <Route path="/roteiro/editar" element={<EditRoadMap />} />
+            <Route
+              path="/home"
+              element={
+                <>
+                  <Navbar />
+                  <div className="container">
+                    <Home />
+                    <MapContainer />
+                  </div>
+                </>
+              }
+            />
+            <Route
+              path="/roadmaps"
+              element={
+                <>
+                  <Navbar />
+                  <div className="container">
+                    <Roadmaps />
+                  </div>
+                </>
+              }
+            />
+            <Route
+              path="/edit"
+              element={
+                <>
+                  <Navbar />
+                  <Edit />
+                </>
+              }
+            />
+            <Route
+              path="/roadmap/:roadmapId"
+              element={
+                <>
+                  <Navbar />
+                  <div className="container">
+                    <RoadmapDetails />
+                  </div>
+                </>
+              }
+            />
+          </Routes>
         </div>
-    );
+        <Footer />
+      </BrowserRouter>
+    </div>
+  );
 };
 
 export default App;

@@ -8,16 +8,17 @@ import Home from './pages/home/home';
 import Login from './pages/login/login';
 import Register from './pages/register/register';
 import Edit from './pages/config/edit';
-import Roadmaps from './pages/roadmaps/roadmap';
-import Roteiro from './pages/roteiro/roteiro';
+import Roadmap from './pages/roadmap/roadmap';
+import AddRoadmap from './pages/add-roadmap/addRoadmap';
 import RoadmapDetails from './pages/roadmaps-details/roadmap-details';
 
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
-import EditRoadMap from './pages/roadmaps/edit-roadmap';
+import EditRoadMap from './pages/roadmap/edit-roadmap';
 
 axios.defaults.baseURL = 'http://localhost:3001/';
+
 const App = () => {
   return (
     <div className="App">
@@ -26,8 +27,18 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/roteiro" element={<Roteiro />} />
-            <Route path="/roteiro/editar" element={<EditRoadMap />} />
+            <Route path="/roadmap/edit" element={<EditRoadMap />} />
+            <Route
+              path="/roadmap/add"
+              element={
+                <>
+                  <Navbar />
+                  <div className="container">
+                    <AddRoadmap />
+                  </div>
+                </>
+              }
+            />
             <Route
               path="/home"
               element={
@@ -41,12 +52,12 @@ const App = () => {
               }
             />
             <Route
-              path="/roadmaps"
+              path="/roadmap"
               element={
                 <>
                   <Navbar />
                   <div className="container">
-                    <Roadmaps />
+                    <Roadmap />
                   </div>
                 </>
               }

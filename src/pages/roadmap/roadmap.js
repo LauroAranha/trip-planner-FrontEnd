@@ -60,7 +60,7 @@ const Roadmap = () => {
                 <div className="mainContainer">
                     <h1 className="square-title">My Road Maps</h1>
                     <div className="addButton">
-                        <Link to="/roteiro" className="buttonText">
+                        <Link to="/roadmap/add" className="buttonText">
                             New roadmap
                             <MdAdd />
                         </Link>
@@ -93,18 +93,14 @@ const Roadmap = () => {
                                                 />
                                             </Link>
                                         </button>
-                                        <button
-                                            className="editButton"
-                                            // onClick={() =>
-                                            //    console.log("teste")
-                                            // }
-                                        >
+                                        <button className="editButton">
                                             <Link
                                                 to={{
-                                                    pathname: '/roteiro/editar',
-                                                    state: 'cu',
+                                                    pathname: '/roadmap/edit',
                                                 }}
-                                                state={{ from: object.docId }}
+                                                state={{
+                                                    roadmapInformation: object,
+                                                }}
                                                 className="buttonText"
                                             >
                                                 Edit roadmap

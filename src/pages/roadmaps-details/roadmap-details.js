@@ -6,22 +6,22 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const RoadmapDetails = () => {
-    const { travelId } = useParams();
-    const [travelDetails, setTravelDetails] = useState('');
+    const { roadmapId } = useParams();
+    const [roadmapDetails, setRoadmapDetails] = useState('');
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`travel/get/${travelId}`).then((res) => {
+        axios.get(`roadmap/get/${roadmapId}`).then((res) => {
             const responseData = res.data.data;
             console.log(responseData.cidadeRoteiro);
-            setTravelDetails(responseData.cidadeRoteiro);
+            setRoadmapDetails(responseData.cidadeRoteiro);
             setIsLoading(false);
         });
     }, []);
 
     return (
         <div className="teste">
-            <p>{travelDetails}</p>
+            <p>{roadmapDetails}</p>
         </div>
     );
 };

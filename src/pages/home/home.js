@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 
-import TravelSquare from '../../components/Travel-component/TravelSquare';
+import RoadmapSquare from '../../components/Roadmap-component/RoadmapSquare';
 
 const Home = () => {
-    const [travelList, setTravelList] = useState();
+    const [roadmapList, setRoadmapList] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('travel/recommendedTravels').then((res) => {
+        axios.get('roadmap/recommendedRoadmaps').then((res) => {
             const responseData = res.data.data;
-            setTravelList(responseData);
+            setRoadmapList(responseData);
             setIsLoading(false);
         });
     }, []);
@@ -33,10 +33,10 @@ const Home = () => {
                 {isLoading ? (
                     <p>carregando</p>
                 ) : (
-                    travelList &&
-                    travelList.map((object) => {
+                    roadmapList &&
+                    roadmapList.map((object) => {
                         return (
-                            <TravelSquare
+                            <RoadmapSquare
                                 image={object.image}
                                 title={object.title}
                                 description={object.description}

@@ -8,7 +8,7 @@ import Home from './pages/home/home';
 import Login from './pages/login/login';
 import Register from './pages/register/register';
 import Edit from './pages/config/edit';
-import Roadmaps from './pages/roadmaps/roadmaps';
+import Roadmaps from './pages/roadmaps/roadmap';
 import Roteiro from './pages/roteiro/roteiro';
 import RoadmapDetails from './pages/roadmaps-details/roadmap-details';
 

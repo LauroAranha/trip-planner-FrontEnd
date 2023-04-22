@@ -1,5 +1,5 @@
 .roadmapBox {
-  background-color: #2698ea;
+  background: linear-gradient(to right, #929292, #e9dede);
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -7,42 +7,61 @@
   align-items: center;
   border-style: solid;
   border-color: #000000;
-  border-radius: 3%;
+  border-radius: 1%;
 }
 
+
 .title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: black;
   text-align: center;
+  width: 100%;
+  background-color: #2698ea;
+ 
+ 
 }
 
-p.title {
-  font-size: 16px;
-  font-weight: 400;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: black;
-  text-align: center;
-}
+
 
 .roadmapInformation {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: black;
   text-align: center;
+  
 }
 
 h2.roadmapInformation {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
+  width: 100%;
+  background-color: #2698ea;
+  border: 2px #000000 ;
+  border-style: solid;
+  
 }
 
 p.roadmapInformation {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
 }
 
 .image {
   max-width: 40%;
   border-radius: 3%;
+}
+.share{
+ 
+  width: 70%;
+  
+}
+.buttonLink{
+  font-family: Tahoma, 'Times New Roman', Times, serif;
+  font-size: 15px;
+  font-weight:bold;
+  width: 80%;
+  padding: 10px;
+  background-color: #2698ea;
+  margin-bottom: 10px;
 }

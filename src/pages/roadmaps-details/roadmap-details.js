@@ -22,10 +22,16 @@ const RoadmapDetails = () => {
         });
     }, []);
 
+    const [copied, setCopied] = useState(false);
+
+    function handleCopyLink() {
+        navigator.clipboard.writeText(window.location.href);
+        setCopied(true);
+    }
+
     return (
         <div className="roadmapBox">
-            <h1 className="title">Título</h1>
-            <p className="title">{roadmapDetails.title}</p>
+            <h1 className="title">{roadmapDetails.title}</h1>
 
             <img src={roadmapDetails.image} alt="Imagem" className="image" />
 
@@ -38,7 +44,9 @@ const RoadmapDetails = () => {
             <h2 className="roadmapInformation">Cidade do roteiro</h2>
             <p className="roadmapInformation">{roadmapDetails.cidadeRoteiro}</p>
 
-            <h2 className="roadmapInformation">Ponto de parada recomendados</h2>
+            <h2 className="roadmapInformation">
+                Ponto(s) de parada recomendado(s)
+            </h2>
             {roadmapDetails &&
                 roadmapDetails.paradasRecomendadas.map((object) => {
                     countParadas++;
@@ -85,6 +93,10 @@ const RoadmapDetails = () => {
                     <FontAwesomeIcon icon={faBan} className="nav-icon" />
                 </>
             )}
+            <h2 className="share">Gostou do roteiro? Compartilhe!</h2>
+            <button className="buttonLink" onClick={handleCopyLink}>
+                {copied ? 'URL na aréa de transferência!' : 'Copiar URL'}
+            </button>
         </div>
     );
 };

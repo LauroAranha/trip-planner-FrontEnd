@@ -83,6 +83,62 @@ const Roadmap = () => {
         deleteRoadmap();
     };
 
+    const modalRoamap = (
+        <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="child-modal-title"
+            aria-describedby="child-modal-description"
+        >
+            <Box
+                sx={{
+                    ...style,
+                    width: '50%',
+                    height: '80%',
+                    overflowY: 'scroll',
+                }}
+            >
+                <h2
+                    className="title"
+                    style={{
+                        display: 'flex',
+                    }}
+                >
+                    <p
+                        style={{
+                            fontWeight: 'bold',
+                            justifyContent: 'flex-start',
+                        }}
+                    >
+                        Editar roteiro
+                    </p>{' '}
+                    <p
+                        style={{
+                            marginLeft: '10px',
+                            fontWeight: 'lighter',
+                            justifyContent: 'flex-start',
+                        }}
+                    >
+                        {modalInformation.title}
+                    </p>
+                    <Button
+                        onClick={handleClose}
+                        style={{
+                            position: 'flex',
+                        }}
+                    >
+                        <FontAwesomeIcon
+                            icon={faClose}
+                            className="nav-icon"
+                            color="red"
+                        />
+                    </Button>
+                </h2>
+                <EditRoadMap props={modalInformation} />
+            </Box>
+        </Modal>
+    );
+
     return (
         <div>
             <div className="squares-container">
@@ -144,6 +200,7 @@ const Roadmap = () => {
                                                 }}
                                             />
                                         </button>
+                                        {modalRoamap}
                                     </div>
                                 );
                             })
@@ -151,59 +208,6 @@ const Roadmap = () => {
                     </div>
                 </div>
             </div>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="child-modal-title"
-                aria-describedby="child-modal-description"
-            >
-                <Box
-                    sx={{
-                        ...style,
-                        width: '50%',
-                        height: '80%',
-                        overflowY: 'scroll',
-                    }}
-                >
-                    <h2
-                        className="title"
-                        style={{
-                            display: 'flex',
-                        }}
-                    >
-                        <p
-                            style={{
-                                fontWeight: 'bold',
-                                justifyContent: 'flex-start',
-                            }}
-                        >
-                            Editar roteiro
-                        </p>{' '}
-                        <p
-                            style={{
-                                marginLeft: '10px',
-                                fontWeight: 'lighter',
-                                justifyContent: 'flex-start',
-                            }}
-                        >
-                            {modalInformation.title}
-                        </p>
-                        <Button
-                            onClick={handleClose}
-                            style={{
-                                position: 'flex',
-                            }}
-                        >
-                            <FontAwesomeIcon
-                                icon={faClose}
-                                className="nav-icon"
-                                color="red"
-                            />
-                        </Button>
-                    </h2>
-                    <EditRoadMap props={modalInformation} />
-                </Box>
-            </Modal>
         </div>
     );
 };

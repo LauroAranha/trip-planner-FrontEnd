@@ -12,7 +12,7 @@ import { initGoogleMapApiScript } from '../../components/utils/mapFunctions';
 import { getCurrentUserInformation } from '../../components/utils/userUtils';
 
 const EditRoadMap = (props) => {
-    const { docId } = props;
+    console.log(props);
 
     const user = getCurrentUserInformation();
 
@@ -54,13 +54,12 @@ const EditRoadMap = (props) => {
         // console.log(data);
         // data.userCreatorId = email;
         try {
-            const response = await axios.post(
-                'http://localhost:3001/roadmap/edit',
-                {
-                    documentId: docId,
-                    newDocData: data,
-                }
-            );
+            const { docId } = props.props;
+            console.log(props.props);
+            const response = await axios.put('roadmap/edit', {
+                documentId: docId,
+                newDocData: data,
+            });
 
             if (response.status === 200) {
                 console.log(response);

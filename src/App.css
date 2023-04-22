@@ -1,0 +1,13 @@
+html {
+    overflow: -moz-scrollbars-vertical;
+    overflow-y: auto;
+    margin: 0;
+}
+
+body {
+    margin: 0
+}
+
+.container {
+    margin: 2%;
+}

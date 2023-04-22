@@ -1,58 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&family=Nunito:wght@200;300&family=Pacifico&display=swap');
+
+*{
+    user-select: none;
+    text-decoration: none;
+}
+
 .navbar {
+    margin-top: -10px;
     display: flex;
     box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 10px 0px;
     justify-content: space-between;
     align-items: center;
-    padding: 0.4em 2em;
-  }
-  
-  .brand {
-    font-size: 1.2em;
-  }
-  
-  .brand span {
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #ff7019;
-  }
-  
-  .links_list {
+}  
+
+.nav-logo {
+    width: 200px;
+    height: 75px;
+}
+.brand {
+    display: flex;
+    margin-left: 10%;
+}
+
+.links_list {
     display: flex;
     list-style: none;
-  }
-  
-  .links_list li {
-    margin-right: 1em;
-  }
-  
-  .links_list li a {
-    padding: 1em 2em;
-  }
-  
-  .logo {
-    text-decoration: none;
+    margin-left: 48%;
+    margin-top: 25px;
+}
+
+.links_list li {
+    margin-right: 1.5em;
+}
+
+.links_list li a {
+    padding: 0.7em 1em;
+}
+
+.option:hover{
+    background: #2698ea;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 1px #fff;
+}
+
+.profile-pic {
+    display: flex;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile-pic:hover {
+    outline: 2px solid #54b1f7;
+}
+
+.profile {
     display: flex;
     align-items: center;
+    margin-right: 5%;
+    margin-top: 10px;
+}
+
+.down-arrow {
+    color: #42B0FF;
+    font-size: 1.0rem;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.down-arrow {
+    transition: transform 0.3s ease;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.rotate {
+    transform: rotate(180deg);
+    content: '\f104';
+    font-family: 'Font Awesome 5 Free';
+}  
+
+.profile-interface {
+    position: absolute;
+    bottom: 0;
+    top: 100.6%;
+    left: 90%;
+    transform: translateX(-50%);
+    width: 290px;
+    height: 152px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 10px 0px;
+    padding: 10px;
+    z-index: 1;
   }
-  
-  .logo img  {
-    width: 35px;
-    height: 35px;
-    margin-right: 15px;
-  }
-  
-  .active {
-    background-color: rgb(255, 103, 8);
-    color: #fff;
-    border-radius: 10px;
+
+.profile-interface ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-option {
+    font-family: 'Nunito', sans-serif;
+    color: black; /* ou a cor que desejar */
+    padding: 10px 20px;
+    font-size: 16px;
     font-weight: bold;
-  }
-  
-  .active:hover{
-     color: rgb(255, 255, 255);
-     text-shadow: 0 0 4px #fff;
-  }
-  
-  .icon{
+    cursor: pointer;
+}
+.profile-option:hover {
+    background-color: #f5f5f5;
+    border-radius: 12px;
+}
+
+.option {
+    background-color: #42B0FF;
+    color: #fff;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.icon{
     margin-top: -30px;
-  }
+}
+
+.nav-icon {
+    display: inline-block;
+    margin-top: -4px;
+    margin-right: 4px; /* Ajuste o valor da margem conforme necessário */
+}
+
+.option {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.option .nav-icon,
+.option span {
+    display: inline;
+    vertical-align: middle;
+}
+
+@media screen and (max-width: 1920px) {
+    .links_list li a {
+        padding: 1em 1em;
+    }
+}
+
+@media screen and (max-width: 1650px) {
+    .links_list li a {
+        padding: 0.6em 0.3em;
+    }
+}

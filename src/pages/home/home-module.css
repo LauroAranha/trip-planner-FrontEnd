@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.square-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: none;
+}
+
+.squares-container {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.map-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: none;
+}
+
+@media screen and (max-width: 1650px) {
+    .links_list li a {
+        padding: 1em 1em;
+    }
+}

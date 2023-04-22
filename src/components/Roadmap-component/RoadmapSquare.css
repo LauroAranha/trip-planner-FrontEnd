@@ -1,0 +1,43 @@
+.square {
+    display: inline-block;
+    height: 30vh;
+    width: 300px;
+    margin: 10px;
+    background-color: #42B0FF;
+    font-family: 'Inter', sans-serif;
+}
+
+.square:first-child {
+    display: inline-block;
+    height: 30vh;
+    width: 300px;
+    margin: 10px;
+    background-color: #42B0FF;
+    font-family: 'Inter', sans-serif;
+
+    margin-left: 0px;
+}
+
+.square img {
+    display: block;
+    width: 90%;
+    height: 55%;
+    margin: 5% auto;
+    object-fit: contain;
+}
+
+.square h2 {
+    font-weight: bold;
+    color: white;
+    font-size: 22px;
+    margin-left: 14px;
+    margin-top: 6px;
+}
+
+.square p {
+    color: white;
+    text-align: left;
+    font-size: 16px;
+    margin-left: 14px;
+    margin-top: 6px;
+}

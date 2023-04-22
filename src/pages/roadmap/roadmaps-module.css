@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.square-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: none;
+    margin-left: 1.2vw;
+}
+
+.square {
+    display: inline-table;
+    height: 100%;
+    width: 300px;
+    margin: 10px;
+    background-color: #42B0FF;
+    font-family: 'Inter', sans-serif;
+}
+
+.square:first-child {
+    display: inline-table;
+    height: 100%;
+    width: 300px;
+    margin: 10px;
+    background-color: #42B0FF;
+    font-family: 'Inter', sans-serif;
+}
+
+.squares-container {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.squares-container {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.map-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: none;
+}
+
+@media screen and (max-width: 1650px) {
+    .links_list li a {
+        padding: 1em 1em;
+    }
+}
+
+.addButton {
+    background-color: #00ce0e;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    position: relative;
+    width: 20%;
+    margin-left: 1.2vw;
+}
+
+.deleteButton {
+    background-color: #ce1100;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    position: relative;
+    border: none;
+}
+
+.editButton {
+    background-color: #0048ce;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    position: relative;
+    border: none;
+    width: 63.7%;
+}
+
+.buttonText {
+    color: #ffffff;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    text-align: center;
+}

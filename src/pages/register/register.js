@@ -41,26 +41,20 @@ const Register = () => {
 
   const [values, setValues] = useState({
     name: '',
-    lastName: '',
     email: '',
-    password: '',
-    confirmPassword: '',
+    currentPassword: '',
     error: '',
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (values.password !== confirmPassword) {
-      setValues({ ...values, error: 'Passwords are not the same!' });
-      return;
-    }
     console.log(values);
-    axios.post('http://localhost:3005/user/register', values);
+    axios.post('http://localhost:3001/user/register', values);
   };
 
   return (
-    <div className="page-register">
+    <body className="page-register">
       <div className="container-register">
         <h1>Create an account</h1>
         <p>
@@ -71,9 +65,9 @@ const Register = () => {
           your friends.
         </p>
       </div>
-      <h1 className="page-title">Get started</h1>
+      <h1 className="page-title-register">Get started</h1>
       <form onSubmit={handleSubmit}>
-        <div className="page-input">
+        <div className="page-input-register">
           <label>
             <input
               type="text"
@@ -115,12 +109,12 @@ const Register = () => {
               name="password"
               required
               placeholder="Enter a password"
-              value={values.password}
+              value={values.currentPassword}
               onChange={(e) =>
-                setValues({ ...values, password: e.target.value })
+                setValues({ ...values, currentPassword: e.target.value })
               }
             />
-            <span onClick={handleToggle}>
+            <span onClick={handleToggle} className="icon-eye-register">
               <FontAwesomeIcon icon={icon} />
             </span>
           </label>
@@ -135,7 +129,10 @@ const Register = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <span onClick={handleToggleConfirmPassword}>
+            <span
+              onClick={handleToggleConfirmPassword}
+              className="icon-eye-register"
+            >
               <FontAwesomeIcon icon={iconConfirm} />
             </span>
           </label>
@@ -149,7 +146,7 @@ const Register = () => {
           </Link>
         </div>
       </form>
-    </div>
+    </body>
   );
 };
 

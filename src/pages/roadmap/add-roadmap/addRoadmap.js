@@ -6,9 +6,9 @@ import axios from 'axios';
 import './addRoadmap-module.css';
 
 import { useForm } from 'react-hook-form';
-import AutoCompleteField from '../../components/AutoCompleteMapField/AutoCompleteField';
-import { initGoogleMapApiScript } from '../../components/utils/mapFunctions';
-import { getCurrentUserInformation } from '../../components/utils/userUtils';
+import AutoCompleteField from '../../../components/AutoCompleteMapField/AutoCompleteField';
+import { initGoogleMapApiScript } from '../../../components/utils/mapFunctions';
+import { getCurrentUserInformation } from '../../../components/utils/userUtils';
 
 const AddRoadmap = () => {
     const navigate = useNavigate();

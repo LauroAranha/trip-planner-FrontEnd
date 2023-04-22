@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import { getCurrentUserInformation } from '../../components/utils/userUtils';
-import EditRoadMap from './edit-roadmap';
+import EditRoadmap from './edit-roadmap/editRoadmap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 
@@ -134,7 +134,7 @@ const Roadmap = () => {
                         />
                     </Button>
                 </h2>
-                <EditRoadMap props={modalInformation} />
+                <EditRoadmap props={modalInformation} />
             </Box>
         </Modal>
     );

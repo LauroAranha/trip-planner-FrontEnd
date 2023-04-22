@@ -19,69 +19,71 @@ import MapContainer from './components/Map/MapContainer';
 axios.defaults.baseURL = 'http://localhost:3001/';
 
 const App = () => {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <div>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/roadmap/edit" element={<EditRoadMap />} />
-            <Route
-              path="/roadmap/add"
-              element={
-                <>
-                  <Navbar />
-                  <div className="container">
-                    <AddRoadmap />
-                  </div>
-                </>
-              }
-            />
-            <Route
-              path="/home"
-              element={
-                <>
-                  <Navbar />
-                  <div className="container">
-                    <Home />
-                    <MapContainer />
-                  </div>
-                </>
-              }
-            />
-            <Route
-              path="/roadmap"
-              element={
-                <>
-                  <Navbar />
-                  <div className="container">
-                    <Roadmap />
-                  </div>
-                </>
-              }
-            />
-            <Route
-              path="/edit"
-              element={
-                <>
-                  <Navbar />
-                  <Edit />
-                </>
-              }
-            />
-            <Route
-              path="/roadmap/:roadmapId"
-              element={
-                <>
-                  <Navbar />
-                  <div className="container">
-                    <RoadmapDetails />
-                  </div>
-                </>
-              }
-            />
-          </Routes>
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <div>
+                    <Routes>
+                        <Route path="/" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route
+                            path="/roadmap/add"
+                            element={
+                                <>
+                                    <Navbar />
+                                    <div className="container">
+                                        <AddRoadmap />
+                                    </div>
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/home"
+                            element={
+                                <>
+                                    <Navbar />
+                                    <div className="container">
+                                        <Home />
+                                        <MapContainer />
+                                    </div>
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/roadmap"
+                            element={
+                                <>
+                                    <Navbar />
+                                    <div className="container">
+                                        <Roadmap />
+                                    </div>
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/edit"
+                            element={
+                                <>
+                                    <Navbar />
+                                    <Edit />
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/roadmap/:roadmapId"
+                            element={
+                                <>
+                                    <Navbar />
+                                    <div className="container">
+                                        <RoadmapDetails />
+                                    </div>
+                                </>
+                            }
+                        />
+                    </Routes>
+                </div>
+                <Footer />
+            </BrowserRouter>
         </div>
     );
 };

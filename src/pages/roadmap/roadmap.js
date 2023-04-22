@@ -8,12 +8,33 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { MdDelete, MdEditDocument, MdAdd, MdEdit } from 'react-icons/md';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
 import { getCurrentUserInformation } from '../../components/utils/userUtils';
+import EditRoadMap from './edit-roadmap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+};
 
 const Roadmap = () => {
     const [roadmapList, setRoadmapList] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [triggerUpdate, setTriggerUpdate] = useState(true);
+    const [open, setOpen] = useState(false);
+    const [modalInformation, setModalInformation] = useState('');
 
     const user = getCurrentUserInformation();
     const userId = user.uid;
@@ -36,6 +57,14 @@ const Roadmap = () => {
         fetchCurrentUserRoadmaps();
     }, [triggerUpdate]);
 
+    const handleOpen = (roadmapInformation) => {
+        setOpen(true);
+        setModalInformation(roadmapInformation);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     const handleDelete = (docId) => {
         const deleteRoadmap = async () => {
             try {
@@ -44,7 +73,7 @@ const Roadmap = () => {
 
                 if (responseData === 1) {
                     setIsLoading(false);
-                    setTriggerUpdate(true);
+                    setTriggerUpdate(!triggerUpdate);
                 }
             } catch (error) {
                 console.error(error);
@@ -70,18 +99,27 @@ const Roadmap = () => {
                             <p>carregando</p>
                         ) : (
                             roadmapList &&
-                            roadmapList.map((object) => {
+                            roadmapList.map((roadmapInformation) => {
                                 return (
-                                    <div className="square" id={object.docId}>
-                                        <p> {object.title} </p>
-                                        <img src={object.image} />
-                                        <p>{object.description}</p>
-                                        <p>{object.recomendacaoTransporte}</p>
-                                        <p>{object.custoMedio}</p>
+                                    <div
+                                        className="square"
+                                        id={roadmapInformation.docId}
+                                    >
+                                        <p> {roadmapInformation.title} </p>
+                                        <img src={roadmapInformation.image} />
+                                        <p>{roadmapInformation.description}</p>
+                                        <p>
+                                            {
+                                                roadmapInformation.recomendacaoTransporte
+                                            }
+                                        </p>
+                                        <p>{roadmapInformation.custoMedio}</p>
                                         <button
                                             className="deleteButton"
                                             onClick={() =>
-                                                handleDelete(object.docId)
+                                                handleDelete(
+                                                    roadmapInformation.docId
+                                                )
                                             }
                                         >
                                             <Link className="buttonText">
@@ -93,23 +131,18 @@ const Roadmap = () => {
                                                 />
                                             </Link>
                                         </button>
-                                        <button className="editButton">
-                                            <Link
-                                                to={{
-                                                    pathname: '/roadmap/edit',
+                                        <button
+                                            className="editButton"
+                                            onClick={() =>
+                                                handleOpen(roadmapInformation)
+                                            }
+                                        >
+                                            Edit roadmap
+                                            <MdEdit
+                                                style={{
+                                                    verticalAlign: 'middle',
                                                 }}
-                                                state={{
-                                                    roadmapInformation: object,
-                                                }}
-                                                className="buttonText"
-                                            >
-                                                Edit roadmap
-                                                <MdEdit
-                                                    style={{
-                                                        verticalAlign: 'middle',
-                                                    }}
-                                                />
-                                            </Link>
+                                            />
                                         </button>
                                     </div>
                                 );
@@ -118,6 +151,59 @@ const Roadmap = () => {
                     </div>
                 </div>
             </div>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="child-modal-title"
+                aria-describedby="child-modal-description"
+            >
+                <Box
+                    sx={{
+                        ...style,
+                        width: '50%',
+                        height: '80%',
+                        overflowY: 'scroll',
+                    }}
+                >
+                    <h2
+                        className="title"
+                        style={{
+                            display: 'flex',
+                        }}
+                    >
+                        <p
+                            style={{
+                                fontWeight: 'bold',
+                                justifyContent: 'flex-start',
+                            }}
+                        >
+                            Editar roteiro
+                        </p>{' '}
+                        <p
+                            style={{
+                                marginLeft: '10px',
+                                fontWeight: 'lighter',
+                                justifyContent: 'flex-start',
+                            }}
+                        >
+                            {modalInformation.title}
+                        </p>
+                        <Button
+                            onClick={handleClose}
+                            style={{
+                                position: 'flex',
+                            }}
+                        >
+                            <FontAwesomeIcon
+                                icon={faClose}
+                                className="nav-icon"
+                                color="red"
+                            />
+                        </Button>
+                    </h2>
+                    <EditRoadMap props={modalInformation} />
+                </Box>
+            </Modal>
         </div>
     );
 };

@@ -10,9 +10,7 @@ import Register from './pages/register/register';
 import Edit from './pages/config/edit';
 import Roadmap from './pages/roadmap/roadmap';
 import AddRoadmap from './pages/roadmap/add-roadmap/addRoadmap';
-import RoadmapDetails from './pages/roadmaps-details/roadmap-details';
-
-import Navbar from './components/Navbar/Navbar';
+import RoadmapDetails from './pages/roadmap/roadmaps-details/roadmap-details';
 import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
 

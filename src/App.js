@@ -9,13 +9,12 @@ import Login from './pages/login/login';
 import Register from './pages/register/register';
 import Edit from './pages/config/edit';
 import Roadmap from './pages/roadmap/roadmap';
-import AddRoadmap from './pages/add-roadmap/addRoadmap';
+import AddRoadmap from './pages/roadmap/add-roadmap/addRoadmap';
 import RoadmapDetails from './pages/roadmaps-details/roadmap-details';
 
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
-import EditRoadMap from './pages/roadmap/edit-roadmap';
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 
@@ -84,10 +83,7 @@ const App = () => {
             />
           </Routes>
         </div>
-        <Footer />
-      </BrowserRouter>
-    </div>
-  );
+    );
 };
 
 export default App;

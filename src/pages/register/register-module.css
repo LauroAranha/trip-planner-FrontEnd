@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@600&display=swap");
+
+*{
+    user-select: none;
+}
+
+.page-register {
+    background-image: linear-gradient(to right, #37b0e8 50%, #EFFFFD 50%);
+    margin: -25px;
+    padding: 10%;
+    min-height: 100vh;
+}
+
+.container-register h1{
+    margin-left: 94px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container-register p{  
+    margin-top: 40px;
+    margin-left: 40px;
+    color: white;
+    font-size: 17px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.page-title-register {
+    margin: -180px 0;
+    color: #42B0FF;
+    font-size: 1.6rem;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 52%;
+    margin-bottom: 50px;
+}
+
+.page-input-register{
+    margin: -30px 0;
+}
+
+.page-input-register input {
+    width: 20%;
+    margin: 0.8rem auto;
+    padding: 1.0rem;
+    display: grid;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    font-size: 1rem;
+    box-shadow: 0 0 0 3px #85F4FF, 0 2px 4px 0 rgb(0 0 0 / 7%), 0 1px 1.5px 0 rgb(0 0 0 / 5%);
+    font-family: 'Poppins', sans-serif;
+    outline: 0;
+    grid-template-columns: 15% 85%;
+    margin-left: 65%;
+}
+
+.page-input-register input:not(:placeholder-shown) {
+    border-bottom: #85F4FF 8px solid;
+}
+
+.page-input-register input:not(:placeholder-shown)+label {
+    transform: translateY(-14px) scale(.8);
+}
+
+.page-input-register .icon-eye-register {
+    color: #42B0FF;
+    cursor: pointer;
+    margin: -60px;
+    margin-left: 85%;
+    top: -50px;
+    position: relative;
+}
+
+.user-icon svg {
+    margin-left: 31px;
+}
+
+.register-btn {
+    height: 12%;
+    width: 10%;
+    position: relative;
+    top: -15px;
+    margin: 0.1rem;
+    background: linear-gradient(to bottom right, #42B0FF, #85F4FF);
+    border: 0;
+    border-color: #42B0FF 1rem;
+    border-radius: 22px;
+    color: #FFFFFF;
+    text-shadow: 0 0 20px #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    margin-left: 71.4%;
+}
+
+.register-btn:not([disabled]):focus {
+    box-shadow: 0 0 .5rem #98f4f9, -.125rem -.125rem 1rem #98f4f9, .125rem .125rem 1rem rgba(66, 194, 255, 1);
+}
+
+.register-btn:not([disabled]):hover {
+    box-shadow: 0 0 .5rem #aff0f4, -.125rem -.125rem 1rem #98f4f9, .125rem .125rem 1rem rgba(66, 194, 255, 1);
+}
+
+.page-link {
+    display: flex;
+    top: -5px;
+    position: relative;
+    margin: 0.3rem 0;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-family: 'inherit';
+    margin-bottom: 5rem;
+    margin-left: 53%;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.page-link a {
+    color: #42B0FF;
+    text-decoration: none;
+}
+
+.page-link:not([disabled]):hover {
+    text-decoration: underline;
+    text-decoration-color: #42B0FF;
+}
+
+.confirmpass-input {
+    position: relative;
+    top: -32px;
+}
+.confirmpass .icon-eye-register {
+    color: #42B0FF;
+    margin-left: 85%;
+    top: -82px;
+    position: relative;
+}
+
+/** For 16 inch screens */
+
+@media screen and (max-width: 1920px) {
+
+    .page-input {
+        position: relative;
+        margin-left: 50px;
+    }
+
+    .page-title{
+        margin-left: 53% !important;
+    }
+}
+
+
+

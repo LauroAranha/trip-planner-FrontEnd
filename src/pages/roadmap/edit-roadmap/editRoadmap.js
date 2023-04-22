@@ -6,13 +6,13 @@ import { useForm } from 'react-hook-form';
 
 import axios from 'axios';
 
-import AutoCompleteField from '../../components/AutoCompleteMapField/AutoCompleteField';
-import { initGoogleMapApiScript } from '../../components/utils/mapFunctions';
+import AutoCompleteField from '../../../components/AutoCompleteMapField/AutoCompleteField';
+import { initGoogleMapApiScript } from '../../../components/utils/mapFunctions';
 
-import { getCurrentUserInformation } from '../../components/utils/userUtils';
+import { getCurrentUserInformation } from '../../../components/utils/userUtils';
 
-const EditRoadMap = (props) => {
-    const { docId } = props;
+const EditRoadmap = (props) => {
+    console.log(props);
 
     const user = getCurrentUserInformation();
 
@@ -54,13 +54,12 @@ const EditRoadMap = (props) => {
         // console.log(data);
         // data.userCreatorId = email;
         try {
-            const response = await axios.post(
-                'http://localhost:3001/roadmap/edit',
-                {
-                    documentId: docId,
-                    newDocData: data,
-                }
-            );
+            const { docId } = props.props;
+            console.log(props.props);
+            const response = await axios.put('roadmap/edit', {
+                documentId: docId,
+                newDocData: data,
+            });
 
             if (response.status === 200) {
                 console.log(response);
@@ -177,4 +176,4 @@ const EditRoadMap = (props) => {
     );
 };
 
-export default EditRoadMap;
+export default EditRoadmap;

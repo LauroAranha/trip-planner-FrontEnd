@@ -140,12 +140,12 @@ const EditRoadMap = () => {
                     className="form__select"
                     {...register('recomendacaoTransporte')}
                 >
-                    <option value="carro">Carro</option>
-                    <option value="transportePublico">
+                    <option value="Carro">Carro</option>
+                    <option value="Transporte público">
                         Transporte público
                     </option>
-                    <option value="bicicleta">Bicicleta</option>
-                    <option value="andando">A pé</option>
+                    <option value="Bicicleta">Bicicleta</option>
+                    <option value="Andando">A pé</option>
                 </select>
 
                 <label className="fieldLabel">

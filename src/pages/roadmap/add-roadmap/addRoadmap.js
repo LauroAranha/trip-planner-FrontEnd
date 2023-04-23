@@ -65,7 +65,7 @@ const AddRoadmap = () => {
                 data
             );
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 console.log(response);
                 navigate('/home');
             } else {

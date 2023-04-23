@@ -144,12 +144,14 @@ const Roadmap = () => {
             <div className="squares-container">
                 <div className="mainContainer">
                     <h1 className="square-title">My Road Maps</h1>
-                    <div className="addButton">
-                        <Link to="/roadmap/add" className="buttonText">
+
+                    <Link to="/roadmap/add" className="buttonText">
+                        <div className="addButton">
                             New roadmap
                             <MdAdd />
-                        </Link>
-                    </div>
+                        </div>
+                    </Link>
+
                     <div className="squares-container">
                         {isLoading ? (
                             <p>carregando</p>

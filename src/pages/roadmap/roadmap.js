@@ -166,11 +166,7 @@ const Roadmap = () => {
                                         <p> {roadmapInformation.title} </p>
                                         <img src={roadmapInformation.image} />
                                         <p>{roadmapInformation.description}</p>
-                                        <p>
-                                            {
-                                                roadmapInformation.recomendacaoTransporte
-                                            }
-                                        </p>
+
                                         <p>{roadmapInformation.custoMedio}</p>
                                         <button
                                             className="deleteButton"

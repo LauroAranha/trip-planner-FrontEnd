@@ -79,12 +79,14 @@ const EditRoadmap = (props) => {
                 type="text"
                 placeholder="Nome do roteiro"
                 className="form__input"
+                defaultValue={props.props.title}
                 {...register('title', {})}
             />
 
             <label className="fieldLabel">Descrição do roteiro</label>
             <textarea
                 className="form__textarea"
+                defaultValue={props.props.description}
                 {...register('description', {})}
             />
 
@@ -94,6 +96,7 @@ const EditRoadmap = (props) => {
             <input
                 type="text"
                 placeholder="Link imagem"
+                defaultValue={props.props.image}
                 className="form__input"
                 {...register('image', {})}
             />
@@ -103,6 +106,7 @@ const EditRoadmap = (props) => {
                 type="search"
                 placeholder="Cidade do roteiro"
                 className="form__input"
+                defaultValue={props.props.cidadeRoteiro}
                 {...register('cidadeRoteiro', {})}
             />
 
@@ -111,6 +115,7 @@ const EditRoadmap = (props) => {
                 type="search"
                 placeholder="Ponto de partida"
                 className="form__input"
+                defaultValue={props.props.pontoInicial}
                 {...register('pontoInicial', {})}
             />
 
@@ -118,6 +123,7 @@ const EditRoadmap = (props) => {
             <input
                 type="search"
                 placeholder="Destino"
+                defaultValue={props.props.pontoFinal}
                 className="form__input"
                 {...register('pontoFinal', {})}
             />
@@ -125,6 +131,7 @@ const EditRoadmap = (props) => {
             <label className="fieldLabel">Recomendação de Transporte</label>
             <select
                 className="form__select"
+                defaultValue={props.props.recomendacaoTransporte}
                 {...register('recomendacaoTransporte')}
             >
                 <option value="Carro">Carro</option>
@@ -148,6 +155,7 @@ const EditRoadmap = (props) => {
                 Estimativa de gastos por pessoa
             </label>
             <input
+                defaultValue={props.props.custoMedio}
                 min="0"
                 max="1000"
                 type="range"
@@ -160,13 +168,21 @@ const EditRoadmap = (props) => {
             <span>${custoMedio}</span>
 
             <label className="fieldLabel">Permite pets?</label>
-            <select className="form__select" {...register('petsOk')}>
+            <select
+                className="form__select"
+                defaultValue={props.props.petsOk}
+                {...register('petsOk')}
+            >
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>
 
             <label className="fieldLabel">Recomendado pra crianças?</label>
-            <select className="form__select" {...register('criancaOk')}>
+            <select
+                className="form__select"
+                defaultValue={props.props.criancaOk}
+                {...register('criancaOk')}
+            >
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>

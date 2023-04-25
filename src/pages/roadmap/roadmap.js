@@ -171,7 +171,7 @@ const Roadmap = () => {
                                             }
                                         >
                                             Edit roadmap
-                                            <MdEdit
+                                            <MdEditDocument
                                                 style={{
                                                     verticalAlign: 'middle',
                                                 }}

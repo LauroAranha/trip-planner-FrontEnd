@@ -67,7 +67,6 @@ const Register = () => {
 
       <div className="container-input-login">
         <form className="login-form" onSubmit={handleSubmit}>
-
           <div className="login-input-fields">
             <h1 className="page-title-register">Get started</h1>
             <label className="login-form-label">Nome</label>

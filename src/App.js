@@ -3,18 +3,18 @@ import './App.css';
 import axios from 'axios';
 
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import Home from './pages/home/home';
 import Login from './pages/login/login';
 import Register from './pages/register/register';
-import Edit from './pages/config/edit';
+import EditUserProfile from './pages/user/edit-user-profile/editUserProfile';
 import Roadmap from './pages/roadmap/roadmap';
 import AddRoadmap from './pages/roadmap/add-roadmap/addRoadmap';
 import RoadmapDetails from './pages/roadmap/roadmaps-details/roadmap-details';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
-import { Helmet } from 'react-helmet';
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 

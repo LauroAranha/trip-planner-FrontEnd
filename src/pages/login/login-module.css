@@ -45,26 +45,28 @@
     width: 100%;
 }
 
+.login-form-label {
+    align-self: center;
+    font-family: 'Poppins';
+    font-size: 16px;
+    vertical-align: center;
+    margin-bottom: auto;
+    margin-right: 5.3vw;
+}
+
 .container-input-login input {
-    width: 20%;
     margin: 0.8rem auto;
     padding: 1.0rem;
     display: grid;
     border: 2px solid transparent;
-    border-radius: 14px;
     font-size: 1rem;
-    box-shadow: 0 0 0 3px #85F4FF, 0 2px 4px 0 rgb(0 0 0 / 7%), 0 1px 1.5px 0 rgb(0 0 0 / 5%);
     font-family: 'Poppins', sans-serif;
     outline: 0;
     grid-template-columns: 15% 85%;
 }
 
 .container-input-login input:not(:placeholder-shown) {
-    border-bottom: #85F4FF 8px solid;
-}
-
-.container-input-login input:not(:placeholder-shown)+label {
-    transform: translateY(-14px) scale(.8);
+    border: #9a9a9a 1px solid;
 }
 
 .inputWithSpan {

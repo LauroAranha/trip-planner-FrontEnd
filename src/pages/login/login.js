@@ -65,6 +65,9 @@ const Login = () => {
             <div className="container-input-login">
                 <form className="login-form" onSubmit={handleSubmit}>
                     <h1 className="page-title-login">Login</h1>
+                    <label className="login-form-label">
+                        Insira seu e-mail
+                    </label>
                     <input
                         type="email"
                         name="email"
@@ -75,6 +78,7 @@ const Login = () => {
                             setValues({ ...values, email: e.target.value })
                         }
                     />
+                    <label className="login-form-label">Insira sua senha</label>
                     <div className="inputWithSpan">
                         <input
                             type={type}

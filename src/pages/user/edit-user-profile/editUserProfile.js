@@ -1,5 +1,5 @@
 
-import './Config-module.css';
+import './editUserProfile-module.css';
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import axios from 'axios';
-import ContainerList from '../../components/ConfigList/ContainerList';
+import ContainerList from '../../../components/ConfigList/ContainerList';
 import { getCurrentUserInformation } from '../../../components/utils/userUtils';
 import { flushSync } from 'react-dom';
 

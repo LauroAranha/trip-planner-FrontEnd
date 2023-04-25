@@ -26,7 +26,7 @@ const style = {
 };
 
 const Roadmap = () => {
-    const [roadmapList, setRoadmapList] = useState();
+    const [personalPersonalRoadmapList, setPersonalRoadmapList] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [triggerUpdate, setTriggerUpdate] = useState(true);
     const [open, setOpen] = useState(false);
@@ -43,7 +43,7 @@ const Roadmap = () => {
                     `roadmap/getCurrentUserRoadmaps/${userId}`
                 );
                 const responseData = res.data.data;
-                setRoadmapList(responseData);
+                setPersonalRoadmapList(responseData);
                 setIsLoading(false);
             } catch (error) {
                 console.log(error);
@@ -151,8 +151,8 @@ const Roadmap = () => {
                     {isLoading ? (
                         <p>carregando</p>
                     ) : (
-                        roadmapList &&
-                        roadmapList.map((roadmapInformation) => {
+                        personalPersonalRoadmapList &&
+                        personalPersonalRoadmapList.map((roadmapInformation) => {
                             return (
                                 <div
                                     className="square"
@@ -165,7 +165,7 @@ const Roadmap = () => {
                                         <img src={roadmapInformation.image} />
                                         <p>{roadmapInformation.description}</p>
 
-                                        <p>{roadmapInformation.custoMedio}</p>
+                                        <p>Custo médio: R${roadmapInformation.custoMedio}</p>
                                     </Link>
                                     <div className="roadmap-buttons">
                                         <button

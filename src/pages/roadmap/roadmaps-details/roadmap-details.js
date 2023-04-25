@@ -32,7 +32,7 @@ const RoadmapDetails = () => {
     return (
         <div className="roadmap-details-box">
             <div className='roadmap-details-main'>
-                <img src={roadmapDetails.image} alt="Imagem" className="image" />
+                <img src={roadmapDetails.image} alt="Imagem" className="roadmap-details-main-image" />
             </div>
             <div className='roadmap-details-information'>
                 <h1 className="roadmap-details-title">{roadmapDetails.title}</h1>
@@ -47,11 +47,14 @@ const RoadmapDetails = () => {
                 <p>{roadmapDetails.cidadeRoteiro}</p>
 
                 <h2>
-                    Ponto(s) de parada recomendado(s)
+                    Ponto(s) de paradas recomendada(s)
                 </h2>
                 {roadmapDetails &&
                     roadmapDetails.paradasRecomendadas.map((object) => {
                         countParadas++;
+                        if (!object) {
+                            return
+                        }
                         return (
                             <p>
                                 Parada {countParadas}: {object}

@@ -15,6 +15,8 @@
 
 .roadmap-details-main {
   flex-direction: row;
+  width: 60%;
+  align-self: start;
 }
 
 .roadmap-title {
@@ -25,11 +27,12 @@
   text-align: center;
   width: 100%;
   background-color: #2698ea;
+
 }
 
-.image {
+.roadmap-details-main-image {
   max-height: 40%;
-  border-radius: 3%;
+  padding: 1vw;
 }
 
 .roadmap-details-information {
@@ -38,6 +41,7 @@
   text-align: start;
   display: flex;
   flex-direction: column;
+  padding: 1vw;
 }
 
 .roadmap-details-information h2 {

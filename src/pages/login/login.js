@@ -64,42 +64,46 @@ const Login = () => {
             </div>
             <div className="container-input-login">
                 <form className="login-form" onSubmit={handleSubmit}>
-                    <h1 className="page-title-login">Login</h1>
-                    <label className="login-form-label">
-                        Insira seu e-mail
-                    </label>
-                    <input
-                        type="email"
-                        name="email"
-                        required
-                        placeholder="Enter your email"
-                        value={values.email}
-                        onChange={(e) =>
-                            setValues({ ...values, email: e.target.value })
-                        }
-                    />
-                    <label className="login-form-label">Insira sua senha</label>
-                    <div className="inputWithSpan">
+                    <div className="login-input-fields">
+                        <h1 className="page-title-login">Login</h1>
+                        <label className="login-form-label">
+                            Insira seu e-mail
+                        </label>
                         <input
-                            type={type}
-                            name="password"
+                            type="email"
+                            name="email"
                             required
-                            placeholder="Enter your password"
-                            value={values.password}
+                            placeholder="Enter your email"
+                            value={values.email}
                             onChange={(e) =>
-                                setValues({
-                                    ...values,
-                                    password: e.target.value,
-                                })
+                                setValues({ ...values, email: e.target.value })
                             }
                         />
-                        <span onClick={handleToggle} className="icon-eye">
-                            <FontAwesomeIcon icon={icon} />
-                        </span>
+                        <label className="login-form-label">
+                            Insira sua senha
+                        </label>
+                        <div className="inputWithSpan">
+                            <input
+                                type={type}
+                                name="password"
+                                required
+                                placeholder="Enter your password"
+                                value={values.password}
+                                onChange={(e) =>
+                                    setValues({
+                                        ...values,
+                                        password: e.target.value,
+                                    })
+                                }
+                            />
+                            <span onClick={handleToggle} className="icon-eye">
+                                <FontAwesomeIcon icon={icon} />
+                            </span>
+                        </div>
                     </div>
                     <div className="page-link-login">
-                        <a href="" className="name-link">
-                            Forgot your password?
+                        <a href="a" className="name-link">
+                            Esqueceu sua senha?
                         </a>
                     </div>
                     <button type="submit" className="login-btn">
@@ -108,10 +112,10 @@ const Login = () => {
                     {errorMessage && errorMessageDiv}
                     <div className="create-account">
                         <span className="login-sign-in">
-                            Don't have an account?
+                            Não tem uma conta?
                         </span>
                         <Link to="/register" className="link-login">
-                            Sign up now
+                            Registre-se agora!
                         </Link>
                     </div>
                 </form>

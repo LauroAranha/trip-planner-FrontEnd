@@ -8,8 +8,6 @@ import {
     faMapLocationDot,
     faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import profilePic from './img/profile-pic.png';
 import logo from './img/logo.png';
 import { getCurrentUserInformation } from '../utils/userUtils';
 
@@ -27,11 +25,11 @@ const Navbar = () => {
     };
 
     return (
-        <nav className={`navbar ${navClass}`}>
+        <nav className="navbar">
             <Link className="brand" to="/home">
                 <img src={logo} alt="logo" className="nav-logo" />
             </Link>
-            <ul className="links_list">
+            <li className="links_list">
                 <li>
                     <Link
                         to="/home"
@@ -55,7 +53,7 @@ const Navbar = () => {
                         Road Maps{' '}
                     </Link>
                 </li>
-            </ul>
+            </li>
             <li className="profile">
                 <img
                     src={getCurrentUserInformation().photoURL}

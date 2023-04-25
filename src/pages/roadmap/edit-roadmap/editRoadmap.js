@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import './edit-roadmap-module.css';
 
 import { useEffect, useState } from 'react';
@@ -40,7 +39,6 @@ const EditRoadmap = (props) => {
             types: ['establishment'],
         };
         if (autoCompleteField) {
-            // eslint-disable-next-line no-new
             new window.google.maps.places.Autocomplete(
                 document.getElementById(
                     `inputFieldAut${autoCompleteField - 1}`
@@ -193,4 +191,3 @@ const EditRoadmap = (props) => {
 };
 
 export default EditRoadmap;
-

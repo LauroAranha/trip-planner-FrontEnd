@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import './Config-module.css';
 
 import { useState, useEffect } from 'react';
@@ -11,14 +10,19 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import axios from 'axios';
 import ContainerList from '../../components/ConfigList/ContainerList';
+import { auth } from '../../firebase';
+import { flushSync } from 'react-dom';
 
 document.body.style.overflow = 'hidden';
 
 const Edit = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [currentPassword, setCurrentPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
+
+    const [timer, setTimer] = useState(null);
 
     const user = auth.currentUser;
 
@@ -42,14 +46,10 @@ const Edit = () => {
     const [imagem, setImagem] = useState(null);
 
     const [values, setValues] = useState({
-        currentEmail: '',
-        currentPassword: '',
         name: '',
         lastName: '',
-        newEmail: '',
-        newPassword: '',
-
-        error: '',
+        email: '',
+        currentPassword: '',
     });
 
     const handleToggle = () => {
@@ -63,6 +63,10 @@ const Edit = () => {
         }
     };
 
+    const testeSenha = (senha) => {
+        setNewPassword(senha);
+    };
+
     const handleToggleConfirmPassword = () => {
         if (typeConfirm === 'password') {
             setConfirmPasswordIcon(faEye);
@@ -73,20 +77,28 @@ const Edit = () => {
         }
     };
 
-    useEffect(async () => {
-        const userData = await axios.get(
-            `http://localhost:3001/user/get/${user.uid}`
-        );
-
-        // setValues(userData.data);
-        console.log(userData.data);
+    useEffect(() => {
+        axios
+            .get(`http://localhost:3001/user/get/d06PJufekXPLNr1ZJwvFSUDgBYX2`)
+            .then((response) => {
+                setValues(response.data.data);
+                console.log(response.data.data);
+            });
     }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log(values);
-        axios.post('http://localhost:3001/user/edit', values);
+        flushSync(() => {
+            setValues({ ...values, currentPassword: newPassword });
+        });
+        console.log({
+            ...values,
+            currentPassword: newPassword,
+        });
+        axios.put('http://localhost:3001/user/edit', {
+            ...values,
+            currentPassword: newPassword,
+        });
     };
 
     // Function to handle file selection event
@@ -115,7 +127,7 @@ const Edit = () => {
             <ContainerList />
 
             <div className="col" style={{ marginTop: '-90px' }}>
-                <h4 class="panel-title">Edit profile</h4>
+                <h4 className="panel-title">Edit profile</h4>
                 <div className="row">
                     <div className="col mb-3">
                         <div
@@ -253,12 +265,11 @@ const Edit = () => {
                                                 className="form-control"
                                                 type="email"
                                                 name="email"
-                                                value={values.currentEmail}
+                                                value={values.email}
                                                 onChange={(e) =>
                                                     setValues({
                                                         ...values,
-                                                        currentEmail:
-                                                            e.target.value,
+                                                        email: e.target.value,
                                                     })
                                                 }
                                             />
@@ -306,7 +317,9 @@ const Edit = () => {
                                                     }
                                                     className="form-control"
                                                     placeholder="••••••"
-                                                    value={currentPassword}
+                                                    defaultValue={
+                                                        values.currentPassword
+                                                    }
                                                     onChange={(e) =>
                                                         setCurrentPassword(
                                                             e.target.value
@@ -354,9 +367,7 @@ const Edit = () => {
                                         <div className="col">
                                             <div className="form-group">
                                                 <label htmlFor="confirm-password">
-                                                    <span className="d-none d-xl-inline">
-                                                        Password
-                                                    </span>
+                                                    New Password
                                                 </label>
                                                 <input
                                                     className="form-control mb-3"
@@ -366,12 +377,13 @@ const Edit = () => {
                                                             : 'password'
                                                     }
                                                     placeholder="••••••"
+                                                    defaultValue={
+                                                        values.currentPassword
+                                                    }
                                                     onChange={(e) =>
-                                                        setValues({
-                                                            ...values,
-                                                            password:
-                                                                e.target.value,
-                                                        })
+                                                        testeSenha(
+                                                            e.target.value
+                                                        )
                                                     }
                                                 />
                                                 <div className="input-group-append">
@@ -407,11 +419,7 @@ const Edit = () => {
                                 </div>
                                 <div className="row">
                                     <div className="col d-flex justify-content-end">
-                                        {values.error && (
-                                            <p className={styles.error}>
-                                                {values.error}
-                                            </p>
-                                        )}{' '}
+                                        {values.error && <p>{values.error}</p>}{' '}
                                         <button
                                             className="btn btn-success btn-rounded btn-lg"
                                             type="submit"

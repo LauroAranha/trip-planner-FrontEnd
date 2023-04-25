@@ -1,7 +1,3 @@
-/* eslint-disable prefer-destructuring */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable react/button-has-type */
 import './roadmaps-module.css';
 
 import { useEffect, useState } from 'react';
@@ -211,3 +207,4 @@ const Roadmap = () => {
 };
 
 export default Roadmap;
+

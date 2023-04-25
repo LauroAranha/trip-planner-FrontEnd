@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -194,4 +193,3 @@ const AddRoadmap = () => {
 };
 
 export default AddRoadmap;
-

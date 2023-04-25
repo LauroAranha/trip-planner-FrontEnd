@@ -58,6 +58,7 @@ const AddRoadmap = () => {
     const onSubmit = async (data) => {
         console.log(data);
         data.userCreatorId = email;
+        data.visibilidadePublica = false;
         try {
             const response = await axios.post(
                 'http://localhost:3001/roadmap/add',

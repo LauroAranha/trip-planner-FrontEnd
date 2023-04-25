@@ -7,13 +7,23 @@ import { Link } from 'react-router-dom';
 import RoadmapSquare from '../../components/Roadmap-component/RoadmapSquare';
 
 const Home = () => {
-  const [roadmapList, setRoadmapList] = useState();
+  const [recommendedRoadmapList, setRecommendedRoadmapList] = useState();
+  const [publicRoadmapList, setPublicRoadmapList] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios.get('roadmap/recommendedRoadmaps').then((res) => {
       const responseData = res.data.data;
-      setRoadmapList(responseData);
+      setRecommendedRoadmapList(responseData);
+      setIsLoading(false);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get('roadmap/public').then((res) => {
+      const responseData = res.data.data;
+      console.log('responseData');
+      setPublicRoadmapList(responseData);
       setIsLoading(false);
     });
   }, []);

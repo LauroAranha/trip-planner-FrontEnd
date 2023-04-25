@@ -11,6 +11,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import axios from 'axios';
 import ContainerList from '../../components/ConfigList/ContainerList';
+import { getCurrentUserInformation } from '../../components/utils/userUtils';
 
 document.body.style.overflow = 'hidden';
 
@@ -20,7 +21,7 @@ const Edit = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
 
-    const user = auth.currentUser;
+    const { user,uid } = getCurrentUserInformation();
 
     const handlePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -73,14 +74,6 @@ const Edit = () => {
         }
     };
 
-    useEffect(async () => {
-        const userData = await axios.get(
-            `http://localhost:3001/user/get/${user.uid}`
-        );
-
-        // setValues(userData.data);
-        console.log(userData.data);
-    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();

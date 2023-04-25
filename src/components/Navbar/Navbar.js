@@ -1,6 +1,11 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Navbar-module.css';
+
+import { PopupMenu } from 'react-simple-widgets';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -8,14 +13,14 @@ import {
     faMapLocationDot,
     faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import profilePic from './img/profile-pic.png';
 import logo from './img/logo.png';
 import { getCurrentUserInformation } from '../utils/userUtils';
 
 const Navbar = () => {
     const [showInterface, setShowInterface] = useState(false);
     const [navClass, setNavClass] = useState('');
+
+    const navigate = useNavigate();
 
     const handleArrowClick = () => {
         setShowInterface(!showInterface);
@@ -26,12 +31,17 @@ const Navbar = () => {
         setShowInterface(false);
     };
 
+    const handleLogout = () => {
+        sessionStorage.clear();
+        navigate('/');
+    };
+
     return (
-        <nav className={`navbar ${navClass}`}>
+        <nav className="navbar">
             <Link className="brand" to="/home">
                 <img src={logo} alt="logo" className="nav-logo" />
             </Link>
-            <ul className="links_list">
+            <li className="links_list">
                 <li>
                     <Link
                         to="/home"
@@ -55,48 +65,73 @@ const Navbar = () => {
                         Road Maps{' '}
                     </Link>
                 </li>
-            </ul>
+            </li>
             <li className="profile">
-                <img
-                    src={getCurrentUserInformation().photoURL}
-                    alt="Profile Pic"
-                    className="profile-pic"
-                />
-                <FontAwesomeIcon
-                    icon={faAngleDown}
-                    className={`down-arrow ${showInterface ? 'rotate' : ''}`}
-                    onClick={handleArrowClick}
-                />
-                {showInterface && (
-                    <div className="profile-interface">
-                        <ul>
-                            <Link
-                                to="/config"
-                                className=""
-                                onClick={handleLinkClick}
+                <PopupMenu>
+                    <img
+                        src={getCurrentUserInformation().photoURL}
+                        alt="Profile Pic"
+                        className="profile-pic"
+                        onClick={handleArrowClick}
+                    />
+
+                    <div className="card text-start">
+                        <div
+                            className="card-body px-4 py-4"
+                            style={{ width: '12vw' }}
+                        >
+                            <img
+                                id="circle-avatar"
+                                className="text-center mx-auto mb-4"
+                                src={getCurrentUserInformation().photoURL}
+                                alt="logo"
+                            />
+
+                            <h5 className="text-center mb-0">
+                                {getCurrentUserInformation().displayName}
+                            </h5>
+                            <p className="text-center mb-2">
+                                {getCurrentUserInformation().email}
+                            </p>
+
+                            <div
+                                className="list-group list-group-flush"
+                                style={{ margin: '0 -24px 0' }}
                             >
-                                <li className="profile-option">
-                                    Configurações
-                                </li>
-                            </Link>
-                            <Link
-                                to="/edit"
-                                className=""
-                                onClick={handleLinkClick}
-                            >
-                                <li className="profile-option">
-                                    Editar Perfil
-                                </li>
-                            </Link>
-                            <li
-                                className="profile-option"
-                                style={{ color: 'red' }}
-                            >
-                                Sair
-                            </li>
-                        </ul>
+                                <Link
+                                    to="/config"
+                                    className=""
+                                    onClick={handleLinkClick}
+                                >
+                                    <li className="profile-option">
+                                        Configurações
+                                    </li>
+                                </Link>
+                                <Link
+                                    to="/edit"
+                                    className=""
+                                    onClick={handleLinkClick}
+                                >
+                                    <li className="profile-option">
+                                        Editar Perfil
+                                    </li>
+                                </Link>
+                            </div>
+
+                            <hr style={{ margin: '0 -24px 24px' }} />
+
+                            <div className="d-grid">
+                                <button
+                                    className="btn btn-secondary"
+                                    style={{ backgroundColor: 'red' }}
+                                    onClick={() => handleLogout()}
+                                >
+                                    <small>Logout</small>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                )}
+                </PopupMenu>
             </li>
         </nav>
     );

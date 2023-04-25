@@ -62,23 +62,24 @@ const Login = () => {
             <div className="container-login">
                 <h1>📍 Trip Planner</h1>
             </div>
-            <h1 className="page-title-login">Login</h1>
-            <div className="page-input-login">
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        <input
-                            type="email"
-                            name="email"
-                            required
-                            placeholder="Enter your email"
-                            value={values.email}
-                            onChange={(e) =>
-                                setValues({ ...values, email: e.target.value })
-                            }
-                        />
+            <div className="container-input-login">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <h1 className="page-title-login">Login</h1>
+                    <label className="login-form-label">
+                        Insira seu e-mail
                     </label>
-                    {'\n'}
-                    <label>
+                    <input
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="Enter your email"
+                        value={values.email}
+                        onChange={(e) =>
+                            setValues({ ...values, email: e.target.value })
+                        }
+                    />
+                    <label className="login-form-label">Insira sua senha</label>
+                    <div className="inputWithSpan">
                         <input
                             type={type}
                             name="password"
@@ -95,13 +96,12 @@ const Login = () => {
                         <span onClick={handleToggle} className="icon-eye">
                             <FontAwesomeIcon icon={icon} />
                         </span>
-                        <div className="page-link-login">
-                            <a href="" className="name-link">
-                                Forgot your password?
-                            </a>
-                        </div>
-                    </label>
-                    {'\n'}
+                    </div>
+                    <div className="page-link-login">
+                        <a href="" className="name-link">
+                            Forgot your password?
+                        </a>
+                    </div>
                     <button type="submit" className="login-btn">
                         Enter
                     </button>

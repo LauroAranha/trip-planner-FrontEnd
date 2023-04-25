@@ -1,3 +1,4 @@
+
 import './roadmaps-module.css';
 
 import { useEffect, useState } from 'react';
@@ -95,7 +96,7 @@ const Roadmap = () => {
                 }}
             >
                 <h2
-                    className="title"
+                    className="edit-roadmap-title"
                     style={{
                         display: 'flex',
                     }}
@@ -136,53 +137,36 @@ const Roadmap = () => {
     );
 
     return (
-        <div>
-            <div className="squares-container">
-                <div className="mainContainer">
-                    <h1 className="square-title">My Road Maps</h1>
+        <div className="squares-container">
+            <div className="main-container">
+                <h1 className="square-title">My Road Maps</h1>
 
-                    <Link to="/roadmap/add" className="buttonText">
-                        <div className="addButton">
-                            New roadmap
-                            <MdAdd />
-                        </div>
-                    </Link>
+                <Link to="/roadmap/add" className="button-text">
+                    <a className="add-button">
+                        New roadmap
+                        <MdAdd />
+                    </a>
+                </Link>
 
-                    <div className="squares-container">
-                        {isLoading ? (
-                            <p>carregando</p>
-                        ) : (
-                            roadmapList &&
-                            roadmapList.map((roadmapInformation) => {
-                                return (
-                                    <div
-                                        className="square"
-                                        id={roadmapInformation.docId}
-                                    >
-                                        <p> {roadmapInformation.title} </p>
-                                        <img src={roadmapInformation.image} />
-                                        <p>{roadmapInformation.description}</p>
+                <div className="squares-container">
+                    {isLoading ? (
+                        <p>carregando</p>
+                    ) : (
+                        roadmapList &&
+                        roadmapList.map((roadmapInformation) => {
+                            return (
+                                <div
+                                    className="square"
+                                    id={roadmapInformation.docId}
+                                >
+                                    <p> {roadmapInformation.title} </p>
+                                    <img src={roadmapInformation.image} />
+                                    <p>{roadmapInformation.description}</p>
 
-                                        <p>{roadmapInformation.custoMedio}</p>
+                                    <p>{roadmapInformation.custoMedio}</p>
+                                    <div className="roadmap-buttons">
                                         <button
-                                            className="deleteButton"
-                                            onClick={() =>
-                                                handleDelete(
-                                                    roadmapInformation.docId
-                                                )
-                                            }
-                                        >
-                                            <Link className="buttonText">
-                                                Delete
-                                                <MdDelete
-                                                    style={{
-                                                        verticalAlign: 'middle',
-                                                    }}
-                                                />
-                                            </Link>
-                                        </button>
-                                        <button
-                                            className="editButton"
+                                            className="edit-button"
                                             onClick={() =>
                                                 handleOpen(roadmapInformation)
                                             }
@@ -194,12 +178,29 @@ const Roadmap = () => {
                                                 }}
                                             />
                                         </button>
+                                        <button
+                                            className="delete-button"
+                                            onClick={() =>
+                                                handleDelete(
+                                                    roadmapInformation.docId
+                                                )
+                                            }
+                                        >
+                                            <Link className="button-text">
+                                                Delete
+                                                <MdDelete
+                                                    style={{
+                                                        verticalAlign: 'middle',
+                                                    }}
+                                                />
+                                            </Link>
+                                        </button>
                                         {modalRoamap}
                                     </div>
-                                );
-                            })
-                        )}
-                    </div>
+                                </div>
+                            );
+                        })
+                    )}
                 </div>
             </div>
         </div>

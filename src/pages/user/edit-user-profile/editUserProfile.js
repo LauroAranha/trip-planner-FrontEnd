@@ -1,3 +1,4 @@
+
 import './Config-module.css';
 
 import { useState, useEffect } from 'react';
@@ -10,7 +11,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import axios from 'axios';
 import ContainerList from '../../components/ConfigList/ContainerList';
-import { auth } from '../../firebase';
+import { getCurrentUserInformation } from '../../../components/utils/userUtils';
 import { flushSync } from 'react-dom';
 
 document.body.style.overflow = 'hidden';
@@ -24,7 +25,7 @@ const Edit = () => {
 
     const [timer, setTimer] = useState(null);
 
-    const user = auth.currentUser;
+    const { user, uid } = getCurrentUserInformation();
 
     const handlePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -79,7 +80,7 @@ const Edit = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3001/user/get/d06PJufekXPLNr1ZJwvFSUDgBYX2`)
+            .get(`http://localhost:3001/user/get/${uid}`)
             .then((response) => {
                 setValues(response.data.data);
                 console.log(response.data.data);

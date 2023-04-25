@@ -63,6 +63,7 @@
     outline: 0;
     grid-template-columns: 15% 85%;
     width: 100%;
+    border: #9a9a9a 1px solid;
 }
 
 .container-input-login input:not(:placeholder-shown) {

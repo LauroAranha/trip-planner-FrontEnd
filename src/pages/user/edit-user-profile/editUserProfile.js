@@ -1,12 +1,10 @@
 import './editUserProfile-module.css';
 
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Helmet } from 'react-helmet';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
-import firebase from 'firebase/app';
 import 'firebase/auth';
 import axios from 'axios';
 import ContainerList from '../../../components/ConfigList/ContainerList';
@@ -14,11 +12,8 @@ import {
     getCurrentUserInformation,
     getCurrentUserToken,
 } from '../../../components/utils/userUtils';
-import { flushSync } from 'react-dom';
 
-document.body.style.overflow = 'hidden';
-
-const Edit = () => {
+const EditUserProfile = () => {
     const [newPassword, setNewPassword] = useState('');
     const [newEmail, setNewEmail] = useState('');
     const [newName, setNewName] = useState('');
@@ -434,4 +429,4 @@ const Edit = () => {
     );
 };
 
-export default Edit;
+export default EditUserProfile;

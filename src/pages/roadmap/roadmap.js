@@ -45,7 +45,6 @@ const Roadmap = () => {
                 const responseData = res.data.data;
                 setRoadmapList(responseData);
                 setIsLoading(false);
-                setTriggerUpdate(false);
             } catch (error) {
                 console.log(error);
             }
@@ -60,6 +59,7 @@ const Roadmap = () => {
     };
     const handleClose = () => {
         setOpen(false);
+        setTriggerUpdate(!triggerUpdate)
     };
 
     const handleDelete = (docId) => {
@@ -70,7 +70,6 @@ const Roadmap = () => {
 
                 if (responseData === 1) {
                     setIsLoading(false);
-                    setTriggerUpdate(!triggerUpdate);
                 }
             } catch (error) {
                 console.error(error);
@@ -131,7 +130,7 @@ const Roadmap = () => {
                         />
                     </Button>
                 </h2>
-                <EditRoadmap props={modalInformation} />
+                <EditRoadmap handleModalClose={handleClose} props={modalInformation} />
             </Box>
         </Modal>
     );

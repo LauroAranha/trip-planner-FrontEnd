@@ -11,7 +11,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import axios from 'axios';
 import ContainerList from '../../components/ConfigList/ContainerList';
-import { auth } from '../../firebase';
 
 document.body.style.overflow = 'hidden';
 

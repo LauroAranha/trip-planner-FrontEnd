@@ -2,6 +2,7 @@ import './edit-roadmap-module.css';
 
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Switch from '@mui/material/Switch';
 
 import axios from 'axios';
 
@@ -75,6 +76,16 @@ const EditRoadmap = (props) => {
 
     return (
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            <label className="fieldLabel">Definir visibilidade do roteiro como pública</label>
+            <select
+                className="form__select"
+                defaultValue={props.props.visibilidadePublica}
+                {...register('visibilidadePublica')}
+            >
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
+            </select>
+
             <label className="fieldLabel">Nome do roteiro</label>
             <input
                 type="text"

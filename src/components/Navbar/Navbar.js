@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Navbar-module.css';
 
 import { PopupMenu } from 'react-simple-widgets';
@@ -20,6 +20,8 @@ const Navbar = () => {
     const [showInterface, setShowInterface] = useState(false);
     const [navClass, setNavClass] = useState('');
 
+    const navigate = useNavigate();
+
     const handleArrowClick = () => {
         setShowInterface(!showInterface);
     };
@@ -27,6 +29,11 @@ const Navbar = () => {
     const handleLinkClick = () => {
         setNavClass('fade-in');
         setShowInterface(false);
+    };
+
+    const handleLogout = () => {
+        sessionStorage.clear();
+        navigate('/');
     };
 
     return (
@@ -117,6 +124,7 @@ const Navbar = () => {
                                 <button
                                     className="btn btn-secondary"
                                     style={{ backgroundColor: 'red' }}
+                                    onClick={() => handleLogout()}
                                 >
                                     <small>Logout</small>
                                 </button>

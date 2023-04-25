@@ -1,4 +1,3 @@
-
 import './editUserProfile-module.css';
 
 import { useState, useEffect } from 'react';
@@ -11,21 +10,23 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import axios from 'axios';
 import ContainerList from '../../../components/ConfigList/ContainerList';
-import { getCurrentUserInformation } from '../../../components/utils/userUtils';
+import {
+    getCurrentUserInformation,
+    getCurrentUserToken,
+} from '../../../components/utils/userUtils';
 import { flushSync } from 'react-dom';
 
 document.body.style.overflow = 'hidden';
 
 const Edit = () => {
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
+    const [newEmail, setNewEmail] = useState('');
+    const [newName, setNewName] = useState('');
+    const [newLastName, setNewLastName] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
 
-    const [timer, setTimer] = useState(null);
-
-    const { user, uid } = getCurrentUserInformation();
+    const { uid } = getCurrentUserInformation();
 
     const handlePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -64,10 +65,6 @@ const Edit = () => {
         }
     };
 
-    const testeSenha = (senha) => {
-        setNewPassword(senha);
-    };
-
     const handleToggleConfirmPassword = () => {
         if (typeConfirm === 'password') {
             setConfirmPasswordIcon(faEye);
@@ -79,27 +76,39 @@ const Edit = () => {
     };
 
     useEffect(() => {
-        axios
-            .get(`http://localhost:3001/user/get/${uid}`)
-            .then((response) => {
-                setValues(response.data.data);
-                console.log(response.data.data);
-            });
+        const fetchData = async () => {
+            await axios
+                .get(`http://localhost:3001/user/get/${uid}`)
+                .then((response) => {
+                    setValues(response.data.data);
+                    setNewEmail(response.data.data.email);
+                    setNewPassword(response.data.data.currentPassword);
+                    setNewName(response.data.data.name);
+                    setNewLastName(response.data.data.lastName);
+                    console.log(response);
+                });
+        };
+        fetchData();
     }, []);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        flushSync(() => {
-            setValues({ ...values, currentPassword: newPassword });
-        });
-        console.log({
-            ...values,
-            currentPassword: newPassword,
-        });
-        axios.put('http://localhost:3001/user/edit', {
-            ...values,
-            currentPassword: newPassword,
-        });
+
+        await axios.put(
+            'http://localhost:3001/user/edit',
+            {
+                ...values,
+                email: newEmail,
+                currentPassword: newPassword,
+                name: newName,
+                lastName: newLastName,
+            },
+            {
+                headers: {
+                    auth: getCurrentUserToken(),
+                },
+            }
+        );
     };
 
     // Function to handle file selection event
@@ -200,10 +209,11 @@ const Edit = () => {
                                         >
                                             <div className="text-center text-sm-left mb-2 mb-sm-0">
                                                 <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">
-                                                    John Smith
+                                                    {values.name}{' '}
+                                                    {values.lastName}
                                                 </h4>
                                                 <p className="mb-0">
-                                                    @johnny.s
+                                                    {values.email}
                                                 </p>
                                             </div>
                                         </div>
@@ -227,13 +237,10 @@ const Edit = () => {
                                                 className="form-control"
                                                 type="text"
                                                 name="name"
-                                                value={values.name}
-                                                onChange={(e) =>
-                                                    setValues({
-                                                        ...values,
-                                                        name: e.target.value,
-                                                    })
-                                                }
+                                                defaultValue={values.name}
+                                                onChange={(e) => {
+                                                    setNewName(e.target.value);
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -246,13 +253,11 @@ const Edit = () => {
                                                 className="form-control"
                                                 type="text"
                                                 name="displayName"
-                                                value={values.lastName}
+                                                defaultValue={values.lastName}
                                                 onChange={(e) =>
-                                                    setValues({
-                                                        ...values,
-                                                        lastName:
-                                                            e.target.value,
-                                                    })
+                                                    setNewLastName(
+                                                        e.target.value
+                                                    )
                                                 }
                                             />
                                         </div>
@@ -266,13 +271,7 @@ const Edit = () => {
                                                 className="form-control"
                                                 type="email"
                                                 name="email"
-                                                value={values.email}
-                                                onChange={(e) =>
-                                                    setValues({
-                                                        ...values,
-                                                        email: e.target.value,
-                                                    })
-                                                }
+                                                defaultValue={values.email}
                                             />
                                         </div>
                                     </div>
@@ -288,13 +287,10 @@ const Edit = () => {
                                                 type="email"
                                                 name="email"
                                                 placeholder="user@example.com"
-                                                value={values.email}
-                                                onChange={(e) =>
-                                                    setValues({
-                                                        ...values,
-                                                        email: e.target.value,
-                                                    })
-                                                }
+                                                defaultValue={newEmail}
+                                                onChange={(e) => {
+                                                    setNewEmail(e.target.value);
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -320,11 +316,6 @@ const Edit = () => {
                                                     placeholder="••••••"
                                                     defaultValue={
                                                         values.currentPassword
-                                                    }
-                                                    onChange={(e) =>
-                                                        setCurrentPassword(
-                                                            e.target.value
-                                                        )
                                                     }
                                                     style={{ width: '100%' }}
                                                 />
@@ -378,14 +369,12 @@ const Edit = () => {
                                                             : 'password'
                                                     }
                                                     placeholder="••••••"
-                                                    defaultValue={
-                                                        values.currentPassword
-                                                    }
-                                                    onChange={(e) =>
-                                                        testeSenha(
+                                                    defaultValue={newPassword}
+                                                    onChange={(e) => {
+                                                        setNewPassword(
                                                             e.target.value
-                                                        )
-                                                    }
+                                                        );
+                                                    }}
                                                 />
                                                 <div className="input-group-append">
                                                     <span

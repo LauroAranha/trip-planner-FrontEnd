@@ -13,7 +13,7 @@ const Login = () => {
     const [icon, setIcon] = useState(faEyeSlash);
     const [values, setValues] = useState({
         email: 'lauro@lauro.com',
-        password: 'lauro123',
+        currentPassword: 'lauro123',
     });
 
     const handleSubmit = async (e) => {
@@ -85,11 +85,11 @@ const Login = () => {
                             name="password"
                             required
                             placeholder="Enter your password"
-                            value={values.password}
+                            value={values.currentPassword}
                             onChange={(e) =>
                                 setValues({
                                     ...values,
-                                    password: e.target.value,
+                                    currentPassword: e.target.value,
                                 })
                             }
                         />

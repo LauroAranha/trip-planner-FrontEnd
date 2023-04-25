@@ -1,4 +1,3 @@
-
 import './roadmaps-module.css';
 
 import { useEffect, useState } from 'react';
@@ -34,10 +33,11 @@ const Roadmap = () => {
     const [modalInformation, setModalInformation] = useState('');
 
     const user = getCurrentUserInformation();
-    const userId = user.uid;
+    const userId = user.email;
 
     useEffect(() => {
         const fetchCurrentUserRoadmaps = async () => {
+            console.log(getCurrentUserInformation());
             try {
                 const res = await axios.get(
                     `roadmap/getCurrentUserRoadmaps/${userId}`
@@ -159,11 +159,15 @@ const Roadmap = () => {
                                     className="square"
                                     id={roadmapInformation.docId}
                                 >
-                                    <p> {roadmapInformation.title} </p>
-                                    <img src={roadmapInformation.image} />
-                                    <p>{roadmapInformation.description}</p>
+                                    <Link
+                                        to={`/roadmap/${roadmapInformation.docId}`}
+                                    >
+                                        <p> {roadmapInformation.title} </p>
+                                        <img src={roadmapInformation.image} />
+                                        <p>{roadmapInformation.description}</p>
 
-                                    <p>{roadmapInformation.custoMedio}</p>
+                                        <p>{roadmapInformation.custoMedio}</p>
+                                    </Link>
                                     <div className="roadmap-buttons">
                                         <button
                                             className="edit-button"
@@ -208,4 +212,3 @@ const Roadmap = () => {
 };
 
 export default Roadmap;
-

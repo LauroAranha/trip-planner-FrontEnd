@@ -8,34 +8,44 @@
 
 .page-login {
     background-image: linear-gradient(to right, #37b0e8 50%, #EFFFFD 50%);
-    padding: 18%;
-    margin: -20px;
     height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.container-login {
+    width: 50%;
+    display: flex;
 }
 
 .container-login h1 {
     color: white;
-    margin-top: -30px;
-    margin-left: 100px;
     font-size: 40px;
     font-family: 'Pacifico', sans-serif;
+    margin: auto
+}
+
+.container-input-login {
+    width: 50%;
+    display: flex;
 }
 
 .page-title-login {
-    margin-top: -230px;
     color: #42B0FF;
     font-size: 1.6rem;
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    margin-left: 52%;
-    margin-bottom: 90px;
 }
 
-.page-input-login {
-    margin: -30px 0;
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
 }
 
-.page-input-login input {
+.container-input-login input {
     width: 20%;
     margin: 0.8rem auto;
     padding: 1.0rem;
@@ -47,32 +57,33 @@
     font-family: 'Poppins', sans-serif;
     outline: 0;
     grid-template-columns: 15% 85%;
-    margin-left: 65%;
 }
 
-.page-input-login input:not(:placeholder-shown) {
+.container-input-login input:not(:placeholder-shown) {
     border-bottom: #85F4FF 8px solid;
 }
 
-.page-input-login input:not(:placeholder-shown)+label {
+.container-input-login input:not(:placeholder-shown)+label {
     transform: translateY(-14px) scale(.8);
 }
 
-.page-input-login .icon-eye {
-    color: #42B0FF;
-    cursor: pointer;
-    margin: -60px;
-    margin-left: 85%;
-    top: -50px;
-    position: relative;
+.inputWithSpan {
+    display: flex;
+    flex-direction: row;
 }
 
-.page-input-login .login-sign-in {
+.icon-eye {
     color: #42B0FF;
     cursor: pointer;
-    margin: -60px;
-    margin-left: 85%;
-    top: -50px;
+    align-self: center;
+    margin-top: 0;
+    position: absolute;
+    right: 20.5vw;
+}
+
+.container-input-login .login-sign-in {
+    color: #42B0FF;
+    cursor: pointer;
     position: relative;
 }
 
@@ -84,8 +95,6 @@
     height: 12%;
     width: 10%;
     position: relative;
-    top: -84px !important;
-    margin: 0.1rem;
     background: linear-gradient(to bottom right, #42B0FF, #85F4FF);
     border: 0;
     border-color: #42B0FF 1rem;
@@ -107,7 +116,7 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     white-space: nowrap;
-    margin-left: 71.4%;
+    align-self: center;
 }
 
 .login-btn:not([disabled]):focus {
@@ -120,18 +129,15 @@
 
 .page-link-login {
     display: flex;
-    top: -21px;
     position: relative;
-    margin: 0.3rem 0;
     justify-content: center;
     font-size: 0.85rem;
     font-family: 'inherit';
-    margin-bottom: 5rem;
-    margin-left: 63%;
-    font-size: 11px;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
     font-family: "Noto Sans Mono", monospace;
+    padding: 1vh;
 }
 
 .page-link-login a {
@@ -146,8 +152,9 @@
 
 .create-account {
     display: flex;
-    margin-top: 96px !important;
-    margin-left: -94%;
+    flex-direction: row;
+    align-self: center;
+    padding: 10px;
 }
 
 .create-account span {
@@ -157,19 +164,18 @@
 }
 
 .create-account .link-login {
-    margin-top: -80px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    margin-left: -63px;
-    font-size: 13px;
+    font-size: 15px;
     text-decoration: none;
     color: #42B0FF;
     transform: scale(1.0);
     outline: none;
+    margin-left: 5px;
 }
 
-/** For 16 inch screens */
+/* * For 16 inch screens
 
 @media screen and (max-width: 1920px) {
 
@@ -183,16 +189,16 @@
         margin-left: 86%;
     }
 
-    .page-input-login {
+    .container-input-login {
         position: relative;
         margin-left: 500px;
     }
 
-    .page-input-login input {
+    .container-input-login input {
         width: 40%;
     }
 
-    .page-input-login .icon-eye {
+    .container-input-login .icon-eye {
         color: #42B0FF;
         cursor: pointer;
         margin: -60px;
@@ -221,4 +227,4 @@
         margin-top: 65px;
         margin-left: -15%;
     }
-}
+} */

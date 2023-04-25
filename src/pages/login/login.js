@@ -11,10 +11,7 @@ const Login = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [type, setType] = useState('password');
     const [icon, setIcon] = useState(faEyeSlash);
-    const [values, setValues] = useState({
-        email: 'lauro@lauro.com',
-        currentPassword: 'lauro123',
-    });
+    const [values, setValues] = useState();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -121,3 +118,4 @@ const Login = () => {
 };
 
 export default Login;
+

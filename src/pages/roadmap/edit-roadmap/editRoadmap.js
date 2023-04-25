@@ -21,6 +21,8 @@ const EditRoadmap = (props) => {
     const { register, handleSubmit, watch } = useForm();
     const custoMedio = watch('custoMedio');
 
+    const { handleModalClose } = props
+
     const onChange = (value) => {
         console.log(value);
     };
@@ -62,6 +64,7 @@ const EditRoadmap = (props) => {
             if (response.status === 200) {
                 console.log(response);
                 alert('edit success');
+                handleModalClose();
             } else {
                 console.log('Some pepino occurred debug it');
             }

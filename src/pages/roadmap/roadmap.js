@@ -3,7 +3,7 @@ import './roadmaps-module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { MdDelete, MdEditDocument, MdAdd, MdEdit } from 'react-icons/md';
+import { MdDelete, MdEditDocument, MdAdd } from 'react-icons/md';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -45,7 +45,6 @@ const Roadmap = () => {
                 const responseData = res.data.data;
                 setRoadmapList(responseData);
                 setIsLoading(false);
-                setTriggerUpdate(false);
             } catch (error) {
                 console.log(error);
             }
@@ -60,6 +59,7 @@ const Roadmap = () => {
     };
     const handleClose = () => {
         setOpen(false);
+        setTriggerUpdate(!triggerUpdate)
     };
 
     const handleDelete = (docId) => {
@@ -70,7 +70,6 @@ const Roadmap = () => {
 
                 if (responseData === 1) {
                     setIsLoading(false);
-                    setTriggerUpdate(!triggerUpdate);
                 }
             } catch (error) {
                 console.error(error);
@@ -131,7 +130,7 @@ const Roadmap = () => {
                         />
                     </Button>
                 </h2>
-                <EditRoadmap props={modalInformation} />
+                <EditRoadmap handleModalClose={handleClose} props={modalInformation} />
             </Box>
         </Modal>
     );
@@ -176,7 +175,7 @@ const Roadmap = () => {
                                             }
                                         >
                                             Edit roadmap
-                                            <MdEdit
+                                            <MdEditDocument
                                                 style={{
                                                     verticalAlign: 'middle',
                                                 }}

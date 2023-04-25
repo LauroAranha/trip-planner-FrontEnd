@@ -49,8 +49,8 @@ const RoadmapDetails = () => {
                 <h2>
                     Ponto(s) de paradas recomendada(s)
                 </h2>
-                {roadmapDetails &&
-                    roadmapDetails.paradasRecomendadas.map((object) => {
+                {roadmapDetails ? roadmapDetails : null &&
+                    roadmapDetails ? roadmapDetails.paradasRecomendadas.map((object) => {
                         countParadas++;
                         if (!object) {
                             return
@@ -60,7 +60,7 @@ const RoadmapDetails = () => {
                                 Parada {countParadas}: {object}
                             </p>
                         );
-                    })}
+                    }) : null}
 
                 <h2>Ponto de partida</h2>
                 <p>{roadmapDetails.pontoInicial}</p>

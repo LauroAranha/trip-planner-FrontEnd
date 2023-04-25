@@ -35,8 +35,27 @@ const Home = () => {
         {isLoading ? (
           <p>carregando</p>
         ) : (
-          roadmapList &&
-          roadmapList.map((object) => {
+          recommendedRoadmapList &&
+          recommendedRoadmapList.map((object) => {
+            return (
+              <Link to={`/roadmap/${object.docId}`}>
+                <RoadmapSquare
+                  image={object.image}
+                  title={object.title}
+                  description={object.description}
+                />
+              </Link>
+            );
+          })
+        )}
+      </div>
+      <h1 className="main-container-title">Public Road Maps</h1>
+      <div className="main-roadmap-cards-container">
+        {isLoading ? (
+          <p>carregando</p>
+        ) : (
+          publicRoadmapList &&
+          publicRoadmapList.map((object) => {
             return (
               <Link to={`/roadmap/${object.docId}`}>
                 <RoadmapSquare

@@ -1,6 +1,11 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Navbar-module.css';
+
+import { PopupMenu } from 'react-simple-widgets';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -55,46 +60,70 @@ const Navbar = () => {
                 </li>
             </li>
             <li className="profile">
-                <img
-                    src={getCurrentUserInformation().photoURL}
-                    alt="Profile Pic"
-                    className="profile-pic"
-                />
-                <FontAwesomeIcon
-                    icon={faAngleDown}
-                    className={`down-arrow ${showInterface ? 'rotate' : ''}`}
-                    onClick={handleArrowClick}
-                />
-                {showInterface && (
-                    <div className="profile-interface">
-                        <ul>
-                            <Link
-                                to="/config"
-                                className=""
-                                onClick={handleLinkClick}
+                <PopupMenu>
+                    <img
+                        src={getCurrentUserInformation().photoURL}
+                        alt="Profile Pic"
+                        className="profile-pic"
+                        onClick={handleArrowClick}
+                    />
+
+                    <div className="card text-start">
+                        <div
+                            className="card-body px-4 py-4"
+                            style={{ width: '12vw' }}
+                        >
+                            <img
+                                id="circle-avatar"
+                                className="text-center mx-auto mb-4"
+                                src={getCurrentUserInformation().photoURL}
+                                alt="logo"
+                            />
+
+                            <h5 className="text-center mb-0">
+                                {getCurrentUserInformation().displayName}
+                            </h5>
+                            <p className="text-center mb-2">
+                                {getCurrentUserInformation().email}
+                            </p>
+
+                            <div
+                                className="list-group list-group-flush"
+                                style={{ margin: '0 -24px 0' }}
                             >
-                                <li className="profile-option">
-                                    Configurações
-                                </li>
-                            </Link>
-                            <Link
-                                to="/edit"
-                                className=""
-                                onClick={handleLinkClick}
-                            >
-                                <li className="profile-option">
-                                    Editar Perfil
-                                </li>
-                            </Link>
-                            <li
-                                className="profile-option"
-                                style={{ color: 'red' }}
-                            >
-                                Sair
-                            </li>
-                        </ul>
+                                <Link
+                                    to="/config"
+                                    className=""
+                                    onClick={handleLinkClick}
+                                >
+                                    <li className="profile-option">
+                                        Configurações
+                                    </li>
+                                </Link>
+                                <Link
+                                    to="/edit"
+                                    className=""
+                                    onClick={handleLinkClick}
+                                >
+                                    <li className="profile-option">
+                                        Editar Perfil
+                                    </li>
+                                </Link>
+                            </div>
+
+                            <hr style={{ margin: '0 -24px 24px' }} />
+
+                            <div className="d-grid">
+                                <button
+                                    className="btn btn-secondary"
+                                    style={{ backgroundColor: 'red' }}
+                                >
+                                    <small>Logout</small>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                )}
+                </PopupMenu>
             </li>
         </nav>
     );

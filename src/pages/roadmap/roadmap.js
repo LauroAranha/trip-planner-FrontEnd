@@ -70,6 +70,7 @@ const Roadmap = () => {
 
                 if (responseData === 1) {
                     setIsLoading(false);
+                    setTriggerUpdate(!triggerUpdate)
                 }
             } catch (error) {
                 console.error(error);

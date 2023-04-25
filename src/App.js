@@ -14,6 +14,7 @@ import RoadmapDetails from './pages/roadmap/roadmaps-details/roadmap-details';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
+import { Helmet } from 'react-helmet';
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 
@@ -83,6 +84,14 @@ const App = () => {
                 </div>
                 <Footer />
             </BrowserRouter>
+            <Helmet>
+                <link
+                    rel="stylesheet"
+                    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+                    crossOrigin="anonymous"
+                />
+            </Helmet>
         </div>
     );
 };

@@ -11,7 +11,7 @@ const Login = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [type, setType] = useState('password');
     const [icon, setIcon] = useState(faEyeSlash);
-    const [values, setValues] = useState();
+    const [values, setValues] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,39 +61,42 @@ const Login = () => {
             </div>
             <div className="container-input-login">
                 <form className="login-form" onSubmit={handleSubmit}>
-                    <h1 className="page-title-login">Login</h1>
-                    <label className="login-form-label">
-                        Insira seu e-mail
-                    </label>
-                    <input
-                        type="email"
-                        name="email"
-                        required
-                        placeholder="Enter your email"
-                        value={values.email}
-                        onChange={(e) =>
-                            setValues({ ...values, email: e.target.value })
-                        }
-                    />
-                    <label className="login-form-label">Insira sua senha</label>
-                    <div className="inputWithSpan">
+                    <div className="login-input-fields">
+                        <h1 className="page-title-login">Login</h1>
+                        <label className="login-form-label">
+                            Insira seu e-mail
+                        </label>
                         <input
-                            type={type}
-                            name="password"
+                            type="email"
+                            name="email"
                             required
-                            placeholder="Enter your password"
-                            value={values.currentPassword}
+                            placeholder="Enter your email"
+                            value={values.email}
                             onChange={(e) =>
-                                setValues({
-                                    ...values,
-                                    currentPassword: e.target.value,
-                                })
+                                setValues({ ...values, email: e.target.value })
                             }
                         />
-                        <span onClick={handleToggle} className="icon-eye">
-                            <FontAwesomeIcon icon={icon} />
-                        </span>
+                        <label className="login-form-label">Insira sua senha</label>
+                        <div className="inputWithSpan">
+                            <input
+                                type={type}
+                                name="password"
+                                required
+                                placeholder="Enter your password"
+                                value={values.currentPassword}
+                                onChange={(e) =>
+                                    setValues({
+                                        ...values,
+                                        currentPassword: e.target.value,
+                                    })
+                                }
+                            />
+                            <span onClick={handleToggle} className="icon-eye">
+                                <FontAwesomeIcon icon={icon} />
+                            </span>
+                        </div>
                     </div>
+
                     <div className="page-link-login">
                         <a href="" className="name-link">
                             Forgot your password?

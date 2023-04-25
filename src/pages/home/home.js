@@ -19,9 +19,9 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="mainContainer">
-      <h1 className="square-title">Recommended Road Maps</h1>
-      <div className="squares-container">
+    <div className="main-container">
+      <h1 className="main-container-title">Recommended Road Maps</h1>
+      <div className="main-roadmap-cards-container">
         {isLoading ? (
           <p>carregando</p>
         ) : (
@@ -39,7 +39,7 @@ const Home = () => {
           })
         )}
       </div>
-      <h1 className="square-title">Nearby Attractions</h1>
+      <h1 className="main-container-title">Nearby Attractions</h1>
     </div>
   );
 };

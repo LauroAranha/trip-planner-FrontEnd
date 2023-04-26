@@ -1,0 +1,87 @@
+.personal-roadmap-card {
+    height: 50vh;
+    width: 20vw;
+    margin: 10px;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #9a9a9a;
+    background-color: white;
+    justify-content: space-between;
+}
+
+.personal-roadmap-card:first-child {
+    margin-left: 0;
+}
+
+.personal-roadmap-card img {
+    justify-content: flex-start;
+    display: block;
+    height: 10vw;
+    object-fit: cover;
+    border-bottom: 1px solid rgb(127, 127, 127);
+}
+
+.personal-roadmap-card-information {
+    padding: 1vw;
+    overflow-x: hidden;
+}
+
+.personal-roadmap-card-information h2 {
+    font-weight: bold;
+    color: black;
+    font-size: 22px;
+}
+
+.personal-roadmap-card-information p {
+    color: black;
+    text-align: left;
+    font-size: 16px;
+    max-width: 100%;
+    word-wrap: break-word;
+    -webkit-line-clamp: 3;
+}
+
+.delete-button {
+    background-color: #ce1100;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    border: none;
+}
+
+.personal-roadmap-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-button {
+    background-color: #0048ce;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    border: none;
+}
+
+.button-text {
+    color: #ffffff;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.edit-personal-roadmap-title {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    text-align: center;
+}

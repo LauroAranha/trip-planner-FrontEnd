@@ -1,14 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-.square-title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: none;
+.main-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.squares-container {
+.main-container-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: none;
+    margin-bottom: 0px;
+}
+
+.main-roadmap-cards-container {
     overflow: auto;
-    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
 }
 
 .map-title {

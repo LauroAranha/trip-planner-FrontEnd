@@ -1,8 +1,8 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import './edit-roadmap-module.css';
 
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Switch from '@mui/material/Switch';
 
 import axios from 'axios';
 
@@ -22,6 +22,8 @@ const EditRoadmap = (props) => {
     const { register, handleSubmit, watch } = useForm();
     const custoMedio = watch('custoMedio');
 
+    const { handleModalClose } = props
+
     const onChange = (value) => {
         console.log(value);
     };
@@ -40,7 +42,6 @@ const EditRoadmap = (props) => {
             types: ['establishment'],
         };
         if (autoCompleteField) {
-            // eslint-disable-next-line no-new
             new window.google.maps.places.Autocomplete(
                 document.getElementById(
                     `inputFieldAut${autoCompleteField - 1}`
@@ -64,6 +65,7 @@ const EditRoadmap = (props) => {
             if (response.status === 200) {
                 console.log(response);
                 alert('edit success');
+                handleModalClose();
             } else {
                 console.log('Some pepino occurred debug it');
             }
@@ -74,17 +76,29 @@ const EditRoadmap = (props) => {
 
     return (
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            <label className="fieldLabel">Definir visibilidade do roteiro como pública</label>
+            <select
+                className="form__select"
+                defaultValue={props.props.visibilidadePublica}
+                {...register('visibilidadePublica')}
+            >
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
+            </select>
+
             <label className="fieldLabel">Nome do roteiro</label>
             <input
                 type="text"
                 placeholder="Nome do roteiro"
                 className="form__input"
+                defaultValue={props.props.title}
                 {...register('title', {})}
             />
 
             <label className="fieldLabel">Descrição do roteiro</label>
             <textarea
                 className="form__textarea"
+                defaultValue={props.props.description}
                 {...register('description', {})}
             />
 
@@ -94,6 +108,7 @@ const EditRoadmap = (props) => {
             <input
                 type="text"
                 placeholder="Link imagem"
+                defaultValue={props.props.image}
                 className="form__input"
                 {...register('image', {})}
             />
@@ -103,6 +118,7 @@ const EditRoadmap = (props) => {
                 type="search"
                 placeholder="Cidade do roteiro"
                 className="form__input"
+                defaultValue={props.props.cidadeRoteiro}
                 {...register('cidadeRoteiro', {})}
             />
 
@@ -111,6 +127,7 @@ const EditRoadmap = (props) => {
                 type="search"
                 placeholder="Ponto de partida"
                 className="form__input"
+                defaultValue={props.props.pontoInicial}
                 {...register('pontoInicial', {})}
             />
 
@@ -118,6 +135,7 @@ const EditRoadmap = (props) => {
             <input
                 type="search"
                 placeholder="Destino"
+                defaultValue={props.props.pontoFinal}
                 className="form__input"
                 {...register('pontoFinal', {})}
             />
@@ -125,6 +143,7 @@ const EditRoadmap = (props) => {
             <label className="fieldLabel">Recomendação de Transporte</label>
             <select
                 className="form__select"
+                defaultValue={props.props.recomendacaoTransporte}
                 {...register('recomendacaoTransporte')}
             >
                 <option value="Carro">Carro</option>
@@ -148,6 +167,7 @@ const EditRoadmap = (props) => {
                 Estimativa de gastos por pessoa
             </label>
             <input
+                defaultValue={props.props.custoMedio}
                 min="0"
                 max="1000"
                 type="range"
@@ -160,13 +180,21 @@ const EditRoadmap = (props) => {
             <span>${custoMedio}</span>
 
             <label className="fieldLabel">Permite pets?</label>
-            <select className="form__select" {...register('petsOk')}>
+            <select
+                className="form__select"
+                defaultValue={props.props.petsOk}
+                {...register('petsOk')}
+            >
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>
 
             <label className="fieldLabel">Recomendado pra crianças?</label>
-            <select className="form__select" {...register('criancaOk')}>
+            <select
+                className="form__select"
+                defaultValue={props.props.criancaOk}
+                {...register('criancaOk')}
+            >
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>

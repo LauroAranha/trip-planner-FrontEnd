@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-document.body.style.overflow = 'hidden';
 
 const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -54,8 +53,8 @@ const Register = () => {
   };
 
   return (
-    <body className="page-register">
-      <div className="container-register">
+    <div className="page-login">
+      <div className="container-login">
         <h1>Create an account</h1>
         <p>
           You creating an account, will be able to register all your trips,{' '}
@@ -65,10 +64,12 @@ const Register = () => {
           your friends.
         </p>
       </div>
-      <h1 className="page-title-register">Get started</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="page-input-register">
-          <label>
+
+      <div className="container-input-login">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="login-input-fields">
+            <h1 className="page-title-register">Get started</h1>
+            <label className="login-form-label">Nome</label>
             <input
               type="text"
               name="displayName"
@@ -77,9 +78,8 @@ const Register = () => {
               value={values.name}
               onChange={(e) => setValues({ ...values, name: e.target.value })}
             />
-          </label>
-          {'\n'}
-          <label>
+
+            <label className="login-form-label">Ultimo Nome</label>
             <input
               type="text"
               name="displayName"
@@ -90,9 +90,8 @@ const Register = () => {
                 setValues({ ...values, lastName: e.target.value })
               }
             />
-          </label>
-          {'\n'}
-          <label>
+
+            <label className="login-form-label">Email</label>
             <input
               type="email"
               name="email"
@@ -101,9 +100,8 @@ const Register = () => {
               value={values.email}
               onChange={(e) => setValues({ ...values, email: e.target.value })}
             />
-          </label>
-          {'\n'}
-          <label>
+
+            <label className="login-form-label">Senha</label>
             <input
               type={type}
               name="password"
@@ -117,9 +115,8 @@ const Register = () => {
             <span onClick={handleToggle} className="icon-eye-register">
               <FontAwesomeIcon icon={icon} />
             </span>
-          </label>
-          {'\n'}
-          <label className="confirmpass">
+
+            <label className="login-form-label">Confirmar senha</label>
             <input
               type={typeConfirm}
               name="confirmPassword"
@@ -135,18 +132,17 @@ const Register = () => {
             >
               <FontAwesomeIcon icon={iconConfirm} />
             </span>
-          </label>
-        </div>
-        {'\n'}
-        {values.error && <p className={styles.error}>{values.error}</p>}{' '}
-        <button className="register-btn">Complete</button>
-        <div className="page-link">
-          <Link to="/" className="link-register">
-            I'm already registered
-          </Link>
-        </div>
-      </form>
-    </body>
+          </div>
+          {values.error && <p className={styles.error}>{values.error}</p>}{' '}
+          <button className="register-btn">Complete</button>
+          <div className="page-link">
+            <Link to="/" className="link-register">
+              I'm already registered
+            </Link>
+          </div>
+        </form>
+      </div >
+    </div >
   );
 };
 

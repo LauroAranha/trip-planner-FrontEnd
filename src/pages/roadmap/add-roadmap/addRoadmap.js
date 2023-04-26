@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -59,13 +58,14 @@ const AddRoadmap = () => {
     const onSubmit = async (data) => {
         console.log(data);
         data.userCreatorId = email;
+        data.visibilidadePublica = false;
         try {
             const response = await axios.post(
                 'http://localhost:3001/roadmap/add',
                 data
             );
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 console.log(response);
                 navigate('/home');
             } else {

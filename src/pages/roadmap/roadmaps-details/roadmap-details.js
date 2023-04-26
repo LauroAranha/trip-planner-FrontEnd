@@ -30,74 +30,73 @@ const RoadmapDetails = () => {
     }
 
     return (
-        <div className="roadmap-details-box">
-            <div className="roadmap-details-main">
-                <img
-                    src={roadmapDetails.image}
-                    alt="Imagem"
-                    className="roadmap-details-main-image"
-                />
-            </div>
-            <div className="roadmap-details-information">
-                <h1 className="roadmap-details-title">
-                    {roadmapDetails.title}
-                </h1>
+        <div className="roadmapBox">
+            <h1 className="title">{roadmapDetails.title}</h1>
 
-                <h2>Descrição</h2>
-                <p>{roadmapDetails.description}</p>
+            <img src={roadmapDetails.image} alt="Imagem" className="image" />
 
-                <h2>Custo médio por pessoa</h2>
-                <p>R${roadmapDetails.custoMedio}</p>
+            <h2 className="roadmapInformation">Descrição</h2>
+            <p className="roadmapInformation">{roadmapDetails.description}</p>
 
-                <h2>Cidade do roteiro</h2>
-                <p>{roadmapDetails.cidadeRoteiro}</p>
+            <h2 className="roadmapInformation">Custo médio por pessoa</h2>
+            <p className="roadmapInformation">R${roadmapDetails.custoMedio}</p>
 
-                <h2>Ponto de partida</h2>
-                <p>{roadmapDetails.pontoInicial}</p>
+            <h2 className="roadmapInformation">Cidade do roteiro</h2>
+            <p className="roadmapInformation">{roadmapDetails.cidadeRoteiro}</p>
 
-                <h2>Ponto final</h2>
-                <p>{roadmapDetails.pontoFinal}</p>
+            <h2 className="roadmapInformation">
+                Ponto(s) de parada recomendado(s)
+            </h2>
+            {roadmapDetails &&
+                roadmapDetails.paradasRecomendadas.map((object) => {
+                    countParadas++;
+                    return (
+                        <p className="roadmapInformation">
+                            Parada {countParadas}: {object}
+                        </p>
+                    );
+                })}
 
-                {roadmapDetails.petsOk ? (
-                    <div className="labelWithIcon">
-                        <h2>Pet friendly</h2>
-                        <FontAwesomeIcon
-                            icon={faDog}
-                            className="roadmap-information-icon"
-                        />
-                    </div>
-                ) : (
-                    <div className="labelWithIcon">
-                        <h2> Não aconselhável a pets</h2>
-                        <FontAwesomeIcon
-                            icon={faBan}
-                            className="roadmap-information-icon"
-                        />
-                    </div>
-                )}
+            <h2 className="roadmapInformation">Ponto de partida</h2>
+            <p className="roadmapInformation">{roadmapDetails.pontoInicial}</p>
 
-                {roadmapDetails.criancaOk ? (
-                    <div className="labelWithIcon">
-                        <h2>Aconselhável a menores de idade</h2>
-                        <FontAwesomeIcon
-                            icon={faCheck}
-                            className="roadmap-information-icon"
-                        />
-                    </div>
-                ) : (
-                    <div className="labelWithIcon">
-                        <h2>Não aconselhável a menores de idade</h2>
-                        <FontAwesomeIcon
-                            icon={faBan}
-                            className="roadmap-information-icon"
-                        />
-                    </div>
-                )}
-                <h2 className="share">Gostou do roteiro? Compartilhe!</h2>
-                <button className="button-link" onClick={handleCopyLink}>
-                    {copied ? 'URL na aréa de transferência!' : 'Copiar URL'}
-                </button>
-            </div>
+            <h2 className="roadmapInformation">Ponto final</h2>
+            <p className="roadmapInformation">{roadmapDetails.pontoFinal}</p>
+
+            {roadmapDetails.petsOk ? (
+                <>
+                    <h2 className="roadmapInformation">Pet friendly</h2>
+                    <FontAwesomeIcon icon={faDog} className="nav-icon" />
+                </>
+            ) : (
+                <>
+                    <h2 className="roadmapInformation">
+                        {' '}
+                        Não aconselhável a pets
+                    </h2>
+                    <FontAwesomeIcon icon={faBan} className="nav-icon" />
+                </>
+            )}
+
+            {roadmapDetails.criancaOk ? (
+                <>
+                    <h2 className="roadmapInformation">
+                        Aconselhável a menores de idade
+                    </h2>
+                    <FontAwesomeIcon icon={faCheck} className="nav-icon" />
+                </>
+            ) : (
+                <>
+                    <h2 className="roadmapInformation">
+                        Não aconselhável a menores de idade
+                    </h2>
+                    <FontAwesomeIcon icon={faBan} className="nav-icon" />
+                </>
+            )}
+            <h2 className="share">Gostou do roteiro? Compartilhe!</h2>
+            <button className="buttonLink" onClick={handleCopyLink}>
+                {copied ? 'URL na aréa de transferência!' : 'Copiar URL'}
+            </button>
         </div>
     );
 };

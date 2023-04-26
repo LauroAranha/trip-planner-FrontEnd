@@ -31,11 +31,17 @@ const RoadmapDetails = () => {
 
     return (
         <div className="roadmap-details-box">
-            <div className='roadmap-details-main'>
-                <img src={roadmapDetails.image} alt="Imagem" className="roadmap-details-main-image" />
+            <div className="roadmap-details-main">
+                <img
+                    src={roadmapDetails.image}
+                    alt="Imagem"
+                    className="roadmap-details-main-image"
+                />
             </div>
-            <div className='roadmap-details-information'>
-                <h1 className="roadmap-details-title">{roadmapDetails.title}</h1>
+            <div className="roadmap-details-information">
+                <h1 className="roadmap-details-title">
+                    {roadmapDetails.title}
+                </h1>
 
                 <h2>Descrição</h2>
                 <p>{roadmapDetails.description}</p>
@@ -46,22 +52,6 @@ const RoadmapDetails = () => {
                 <h2>Cidade do roteiro</h2>
                 <p>{roadmapDetails.cidadeRoteiro}</p>
 
-                <h2>
-                    Ponto(s) de paradas recomendada(s)
-                </h2>
-                {roadmapDetails ? roadmapDetails : null &&
-                    roadmapDetails ? roadmapDetails.paradasRecomendadas.map((object) => {
-                        countParadas++;
-                        if (!object) {
-                            return
-                        }
-                        return (
-                            <p>
-                                Parada {countParadas}: {object}
-                            </p>
-                        );
-                    }) : null}
-
                 <h2>Ponto de partida</h2>
                 <p>{roadmapDetails.pontoInicial}</p>
 
@@ -69,33 +59,38 @@ const RoadmapDetails = () => {
                 <p>{roadmapDetails.pontoFinal}</p>
 
                 {roadmapDetails.petsOk ? (
-                    <div className='labelWithIcon'>
+                    <div className="labelWithIcon">
                         <h2>Pet friendly</h2>
-                        <FontAwesomeIcon icon={faDog} className="roadmap-information-icon" />
+                        <FontAwesomeIcon
+                            icon={faDog}
+                            className="roadmap-information-icon"
+                        />
                     </div>
                 ) : (
-                    <div className='labelWithIcon'>
-                        <h2>
-                            {' '}
-                            Não aconselhável a pets
-                        </h2>
-                        <FontAwesomeIcon icon={faBan} className="roadmap-information-icon" />
+                    <div className="labelWithIcon">
+                        <h2> Não aconselhável a pets</h2>
+                        <FontAwesomeIcon
+                            icon={faBan}
+                            className="roadmap-information-icon"
+                        />
                     </div>
                 )}
 
                 {roadmapDetails.criancaOk ? (
-                    <div className='labelWithIcon'>
-                        <h2>
-                            Aconselhável a menores de idade
-                        </h2>
-                        <FontAwesomeIcon icon={faCheck} className="roadmap-information-icon" />
+                    <div className="labelWithIcon">
+                        <h2>Aconselhável a menores de idade</h2>
+                        <FontAwesomeIcon
+                            icon={faCheck}
+                            className="roadmap-information-icon"
+                        />
                     </div>
                 ) : (
-                    <div className='labelWithIcon'>
-                        <h2>
-                            Não aconselhável a menores de idade
-                        </h2>
-                        <FontAwesomeIcon icon={faBan} className="roadmap-information-icon" />
+                    <div className="labelWithIcon">
+                        <h2>Não aconselhável a menores de idade</h2>
+                        <FontAwesomeIcon
+                            icon={faBan}
+                            className="roadmap-information-icon"
+                        />
                     </div>
                 )}
                 <h2 className="share">Gostou do roteiro? Compartilhe!</h2>
@@ -108,4 +103,3 @@ const RoadmapDetails = () => {
 };
 
 export default RoadmapDetails;
-

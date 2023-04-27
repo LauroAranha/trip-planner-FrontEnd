@@ -1,67 +1,88 @@
-.roadmapBox {
-  background: linear-gradient(to right, #929292, #e9dede);
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-style: solid;
-  border-color: #000000;
-  border-radius: 1%;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.roadmap-details-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #6a6a6a;
+    height: auto;
+    width: 100%;
+    justify-content: space-around;
 }
 
-
-.title {
-  font-size: 22px;
-  font-weight: bold;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: black;
-  text-align: center;
-  width: 100%;
-  background-color: #2698ea;
- 
- 
+.roadmap-details-main {
+    flex-direction: row;
+    width: 40%;
+    align-self: start;
 }
 
-
-
-.roadmapInformation {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: black;
-  text-align: center;
-  
+.roadmap-title {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    text-align: center;
+    width: 100%;
+    background-color: #2698ea;
 }
 
-h2.roadmapInformation {
-  font-size: 20px;
-  font-weight: 600;
-  width: 100%;
-  background-color: #2698ea;
-  border: 2px #000000 ;
-  border-style: solid;
-  
+.roadmap-details-main-image {
+    width: 100%;
+    padding: 1vw;
+    object-fit: cover;
 }
 
-p.roadmapInformation {
-  font-size: 18px;
-  font-weight: 400;
+.roadmap-details-information {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    padding: 1vw;
+    width: 60%;
 }
 
-.image {
-  max-width: 40%;
-  border-radius: 3%;
+.roadmap-details-information h2 {
+    font-size: 20px;
+    font-weight: 600;
+    width: 100%;
 }
-.share{
- 
-  width: 70%;
-  
+
+.roadmap-information p {
+    font-size: 18px;
+    font-weight: 400;
 }
-.buttonLink{
-  font-family: Tahoma, 'Times New Roman', Times, serif;
-  font-size: 15px;
-  font-weight:bold;
-  width: 80%;
-  padding: 10px;
-  background-color: #2698ea;
-  margin-bottom: 10px;
+
+.roadmap-information-icon {
+    margin-left: 0.5vw;
+}
+
+.labelWithIcon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: start;
+    margin-bottom: 1rem;
+}
+
+.labelWithIcon h2 {
+    margin-bottom: 0px;
+}
+
+.share {
+    width: 70%;
+}
+
+.button-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+    background-color: #3fa9f4;
+    margin-bottom: 10px;
+    border: solid 1px;
 }

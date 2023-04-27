@@ -127,3 +127,4 @@ yarn-debug.log*
 yarn-error.log*
 donotcommit/trip-planner-b0.json
 src/firebase.js
+package-lock.json

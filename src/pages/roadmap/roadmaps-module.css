@@ -4,23 +4,20 @@
 .square-title {
     font-family: 'Poppins', sans-serif;
     font-weight: none;
-    margin-left: 1.2vw;
 }
 
 .square {
-    display: inline-table;
-    height: 100%;
-    width: 300px;
     margin: 10px;
+    height: 20vh;
+    display: inline-table;
     background-color: #42B0FF;
     font-family: 'Inter', sans-serif;
 }
 
 .square:first-child {
+    margin: 10px 10px 10px 0;
+    height: 20vh;
     display: inline-table;
-    height: 100%;
-    width: 300px;
-    margin: 10px;
     background-color: #42B0FF;
     font-family: 'Inter', sans-serif;
 }
@@ -28,11 +25,14 @@
 .squares-container {
     overflow: auto;
     white-space: nowrap;
+    display: flex;
+    overflow-y: hidden;
+    margin-top: 1vh;
 }
 
-.squares-container {
-    overflow: auto;
-    white-space: nowrap;
+.main-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .map-title {
@@ -46,7 +46,7 @@
     }
 }
 
-.addButton {
+.add-button {
     background-color: #00ce0e;
     color: #ffffff;
     font-size: 22px;
@@ -54,13 +54,12 @@
     cursor: pointer;
     text-decoration: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 10px;
     position: relative;
-    width: 20%;
-    margin-left: 1.2vw;
+    width: 20vw;
+    padding: 0.4vw;
 }
 
-.deleteButton {
+.delete-button {
     background-color: #ce1100;
     color: #ffffff;
     font-size: 22px;
@@ -68,12 +67,17 @@
     cursor: pointer;
     text-decoration: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 10px;
     position: relative;
     border: none;
 }
 
-.editButton {
+.roadmap-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-button {
     background-color: #0048ce;
     color: #ffffff;
     font-size: 22px;
@@ -81,19 +85,17 @@
     cursor: pointer;
     text-decoration: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 10px;
     position: relative;
     border: none;
-    width: 63.7%;
 }
 
-.buttonText {
+.button-text {
     color: #ffffff;
     text-decoration: none;
     vertical-align: middle;
 }
 
-.title {
+.edit-roadmap-title {
     font-size: 20px;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

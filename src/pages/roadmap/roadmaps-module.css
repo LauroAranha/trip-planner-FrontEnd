@@ -48,6 +48,7 @@
 }
 
 .add-button {
+  
     background-color: #00ce0e;
     color: #ffffff;
     font-size: 22px;
@@ -56,6 +57,6 @@
     text-decoration: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: relative;
-    width: 15%;
+    width: 70%;
     padding: 0.1vw;
 }

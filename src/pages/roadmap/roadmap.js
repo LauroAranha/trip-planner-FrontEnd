@@ -70,7 +70,8 @@ const Roadmap = () => {
                         personalPersonalRoadmapList &&
                         personalPersonalRoadmapList.map((roadmapInformation) => {
                             return (
-                                <>
+                                
+                                <Link to={`/roadmap/${roadmapInformation.docId}`}>
                                     <PersonalRoadmapCard
                                         props={roadmapInformation}
                                         handleClose={handleClose}
@@ -79,7 +80,7 @@ const Roadmap = () => {
                                         triggerUpdateProp={triggerUpdate}
                                     />
                                     {EditRoadmapModal}
-                                </>
+                                </Link>
                             );
                         })
                     )}

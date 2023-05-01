@@ -12,7 +12,21 @@
     width: 100%;
     justify-content: space-around;
 }
+.icon{
+    width: 70px;
+    height: 70px;
+}
 
+.dislike{
+    margin-top: 15px;
+    border: none;
+    margin-left: 80px;
+}
+.like{
+    margin-top: 15px;
+    border: none;
+    margin-left: 80px;
+}
 .roadmap-details-main {
     flex-direction: row;
     width: 40%;

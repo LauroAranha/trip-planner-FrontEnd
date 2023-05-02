@@ -93,7 +93,7 @@ const Login = () => {
                         Enter
                     </button>
 
-                    {errorMessage && <ErrorComponent title={"Sign in error!"} message={errorMessage} width={"10vw"} height={"10vw"} margin={"1vw auto"} />}
+                    {errorMessage && <ErrorComponent title={"Sign in error!"} message={errorMessage} width={"15vw"} height={"10vw"} margin={"1vw auto"} />}
 
                     <div className="create-account">
                         <span className="login-sign-in">

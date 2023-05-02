@@ -6,11 +6,24 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan, faCheck, faDog } from '@fortawesome/free-solid-svg-icons';
-
+import {AiFillLike,AiFillDislike} from "react-icons/ai"
 const RoadmapDetails = () => {
     const { roadmapId } = useParams();
     const [roadmapDetails, setRoadmapDetails] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+
+    const [liked, setLiked] = useState(false);
+    const [disliked, setDisliked] = useState(false);
+  
+    const handleLike = () => {
+      setLiked(!liked);
+      setDisliked(false);
+    };
+  
+    const handleDislike = () => {
+      setDisliked(!disliked);
+      setLiked(false);
+    };
 
     let countParadas = 0;
 
@@ -28,6 +41,9 @@ const RoadmapDetails = () => {
         navigator.clipboard.writeText(window.location.href);
         setCopied(true);
     }
+    function teste(){
+        console.log("teste");
+    }
 
     return (
         <div className="roadmap-details-box">
@@ -37,7 +53,17 @@ const RoadmapDetails = () => {
                     alt="Imagem"
                     className="roadmap-details-main-image"
                 />
-            </div>
+               
+               <button className="like" onClick={handleLike}>
+                <AiFillLike className= 'icon' color={liked ? "blue" : "black"} />
+                </button>
+
+                <button className="dislike" onClick={handleDislike}>
+                <AiFillDislike className='icon'  color={disliked ? "red" : "black"}/>
+                </button>
+                    
+                </div>
+          
             <div className="roadmap-details-information">
                 <h1 className="roadmap-details-title">
                     {roadmapDetails.title}

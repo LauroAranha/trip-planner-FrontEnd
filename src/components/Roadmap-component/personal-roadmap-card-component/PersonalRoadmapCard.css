@@ -1,25 +1,19 @@
 .personal-roadmap-card {
     height: 50vh;
-    width: 20vw;
-    margin: 10px;
+    margin: 10px 10px 10px 0;
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
     border: 1px solid #9a9a9a;
     background-color: white;
     justify-content: space-between;
-}
-
-.personal-roadmap-card:first-child {
-    margin-left: 0;
+    flex: 0 1 24%;
 }
 
 .personal-roadmap-card img {
-    justify-content: flex-start;
-    display: block;
-    height: 10vw;
-    object-fit: cover;
-    border-bottom: 1px solid rgb(127, 127, 127);
+    max-height: 60vh;
+    max-width: 100%;
+    vertical-align: middle;
 }
 
 .personal-roadmap-card-information {
@@ -50,7 +44,6 @@
     cursor: pointer;
     text-decoration: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: relative;
     border: none;
 }
 
@@ -68,7 +61,6 @@
     cursor: pointer;
     text-decoration: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: relative;
     border: none;
 }
 

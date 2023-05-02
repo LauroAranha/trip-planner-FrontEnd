@@ -11,7 +11,6 @@ import EditRoadmapModal from '../../../pages/roadmap/edit-roadmap/EditRoadmapMod
 const PersonalRoadmapCard = (props) => {
     const { image, title, description, docId } = props.props;
     const { setTriggerUpdate, triggerUpdate } = props;
-    console.log(triggerUpdate);
     const [open, setOpen] = useState(false);
 
     const handleOpen = (roadmapInformation) => {
@@ -29,11 +28,9 @@ const PersonalRoadmapCard = (props) => {
         try {
             const res = await axios.delete(`roadmap/delete/${docId}`);
             const responseData = res.data.data;
-            console.log(triggerUpdate);
             if (responseData === 1) {
                 setTriggerUpdate(!triggerUpdate)
             }
-            console.log(triggerUpdate);
         } catch (error) {
             console.error(error);
         }

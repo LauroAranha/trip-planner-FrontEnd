@@ -1,28 +1,42 @@
-import { MdDelete, MdEditDocument } from 'react-icons/md';
 import './PersonalRoadmapCard.css';
-import { Link } from 'react-router-dom';
+
+import { useState } from 'react';
 import axios from 'axios';
+
+import { MdDelete, MdEditDocument } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+
+import EditRoadmapModal from '../../../pages/roadmap/edit-roadmap/EditRoadmapModal';
 
 const PersonalRoadmapCard = (props) => {
     const { image, title, description, docId } = props.props;
-    const { handleOpen, setTriggerUpdate, triggerUpdate } = props;
-    console.log(docId);
+    const { setTriggerUpdate, triggerUpdate } = props;
+    console.log(triggerUpdate);
+    const [open, setOpen] = useState(false);
 
-    const handleDelete = (docId) => {
-        const deleteRoadmap = async () => {
-            try {
-                const res = await axios.delete(`roadmap/delete/${docId}`);
-                const responseData = res.data.data;
+    const handleOpen = (roadmapInformation) => {
+        setOpen(true);
+        setModalInformation(roadmapInformation);
+    };
 
-                if (responseData === 1) {
-                    setTriggerUpdate(!triggerUpdate)
-                }
-            } catch (error) {
-                console.error(error);
+    const handleClose = () => {
+        setOpen(false);
+        setTriggerUpdate(false)
+
+    };
+
+    const handleDelete = async (docId) => {
+        try {
+            const res = await axios.delete(`roadmap/delete/${docId}`);
+            const responseData = res.data.data;
+            console.log(triggerUpdate);
+            if (responseData === 1) {
+                setTriggerUpdate(!triggerUpdate)
             }
-        };
-
-        deleteRoadmap();
+            console.log(triggerUpdate);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const handleLongDescriptions = (description) => {
@@ -31,6 +45,7 @@ const PersonalRoadmapCard = (props) => {
         }
         return description
     }
+
     return (
         <div className="personal-roadmap-card">
             <img src={image} alt="Imagem" />
@@ -69,7 +84,7 @@ const PersonalRoadmapCard = (props) => {
                         />
                     </Link>
                 </button>
-
+                {<EditRoadmapModal open={open} handleClose={handleClose} modalInformation={props.props} />}
             </div>
         </div>
     );

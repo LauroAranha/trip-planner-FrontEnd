@@ -2,9 +2,12 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 
+import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import EditRoadmapForm from './EditRoadmapForm';
 
-
-const editRoadmapModal = (props) => {
+const EditRoadmapModal = (props) => {
+    const { open, handleClose, modalInformation } = props;
     const style = {
         position: 'absolute',
         top: '50%',
@@ -17,9 +20,11 @@ const editRoadmapModal = (props) => {
         px: 4,
         pb: 3,
     };
+
     return (
         <Modal
             open={open}
+            onClose={handleClose}
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description"
         >
@@ -67,9 +72,9 @@ const editRoadmapModal = (props) => {
                         />
                     </Button>
                 </h2>
-                <EditRoadmap handleModalClose={handleClose} props={modalInformation} />
+                <EditRoadmapForm handleModalClose={handleClose} props={modalInformation} />
             </Box>
         </Modal>)
 }
 
-export default editRoadmapModal;
+export default EditRoadmapModal;

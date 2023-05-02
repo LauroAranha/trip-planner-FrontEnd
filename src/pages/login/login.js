@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+import ErrorComponent from '../../components/SystemMessagesComponents/ErrorComponent/ErrorComponent';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -29,20 +30,6 @@ const Login = () => {
             setErrorMessage('Invalid username or password');
         }
     };
-
-    const errorMessageDiv = (
-        <p
-            style={{
-                color: 'red',
-                margin: 'auto',
-                fontSize: '26px',
-                fontFamily: 'sans-serif',
-                marginLeft: '100px',
-            }}
-        >
-            {errorMessage}
-        </p>
-    );
 
     const handleToggle = () => {
         if (type === 'password') {
@@ -105,7 +92,9 @@ const Login = () => {
                     <button type="submit" className="login-btn">
                         Enter
                     </button>
-                    {errorMessage && errorMessageDiv}
+
+                    {errorMessage && <ErrorComponent title={"Sign in error!"} message={errorMessage} width={"10vw"} height={"10vw"} margin={"1vw auto"} />}
+
                     <div className="create-account">
                         <span className="login-sign-in">
                             Don't have an account?

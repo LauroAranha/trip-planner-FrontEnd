@@ -20,8 +20,7 @@ const PersonalRoadmapCard = (props) => {
 
     const handleClose = () => {
         setOpen(false);
-        setTriggerUpdate(false)
-
+        setTriggerUpdate(!triggerUpdate)
     };
 
     const handleDelete = async (docId) => {

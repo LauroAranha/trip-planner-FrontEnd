@@ -5,44 +5,37 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBan, faCheck, faDog } from '@fortawesome/free-solid-svg-icons';
-import {AiFillLike,AiFillDislike} from "react-icons/ai"
+import { faBan, faCheck, faDog, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { AiFillLike, AiFillDislike } from "react-icons/ai"
 const RoadmapDetails = () => {
     const { roadmapId } = useParams();
     const [roadmapDetails, setRoadmapDetails] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
 
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
-  
+
     const handleLike = () => {
-      setLiked(!liked);
-      setDisliked(false);
-    };
-  
-    const handleDislike = () => {
-      setDisliked(!disliked);
-      setLiked(false);
+        setLiked(!liked);
+        setDisliked(false);
     };
 
-    let countParadas = 0;
+    const handleDislike = () => {
+        setDisliked(!disliked);
+        setLiked(false);
+    };
 
     useEffect(() => {
         axios.get(`roadmap/get/${roadmapId}`).then((res) => {
             const responseData = res.data.data;
             setRoadmapDetails(responseData);
-            setIsLoading(false);
         });
     }, []);
 
     const [copied, setCopied] = useState(false);
 
-    function handleCopyLink() {
+    const handleCopyLink = () => {
         navigator.clipboard.writeText(window.location.href);
         setCopied(true);
-    }
-    function teste(){
-        console.log("teste");
     }
 
     return (
@@ -53,17 +46,18 @@ const RoadmapDetails = () => {
                     alt="Imagem"
                     className="roadmap-details-main-image"
                 />
-               
-               <button className="like" onClick={handleLike}>
-                <AiFillLike className= 'icon' color={liked ? "blue" : "black"} />
-                </button>
 
-                <button className="dislike" onClick={handleDislike}>
-                <AiFillDislike className='icon'  color={disliked ? "red" : "black"}/>
-                </button>
-                    
+                <div className='feedback-section'>
+                    <button className="feedback-section-icon-like" onClick={handleLike}>
+                        <AiFillLike className='feedback-section-icon' color={liked ? "blue" : "black"} />
+                    </button>
+
+                    <button className="feedback-section-icon-dislike" onClick={handleDislike}>
+                        <AiFillDislike className='feedback-section-icon' color={disliked ? "red" : "black"} />
+                    </button>
                 </div>
-          
+            </div>
+
             <div className="roadmap-details-information">
                 <h1 className="roadmap-details-title">
                     {roadmapDetails.title}

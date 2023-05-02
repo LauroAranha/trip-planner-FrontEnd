@@ -40,7 +40,7 @@ const EditUserProfile = () => {
     const [iconConfirm, setConfirmPasswordIcon] = useState(faEyeSlash);
 
     // Set the initial state of the image to null
-    const [imagem, setImagem] = useState(null);
+    const [imagem, setImagem] = useState(getCurrentUserInformation().photoURL);
 
     const [values, setValues] = useState({
         name: '',

@@ -44,11 +44,13 @@ const PersonalRoadmapCard = (props) => {
 
     return (
         <div className="personal-roadmap-card">
-            <img src={image} alt="Imagem" />
-            <div className='personal-roadmap-card-information'>
-                <h2>{title}</h2>
-                <p>{handleLongDescriptions(description)}</p>
-            </div>
+            <Link to={`/roadmap/${docId}`}>
+                <img src={image} alt="Imagem" className='personal-roadmap-card-image' />
+                <div className='personal-roadmap-card-information'>
+                    <h2>{title}</h2>
+                    <p>{handleLongDescriptions(description)}</p>
+                </div>
+            </Link>
             <div className="personal-roadmap-buttons">
                 <button
                     className="edit-button"

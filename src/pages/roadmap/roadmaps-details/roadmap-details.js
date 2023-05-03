@@ -14,14 +14,26 @@ const RoadmapDetails = () => {
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
 
+    const [dislikedisabled, setDislikeDisabled] = useState(false);
+    const [likedisabled, setLikeDisabled] = useState(false);
+
     const handleLike = () => {
         setLiked(!liked);
         setDisliked(false);
+
+        setDislikeDisabled(false)
+        setLikeDisabled(true)
     };
 
     const handleDislike = () => {
         setDisliked(!disliked);
         setLiked(false);
+        axios.put("http://localhost:3001/roadmap/edit/feedback",{
+            "documentId": roadmapId,
+            "feedback": 2
+        })
+        setDislikeDisabled(true)
+        setLikeDisabled(false)
     };
 
     useEffect(() => {
@@ -48,12 +60,12 @@ const RoadmapDetails = () => {
                 />
 
                 <div className='feedback-section'>
-                    <button className="feedback-section-icon-like" onClick={handleLike}>
+                    <button className="feedback-section-icon-like" onClick={handleLike} disabled={likedisabled}>
                         <AiFillLike className='feedback-section-icon' color={liked ? "blue" : "black"} />
                        
                     </button>
                   
-                    <button className="feedback-section-icon-dislike" onClick={handleDislike}>
+                    <button className="feedback-section-icon-dislike" onClick={handleDislike}  disabled={dislikedisabled}>
                         <AiFillDislike className='feedback-section-icon' color={disliked ? "red" : "black"} />
                  
                     </button>

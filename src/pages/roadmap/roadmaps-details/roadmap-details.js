@@ -50,14 +50,18 @@ const RoadmapDetails = () => {
                 <div className='feedback-section'>
                     <button className="feedback-section-icon-like" onClick={handleLike}>
                         <AiFillLike className='feedback-section-icon' color={liked ? "blue" : "black"} />
-                        <h1 className="clicks"> 177</h1>
+                       
                     </button>
-
+                  
                     <button className="feedback-section-icon-dislike" onClick={handleDislike}>
                         <AiFillDislike className='feedback-section-icon' color={disliked ? "red" : "black"} />
-                        <h1 className="clicks"> 13</h1>
+                 
                     </button>
+              
                 </div>
+                <div className='clicks-section'>
+                <h1 className="clicks"> 177</h1>
+                <h1 className="clicks"> 12</h1></div>
             </div>
 
             <div className="roadmap-details-information">

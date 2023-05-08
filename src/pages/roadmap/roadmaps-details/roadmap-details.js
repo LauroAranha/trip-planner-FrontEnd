@@ -2,12 +2,14 @@ import './roadmap-details.css';
 
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import {getCurrentUserInformation} from '../../../components/utils/userUtils' 
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan, faCheck, faDog, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { AiFillLike, AiFillDislike } from "react-icons/ai"
 const RoadmapDetails = () => {
+
+  
     const { roadmapId } = useParams();
     const [roadmapDetails, setRoadmapDetails] = useState('');
 
@@ -17,23 +19,29 @@ const RoadmapDetails = () => {
     const [dislikedisabled, setDislikeDisabled] = useState(false);
     const [likedisabled, setLikeDisabled] = useState(false);
 
-    const handleLike = () => {
+    const handleLike = async() => {
+        const abc = await getCurrentUserInformation().uid
         setLiked(!liked);
         setDisliked(false);
+    axios.put("http://localhost:3001/roadmap/edit/feedback",{
+      "documentId": roadmapId,
+      "userId": abc,
+      "rating": 1,
+     })
 
-        setDislikeDisabled(false)
-        setLikeDisabled(true)
+
     };
 
-    const handleDislike = () => {
+    const handleDislike =  async () => {
+        const abc = await getCurrentUserInformation().uid
         setDisliked(!disliked);
         setLiked(false);
         axios.put("http://localhost:3001/roadmap/edit/feedback",{
             "documentId": roadmapId,
-            "feedback": 2
+            "userId": abc,
+            "rating": 2,
         })
-        setDislikeDisabled(true)
-        setLikeDisabled(false)
+   
     };
 
     useEffect(() => {
@@ -60,20 +68,20 @@ const RoadmapDetails = () => {
                 />
 
                 <div className='feedback-section'>
-                    <button className="feedback-section-icon-like" onClick={handleLike} disabled={likedisabled}>
+                    <button className="feedback-section-icon-like" onClick={handleLike}>
                         <AiFillLike className='feedback-section-icon' color={liked ? "blue" : "black"} />
                        
                     </button>
                   
-                    <button className="feedback-section-icon-dislike" onClick={handleDislike}  disabled={dislikedisabled}>
+                    <button className="feedback-section-icon-dislike" onClick={handleDislike} >
                         <AiFillDislike className='feedback-section-icon' color={disliked ? "red" : "black"} />
                  
                     </button>
               
                 </div>
                 <div className='clicks-section'>
-                <h1 className="clicks"> 177</h1>
-                <h1 className="clicks"> 12</h1></div>
+                <h1 className="clicks"> {roadmapDetails.likes}</h1>
+                <h1 className="clicks"> {roadmapDetails.dislikes}</h1></div>
             </div>
 
             <div className="roadmap-details-information">

@@ -16,6 +16,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
 import AgencyRegister from './pages/agency/AgencyRegister';
+import AgencyLogin from './pages/agency/AgencyLogin';
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 
@@ -25,6 +26,7 @@ const App = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Login />} />
+                    <Route path="/login-agency" element={<AgencyLogin />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/register-agency" element={<AgencyRegister />} />
                     <Route

@@ -93,6 +93,7 @@
     color: #42B0FF;
     cursor: pointer;
     position: relative;
+    margin-left: 0.5vw;
 }
 
 .user-icon svg {

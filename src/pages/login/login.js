@@ -97,18 +97,24 @@ const Login = () => {
 
                     <div className="create-account">
                         <span className="login-sign-in">
-                            Don't have an account?
+                            Não possui uma conta?
                         </span>
                         <Link to="/register" className="link-login">
-                            Sign up now
+                            Cadastre-se agora
                         </Link>
                     </div>
                     <div className="create-account">
                         <span className="login-sign-in">
-                            Tourism Agency?
+                            Agência de turismo?
                         </span>
                         <Link to="/register-agency" className="link-login">
-                            Sign up here
+                            Cadastre-se aqui
+                        </Link>
+                        <span className="login-sign-in">
+                            ou
+                        </span>
+                        <Link to="/login-agency" className="link-login">
+                            Faça login aqui
                         </Link>
                     </div>
                 </form>

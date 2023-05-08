@@ -136,9 +136,26 @@ const Register = () => {
           </div>
           {values.error && <p className={styles.error}>{values.error}</p>}{' '}
           <button className="register-btn">Complete</button>
-          <div className="page-link">
-            <Link to="/" className="link-register">
-              I'm already registered
+          <div className="create-account">
+            <span className="login-sign-in">
+              Já tem uma conta?
+            </span>
+            <Link to="/" className="link-login">
+              Fazer login
+            </Link>
+          </div>
+          <div className="create-account">
+            <span className="login-sign-in">
+              Agência de turismo
+            </span>
+            <Link to="/register-agency" className="link-login">
+              Cadastre-se aqui
+            </Link>
+            <span className="login-sign-in">
+              ou
+            </span>
+            <Link to="/login-agency" className="link-login">
+              Faça login aqui
             </Link>
           </div>
         </form>

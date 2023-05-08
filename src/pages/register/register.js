@@ -43,6 +43,7 @@ const Register = () => {
     email: '',
     currentPassword: '',
     error: '',
+    userType: 1
   });
 
   const handleSubmit = (e) => {

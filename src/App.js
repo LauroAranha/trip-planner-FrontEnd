@@ -15,6 +15,7 @@ import RoadmapDetails from './pages/roadmap/roadmaps-details/roadmap-details';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
+import AgencyRegister from './pages/agency/AgencyRegister';
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 
@@ -25,6 +26,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/register-agency" element={<AgencyRegister />} />
                     <Route
                         path="/roadmap/add"
                         element={

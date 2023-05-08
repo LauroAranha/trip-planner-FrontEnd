@@ -103,6 +103,14 @@ const Login = () => {
                             Sign up now
                         </Link>
                     </div>
+                    <div className="create-account">
+                        <span className="login-sign-in">
+                            Tourism Agency?
+                        </span>
+                        <Link to="/register-agency" className="link-login">
+                            Sign up here
+                        </Link>
+                    </div>
                 </form>
             </div>
         </div>

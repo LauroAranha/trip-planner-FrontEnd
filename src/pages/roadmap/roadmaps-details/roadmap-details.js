@@ -15,20 +15,26 @@ const RoadmapDetails = () => {
 
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
-
-    const [dislikedisabled, setDislikeDisabled] = useState(false);
-    const [likedisabled, setLikeDisabled] = useState(false);
-
+    
+   
     const handleLike = async() => {
         const abc = await getCurrentUserInformation().uid
         setLiked(!liked);
         setDisliked(false);
+
+    if(liked == false){
     axios.put("http://localhost:3001/roadmap/edit/feedback",{
       "documentId": roadmapId,
       "userId": abc,
       "rating": 1,
      })
-
+    }else{
+        axios.put("http://localhost:3001/roadmap/edit/feedback",{
+            "documentId": roadmapId,
+            "userId": abc,
+            "rating": 0,
+           })
+    }
 
     };
 
@@ -36,12 +42,20 @@ const RoadmapDetails = () => {
         const abc = await getCurrentUserInformation().uid
         setDisliked(!disliked);
         setLiked(false);
+        
+        if(disliked == false){
         axios.put("http://localhost:3001/roadmap/edit/feedback",{
             "documentId": roadmapId,
             "userId": abc,
             "rating": 2,
         })
-   
+    }else {
+        axios.put("http://localhost:3001/roadmap/edit/feedback",{
+            "documentId": roadmapId,
+            "userId": abc,
+            "rating": 0,
+           })
+    }
     };
 
     useEffect(() => {
@@ -57,6 +71,8 @@ const RoadmapDetails = () => {
         navigator.clipboard.writeText(window.location.href);
         setCopied(true);
     }
+
+   
 
     return (
         <div className="roadmap-details-box">

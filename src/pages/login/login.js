@@ -24,7 +24,15 @@ const Login = () => {
                     'currentUserInfo',
                     JSON.stringify(response.data.data.currentUserInfo)
                 );
-                navigate('/home');
+
+
+                const userInfoRequest = await axios.get(`user/get/${response.data.data.currentUserInfo.uid}`)
+                const userInfo = userInfoRequest.data.data
+                if (userInfo.userType === 2) {
+                    navigate('/agency-home');
+                } else {
+                    navigate('/home');
+                }
             }
         } catch (error) {
             setErrorMessage('Invalid username or password');
@@ -109,12 +117,6 @@ const Login = () => {
                         </span>
                         <Link to="/register-agency" className="link-login">
                             Cadastre-se aqui
-                        </Link>
-                        <span className="login-sign-in">
-                            ou
-                        </span>
-                        <Link to="/login-agency" className="link-login">
-                            Faça login aqui
                         </Link>
                     </div>
                 </form>

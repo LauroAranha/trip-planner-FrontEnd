@@ -29,7 +29,7 @@ const Login = () => {
                     JSON.stringify(completeUserInfo)
                 );
 
-                if (userInfo.userType === 2) {
+                if (completeUserInfo.userType === 2) {
                     navigate('/agency-home');
                 } else {
                     navigate('/home');

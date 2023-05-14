@@ -170,6 +170,7 @@
     color: #999 !important;
     font-family: 'Ubuntu', sans-serif;
     font-size: 15px;
+    cursor: initial;
 }
 
 .create-account .link-login {

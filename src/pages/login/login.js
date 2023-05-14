@@ -19,15 +19,16 @@ const Login = () => {
         try {
             const response = await axios.post('user/login', values);
             if (response.status === 200) {
+                const authInfo = response.data.data.currentUserInfo;
+                const userInfo = (await axios.get(`user/get/${response.data.data.currentUserInfo.uid}`));
+                const completeUserInfo = { ...authInfo, ...userInfo.data.data };
+
                 sessionStorage.setItem('userToken', response.data.data.token);
                 sessionStorage.setItem(
                     'currentUserInfo',
-                    JSON.stringify(response.data.data.currentUserInfo)
+                    JSON.stringify(completeUserInfo)
                 );
 
-
-                const userInfoRequest = await axios.get(`user/get/${response.data.data.currentUserInfo.uid}`)
-                const userInfo = userInfoRequest.data.data
                 if (userInfo.userType === 2) {
                     navigate('/agency-home');
                 } else {
@@ -93,9 +94,9 @@ const Login = () => {
                     </div>
 
                     <div className="page-link-login">
-                        <a href="" className="name-link">
+                        <Link to="" className="link-login">
                             Forgot your password?
-                        </a>
+                        </Link>
                     </div>
                     <button type="submit" className="login-btn">
                         Enter

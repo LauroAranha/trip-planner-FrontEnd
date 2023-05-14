@@ -57,7 +57,7 @@ const AddRoadmap = () => {
 
     const onSubmit = async (data) => {
         console.log(data);
-        data.userType = getCurrentUserInfo().userType;
+        data.userType = getCurrentUserInformation().userType;
         data.userCreatorId = email;
         data.visibilidadePublica = false;
         try {

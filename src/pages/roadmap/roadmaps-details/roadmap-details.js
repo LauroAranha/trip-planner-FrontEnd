@@ -8,14 +8,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan, faCheck, faDog, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { AiFillLike, AiFillDislike } from "react-icons/ai"
 const RoadmapDetails = () => {
-
   
     const { roadmapId } = useParams();
     const [roadmapDetails, setRoadmapDetails] = useState('');
+    let likeNumbers = roadmapDetails.likes
+    let dislikeNumbers = roadmapDetails.dislikes
 
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
-    
+
+
+    // contador depende do state estar funcionando
+/*     if(liked == true){
+        likeNumbers +=1
+        if (disliked == true) {
+        dislikeNumbers = dislikeNumbers - 1
+    }
+        if (dislikeNumbers < 0) {dislikeNumbers = 0}
+        console.log(likeNumbers, dislikeNumbers)
+    }
+    if(disliked == true){
+        likeNumbers -=1
+        dislikeNumbers = dislikeNumbers + 1
+        if (likeNumbers < 0) {likeNumbers = 0}
+        console.log(likeNumbers, dislikeNumbers)
+    }
+ */
    
     const handleLike = async() => {
         const abc = await getCurrentUserInformation().uid
@@ -59,12 +77,34 @@ const RoadmapDetails = () => {
     };
 
     useEffect(() => {
+       
         axios.get(`roadmap/get/${roadmapId}`).then((res) => {
             const responseData = res.data.data;
             setRoadmapDetails(responseData);
         });
     }, []);
+//só funciona depois que carrega a pagina
+    useEffect(() => { 
+       
+        const check = async() => {
+            console.log("testt");
+            const userId =  await getCurrentUserInformation().uid;
+            const ratingValues = Object.values(roadmapDetails.usersRating[userId]);
+            console.log(ratingValues[0]);
+           
+            if(ratingValues[0]=== 1){
+                console.log("LIKEZADO")
+                setLiked(true)
+            }
 
+            if(ratingValues[0]=== 2){
+                console.log("DISLIKEZADO")
+                setDisliked(true)
+            }
+        }
+        check()
+
+}, []);
     const [copied, setCopied] = useState(false);
 
     const handleCopyLink = () => {
@@ -72,9 +112,9 @@ const RoadmapDetails = () => {
         setCopied(true);
     }
 
-   
-
+    
     return (
+        
         <div className="roadmap-details-box">
             <div className="roadmap-details-main">
                 <img
@@ -96,8 +136,8 @@ const RoadmapDetails = () => {
               
                 </div>
                 <div className='clicks-section'>
-                <h1 className="clicks"> {roadmapDetails.likes}</h1>
-                <h1 className="clicks"> {roadmapDetails.dislikes}</h1></div>
+                <h1 className="clicks"> {likeNumbers? likeNumbers: "0"}</h1>
+                <h1 className="clicks"> {dislikeNumbers ? dislikeNumbers:"0"}</h1></div>
             </div>
 
             <div className="roadmap-details-information">

@@ -19,12 +19,21 @@ const Login = () => {
         try {
             const response = await axios.post('user/login', values);
             if (response.status === 200) {
+                const authInfo = response.data.data.currentUserInfo;
+                const userInfo = (await axios.get(`user/get/${response.data.data.currentUserInfo.uid}`));
+                const completeUserInfo = { ...authInfo, ...userInfo.data.data };
+
                 sessionStorage.setItem('userToken', response.data.data.token);
                 sessionStorage.setItem(
                     'currentUserInfo',
-                    JSON.stringify(response.data.data.currentUserInfo)
+                    JSON.stringify(completeUserInfo)
                 );
-                navigate('/home');
+
+                if (completeUserInfo.userType === 2) {
+                    navigate('/agency-home');
+                } else {
+                    navigate('/home');
+                }
             }
         } catch (error) {
             setErrorMessage('Invalid username or password');
@@ -85,9 +94,9 @@ const Login = () => {
                     </div>
 
                     <div className="page-link-login">
-                        <a href="" className="name-link">
+                        <Link to="" className="link-login">
                             Forgot your password?
-                        </a>
+                        </Link>
                     </div>
                     <button type="submit" className="login-btn">
                         Enter
@@ -109,12 +118,6 @@ const Login = () => {
                         </span>
                         <Link to="/register-agency" className="link-login">
                             Cadastre-se aqui
-                        </Link>
-                        <span className="login-sign-in">
-                            ou
-                        </span>
-                        <Link to="/login-agency" className="link-login">
-                            Faça login aqui
                         </Link>
                     </div>
                 </form>

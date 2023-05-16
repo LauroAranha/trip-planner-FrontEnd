@@ -141,7 +141,7 @@ const AgencyRegister = () => {
 
                     {values.error && <p className={styles.error}>{values.error}</p>}{' '}
                     <button className="register-btn">Resgistrar-se</button>
-                    <div className="page-link">
+                    <div className="page-link-login">
                         <Link to="/" className="link-register">
                             Eu já tenho um registro
                         </Link>

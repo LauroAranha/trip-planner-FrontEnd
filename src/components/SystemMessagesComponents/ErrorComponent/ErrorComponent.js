@@ -1,11 +1,18 @@
-
 import { Alert, AlertTitle } from '@mui/material';
 
 const ErrorComponent = (props) => {
-    const { width, height, margin, title, message } = props
+    const { title, message } = props;
     return (
-        <div style={{ width: width, height: height, margin: margin }}>
-            <Alert severity="error" width="20%">
+        <div className="error-component">
+            <Alert
+                className="alert alert-danger"
+                severity="error"
+                style={{
+                    borderRadius: '15px',
+                    fontSize: '15px',
+                    marginTop: '20px',
+                }}
+            >
                 <AlertTitle>{title}</AlertTitle>
                 {message}
             </Alert>

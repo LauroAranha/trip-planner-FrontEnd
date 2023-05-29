@@ -1,9 +1,8 @@
-import './AgencyRegister.css';
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+import MaskedInput from 'react-text-mask';
 import axios from 'axios';
 
 const AgencyRegister = () => {
@@ -43,7 +42,7 @@ const AgencyRegister = () => {
         email: '',
         currentPassword: '',
         error: '',
-        userType: 2
+        userType: 2,
     });
 
     const handleSubmit = (e) => {
@@ -55,100 +54,256 @@ const AgencyRegister = () => {
 
     return (
         <div className="page-login">
-            <div className="container-login">
-                <h1>Create an account</h1>
-                <p>
-                    You creating an account, will be able to register all your agency roadmaps.
-                </p>
-            </div>
-
-            <div className="container-input-login">
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <div className="login-input-fields">
-                        <h1 className="page-title-register">Get started</h1>
-                        <label className="login-form-label">Nome da agência</label>
-                        <input
-                            type="text"
-                            name="displayName"
-                            required
-                            placeholder="Enter your name"
-                            value={values.name}
-                            onChange={(e) => setValues({ ...values, name: e.target.value })}
-                        />
-
-                        <label className="login-form-label">Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            required
-                            placeholder="Enter a email"
-                            value={values.email}
-                            onChange={(e) => setValues({ ...values, email: e.target.value })}
-                        />
-
-                        <label className="login-form-label">CPNJ</label>
-                        <input
-                            type="text"
-                            name="cnpj"
-                            required
-                            placeholder="Enter the agency CNPJ"
-                            value={values.cnpj}
-                            onChange={(e) => setValues({ ...values, cnpj: e.target.value })}
-                        />
-
-                        <label className="login-form-label">CPF do representante</label>
-                        <input
-                            type="text"
-                            name="cpf"
-                            required
-                            placeholder="Enter the agency CPF"
-                            value={values.cpf}
-                            onChange={(e) => setValues({ ...values, cpf: e.target.value })}
-                        />
-
-                        <label className="login-form-label">Senha</label>
-                        <input
-                            type={type}
-                            name="password"
-                            required
-                            placeholder="Enter a password"
-                            value={values.currentPassword}
-                            onChange={(e) =>
-                                setValues({ ...values, currentPassword: e.target.value })
-                            }
-                        />
-                        <span onClick={handleToggle} className="icon-eye-register">
-                            <FontAwesomeIcon icon={icon} />
-                        </span>
-
-                        <label className="login-form-label">Confirmar senha</label>
-                        <input
-                            type={typeConfirm}
-                            name="confirmPassword"
-                            required
-                            placeholder="Confirm your password"
-                            className="confirmpass-input"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
-                        <span
-                            onClick={handleToggleConfirmPassword}
-                            className="icon-eye-register"
-                        >
-                            <FontAwesomeIcon icon={iconConfirm} />
-                        </span>
+            <section className="ftco-section">
+                <div className="d-none d-md-flex col-md-4 col-lg-6 bg-banner container-login-left">
+                    <div className="banner-text">
+                        <h2>📍 Trip Planner</h2>
+                        <p>
+                        Você criando uma conta, poderá cadastrar todos os roteiros da sua agência.
+                        </p>
                     </div>
-
-                    {values.error && <p className={styles.error}>{values.error}</p>}{' '}
-                    <button className="register-btn">Resgistrar-se</button>
-                    <div className="page-link-login">
-                        <Link to="/" className="link-register">
-                            Eu já tenho um registro
-                        </Link>
+                </div>
+                <div className="container container-login">
+                    <div className="row justify-content-center">
+                        <div className="col-md-6 text-center mb-5">
+                            <div className="page-title-login">
+                                <h2 className="heading-section">Cadastre-se</h2>
+                            </div>
+                        </div>
                     </div>
-                </form>
-            </div >
-        </div >
+                    <div className="row justify-content-center">
+                        <div className="col-md-6 col-lg-4">
+                            <div className="login-wrap p-0">
+                                <form
+                                    action="#"
+                                    className="signin-form"
+                                    onSubmit={handleSubmit}
+                                >
+                                    <div className="container-input-login">
+                                        <div className="form-group">
+                                            <input
+                                                type="text"
+                                                name="displayName"
+                                                className="form-control"
+                                                placeholder="Insira o nome da agência"
+                                                value={values.name}
+                                                onChange={(e) =>
+                                                    setValues({
+                                                        ...values,
+                                                        name: e.target.value,
+                                                    })
+                                                }
+                                                required
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                className="form-control"
+                                                placeholder="Insira um email"
+                                                value={values.email}
+                                                onChange={(e) =>
+                                                    setValues({
+                                                        ...values,
+                                                        email: e.target.value,
+                                                    })
+                                                }
+                                                required
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <MaskedInput
+                                                type="text"
+                                                name="cnpj"
+                                                className="form-control"
+                                                placeholder="Insira o CNPJ da agência"
+                                                mask={[
+                                                    /\d/,
+                                                    /\d/,
+                                                    '.',
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '.',
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '/',
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '-',
+                                                    /\d/,
+                                                    /\d/,
+                                                ]}
+                                                value={values.cnpj}
+                                                onChange={(e) =>
+                                                    setValues({
+                                                        ...values,
+                                                        cnpj: e.target.value,
+                                                    })
+                                                }
+                                                required
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <MaskedInput
+                                                type="text"
+                                                name="cpf"
+                                                className="form-control"
+                                                placeholder="Insira o CPF"
+                                                mask={[
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '.',
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '.',
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '-',
+                                                    /\d/,
+                                                    /\d/,
+                                                ]}
+                                                value={values.cpf}
+                                                onChange={(e) =>
+                                                    setValues({
+                                                        ...values,
+                                                        cpf: e.target.value,
+                                                    })
+                                                }
+                                                required
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <div className="login-password-input">
+                                                <input
+                                                    id="password-field"
+                                                    type={type}
+                                                    name="password"
+                                                    className="form-control"
+                                                    placeholder="Insira sua senha"
+                                                    value={
+                                                        values.currentPassword
+                                                    }
+                                                    onChange={(e) =>
+                                                        setValues({
+                                                            ...values,
+                                                            currentPassword:
+                                                                e.target.value,
+                                                        })
+                                                    }
+                                                    required
+                                                />
+                                                <span
+                                                    className="field-icon toggle-password login-icon-eye"
+                                                    onClick={handleToggle}
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={icon}
+                                                    />
+                                                </span>
+                                            </div>
+                                            <div className="login-password-input">
+                                                <input
+                                                    id="password-field"
+                                                    type={typeConfirm}
+                                                    name="confirmPassword"
+                                                    className="form-control"
+                                                    placeholder="Confirme sua senha"
+                                                    value={confirmPassword}
+                                                    onChange={(e) =>
+                                                        setConfirmPassword(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    required
+                                                />
+                                                <span
+                                                    className="field-icon toggle-password login-icon-eye"
+                                                    onClick={
+                                                        handleToggleConfirmPassword
+                                                    }
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={iconConfirm}
+                                                    />
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="page-login-btn">
+                                        <div className="form-group">
+                                            <button
+                                                type="submit"
+                                                className="form-control btn btn-primary submit px-3"
+                                            >
+                                                Cadastrar
+                                            </button>
+                                            {values.error && (
+                                                <div className="row">
+                                                    <div className="col-12">
+                                                        <p
+                                                            className={
+                                                                styles.error
+                                                            }
+                                                        >
+                                                            {values.error}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            )}{' '}
+                                        </div>
+                                    </div>
+                                    <div className="create-account mt-4">
+                                        <div className="d-flex flex-column align-items-center links">
+                                            Já tem uma conta?{' '}
+                                            <a href="#" className="ml-2">
+                                                <Link
+                                                    to="/"
+                                                    className="link-login"
+                                                >
+                                                    Fazer login
+                                                </Link>
+                                            </a>
+                                        </div>
+                                        <div className="d-flex flex-column align-items-center links">
+                                            Não é uma agência?{' '}
+                                            <a href="#" className="ml-2">
+                                                <Link
+                                                    to="/register"
+                                                    className="link-login"
+                                                >
+                                                    Cadastre-se aqui
+                                                </Link>
+                                            </a>
+                                        </div>
+                                        {/*
+                                    <div className="d-flex flex-column align-items-center links">
+                                        É uma agencia e tem login?{' '}
+                                        <a href="#" className="ml-2">
+                                            <Link
+                                                to="login-agency"
+                                                className="link-login"
+                                            >
+                                                Fazer login-agência
+                                            </Link>
+                                        </a>
+                                    </div> 
+                                    */}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     );
 };
 

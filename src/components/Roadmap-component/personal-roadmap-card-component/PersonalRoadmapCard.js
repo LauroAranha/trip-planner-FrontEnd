@@ -20,7 +20,7 @@ const PersonalRoadmapCard = (props) => {
 
     const handleClose = () => {
         setOpen(false);
-        setTriggerUpdate(!triggerUpdate)
+        setTriggerUpdate(!triggerUpdate);
     };
 
     const handleDelete = async (docId) => {
@@ -28,7 +28,7 @@ const PersonalRoadmapCard = (props) => {
             const res = await axios.delete(`roadmap/delete/${docId}`);
             const responseData = res.data.data;
             if (responseData === 1) {
-                setTriggerUpdate(!triggerUpdate)
+                setTriggerUpdate(!triggerUpdate);
             }
         } catch (error) {
             console.error(error);
@@ -37,28 +37,32 @@ const PersonalRoadmapCard = (props) => {
 
     const handleLongDescriptions = (description) => {
         if (description.length > 150) {
-            return `${description.slice(0, 150)}...`
+            return `${description.slice(0, 150)}...`;
         }
-        return description
-    }
+        return description;
+    };
 
     return (
-        <div className="personal-roadmap-card">
-            <Link to={`/roadmap/${docId}`}>
-                <img src={image} alt="Imagem" className='personal-roadmap-card-image' />
-                <div className='personal-roadmap-card-information'>
-                    <h2>{title}</h2>
-                    <p>{handleLongDescriptions(description)}</p>
+        <div className="personal-roadmap-content card" style={{width: '25rem'}}>
+                <img
+                    src={image}
+                    alt="Imagem"
+                    className="card-img-top img-fluid"
+                    style={{ width: '100%', height: '200px' }}
+                />
+                
+                <div className="card-body">
+                <Link to={`/roadmap/${docId}`}>
+                    <h2 className="card-title">{title}</h2>
+                </Link>
+                    <p className="card-text">{handleLongDescriptions(description)}</p>
                 </div>
-            </Link>
             <div className="personal-roadmap-buttons">
                 <button
-                    className="edit-button"
-                    onClick={() =>
-                        handleOpen(props.props)
-                    }
+                    className="edit-button btn btn-primary"
+                    onClick={() => handleOpen(props.props)}
                 >
-                    Edit roadmap
+                    Editar roteiro
                     <MdEditDocument
                         style={{
                             verticalAlign: 'middle',
@@ -66,15 +70,11 @@ const PersonalRoadmapCard = (props) => {
                     />
                 </button>
                 <button
-                    className="delete-button"
-                    onClick={() =>
-                        handleDelete(
-                            docId
-                        )
-                    }
+                    className="delete-button btn btn-primary"
+                    onClick={() => handleDelete(docId)}
                 >
                     <Link className="button-text">
-                        Delete
+                        Deletar
                         <MdDelete
                             style={{
                                 verticalAlign: 'middle',
@@ -82,7 +82,13 @@ const PersonalRoadmapCard = (props) => {
                         />
                     </Link>
                 </button>
-                {<EditRoadmapModal open={open} handleClose={handleClose} modalInformation={props.props} />}
+                {
+                    <EditRoadmapModal
+                        open={open}
+                        handleClose={handleClose}
+                        modalInformation={props.props}
+                    />
+                }
             </div>
         </div>
     );

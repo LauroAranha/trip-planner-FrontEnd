@@ -20,13 +20,10 @@
     overflow-y: hidden;
     margin-top: 1vh;
     margin-left: 0;
-    background-color: #eeebeb;
     padding: 1vw;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 10px 0px;
 }
 
 .personal-roadmap-container-grid {
-    background-color: #eeebeb;
     display: flex;
     flex-wrap: wrap;
     list-style: none;

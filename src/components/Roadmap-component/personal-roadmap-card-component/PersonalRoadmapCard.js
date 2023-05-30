@@ -43,14 +43,13 @@ const PersonalRoadmapCard = (props) => {
     };
 
     return (
-        <div className="personal-roadmap-content card" style={{width: '25rem'}}>
+        <div className="personal-roadmap-content card" style={{width: '20rem'}}>
                 <img
                     src={image}
                     alt="Imagem"
-                    className="card-img-top img-fluid"
+                    className="personal-roadmap-image img-fluid"
                     style={{ width: '100%', height: '200px' }}
                 />
-                
                 <div className="card-body">
                 <Link to={`/roadmap/${docId}`}>
                     <h2 className="card-title">{title}</h2>
@@ -62,7 +61,7 @@ const PersonalRoadmapCard = (props) => {
                     className="edit-button btn btn-primary"
                     onClick={() => handleOpen(props.props)}
                 >
-                    Editar roteiro
+                    Editar
                     <MdEditDocument
                         style={{
                             verticalAlign: 'middle',

@@ -41,22 +41,33 @@
     font-weight: none;
 }
 
-@media screen and (max-width: 1650px) {
-    .links_list li a {
-        padding: 1em 1em;
-    }
+.add-button {
+    appearance: none;
+    backface-visibility: hidden;
+    background-color: #27ae60;
+    border-radius: 10px;
+    border-style: none;
+    box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
+    color: #fff;
+    cursor: pointer;
+    font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 25px;
+    margin-left: 5px;
+    padding: 15px 20px;
+    position: relative;
+    text-align: center;
 }
 
-.add-button {
+.add-button:hover {
+    background-color: #1e8449;
+    opacity: 1;
+    transform: translateY(0);
+    transition-duration: .35s;
+}
 
-    background-color: #00ce0e;
-    color: #ffffff;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: relative;
-    width: 70%;
-    padding: 0.1vw;
+.add-button:hover {
+    box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
 }

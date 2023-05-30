@@ -8,13 +8,13 @@ import AutoCompleteField from '../../../components/AutoCompleteMapField/AutoComp
 import { initGoogleMapApiScript } from '../../../components/utils/mapFunctions';
 
 const EditRoadmap = (props) => {
-    const inputCount = 5
+    const inputCount = 5;
     const autoCompleteField = 0;
 
     const { register, handleSubmit, watch } = useForm();
     const custoMedio = watch('custoMedio');
 
-    const { handleModalClose } = props
+    const { handleModalClose } = props;
 
     const onChange = (value) => {
         console.log(value);
@@ -68,7 +68,9 @@ const EditRoadmap = (props) => {
 
     return (
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
-            <label className="fieldLabel">Definir visibilidade do roteiro como pública</label>
+            <label className="fieldLabel">
+                Definir visibilidade do roteiro como pública
+            </label>
             <select
                 className="form__select"
                 defaultValue={props.props.visibilidadePublica}
@@ -190,8 +192,7 @@ const EditRoadmap = (props) => {
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>
-
-            <input type="submit" className="form__submit-btn" />
+            <input type="submit" className="form__submit-btn" style={{ width: '50% !important'}}/>
         </form>
     );
 };

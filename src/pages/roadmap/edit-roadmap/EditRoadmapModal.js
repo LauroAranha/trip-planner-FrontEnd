@@ -14,8 +14,9 @@ const EditRoadmapModal = (props) => {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         bgcolor: 'background.paper',
-        border: '2px solid #000',
+        border: '2px solid #85F4FF',
         boxShadow: 24,
+        borderRadius: 5,
         pt: 2,
         px: 4,
         pb: 3,
@@ -31,7 +32,7 @@ const EditRoadmapModal = (props) => {
             <Box
                 sx={{
                     ...style,
-                    width: '50%',
+                    width: '80%',
                     height: '80%',
                     overflowY: 'scroll',
                 }}
@@ -62,7 +63,7 @@ const EditRoadmapModal = (props) => {
                     <Button
                         onClick={handleClose}
                         style={{
-                            position: 'flex',
+                            position: 'flex'
                         }}
                     >
                         <FontAwesomeIcon
@@ -72,9 +73,13 @@ const EditRoadmapModal = (props) => {
                         />
                     </Button>
                 </h2>
-                <EditRoadmapForm handleModalClose={handleClose} props={modalInformation} />
+                <EditRoadmapForm
+                    handleModalClose={handleClose}
+                    props={modalInformation}
+                />
             </Box>
-        </Modal>)
-}
+        </Modal>
+    );
+};
 
 export default EditRoadmapModal;

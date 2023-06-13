@@ -2,60 +2,66 @@ import './roadmap-details.css';
 
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import {getCurrentUserInformation} from '../../../components/utils/userUtils' 
+import { getCurrentUserInformation } from '../../../components/utils/userUtils';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBan, faCheck, faDog, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { AiFillLike, AiFillDislike } from "react-icons/ai"
+import {
+    faBan,
+    faCheck,
+    faDog,
+    faThumbsUp,
+} from '@fortawesome/free-solid-svg-icons';
+import { AiFillLike, AiFillDislike } from 'react-icons/ai';
 const RoadmapDetails = () => {
-
-  
     const { roadmapId } = useParams();
     const [roadmapDetails, setRoadmapDetails] = useState('');
 
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
-    
-   
-    const handleLike = async() => {
-        const abc = await getCurrentUserInformation().uid
+
+    const handleLike = async () => {
+        const abc = await getCurrentUserInformation().uid;
         setLiked(!liked);
         setDisliked(false);
 
-    if(liked == false){
-    axios.put("http://localhost:3001/roadmap/edit/feedback",{
-      "documentId": roadmapId,
-      "userId": abc,
-      "rating": 1,
-     })
-    }else{
-        axios.put("http://localhost:3001/roadmap/edit/feedback",{
-            "documentId": roadmapId,
-            "userId": abc,
-            "rating": 0,
-           })
-    }
-
+        if (liked == false) {
+            axios.put('http://localhost:3001/roadmap/edit/feedback', {
+                documentId: roadmapId,
+                userId: abc,
+                rating: 1,
+            });
+        } else {
+            axios.put('http://localhost:3001/roadmap/edit/feedback', {
+                documentId: roadmapId,
+                userId: abc,
+                rating: 0,
+            });
+        }
+        window.location.reload();
     };
 
-    const handleDislike =  async () => {
-        const abc = await getCurrentUserInformation().uid
+    const handleDislike = async () => {
+        const abc = await getCurrentUserInformation().uid;
         setDisliked(!disliked);
         setLiked(false);
+
+        if (disliked == false) {
+            axios.put('http://localhost:3001/roadmap/edit/feedback', {
+                documentId: roadmapId,
+                userId: abc,
+                rating: 2,
+            });
+        } else {
+            axios.put('http://localhost:3001/roadmap/edit/feedback', {
+                documentId: roadmapId,
+                userId: abc,
+                rating: 0,
+            });
+        }
         
-        if(disliked == false){
-        axios.put("http://localhost:3001/roadmap/edit/feedback",{
-            "documentId": roadmapId,
-            "userId": abc,
-            "rating": 2,
-        })
-    }else {
-        axios.put("http://localhost:3001/roadmap/edit/feedback",{
-            "documentId": roadmapId,
-            "userId": abc,
-            "rating": 0,
-           })
-    }
+        setTimeout(()=>{
+            window.location.reload();
+            }, 500);
     };
 
     useEffect(() => {
@@ -70,9 +76,7 @@ const RoadmapDetails = () => {
     const handleCopyLink = () => {
         navigator.clipboard.writeText(window.location.href);
         setCopied(true);
-    }
-
-   
+    };
 
     return (
         <div className="roadmap-details-box">
@@ -83,21 +87,31 @@ const RoadmapDetails = () => {
                     className="roadmap-details-main-image"
                 />
 
-                <div className='feedback-section'>
-                    <button className="feedback-section-icon-like" onClick={handleLike}>
-                        <AiFillLike className='feedback-section-icon' color={liked ? "blue" : "black"} />
-                       
+                <div className="feedback-section">
+                    <button
+                        className="feedback-section-icon-like"
+                        onClick={handleLike}
+                    >
+                        <AiFillLike
+                            className="feedback-section-icon"
+                            color={liked ? 'blue' : 'black'}
+                        />
                     </button>
-                  
-                    <button className="feedback-section-icon-dislike" onClick={handleDislike} >
-                        <AiFillDislike className='feedback-section-icon' color={disliked ? "red" : "black"} />
-                 
+
+                    <button
+                        className="feedback-section-icon-dislike"
+                        onClick={handleDislike}
+                    >
+                        <AiFillDislike
+                            className="feedback-section-icon"
+                            color={disliked ? 'red' : 'black'}
+                        />
                     </button>
-              
                 </div>
-                <div className='clicks-section'>
-                <h1 className="clicks"> {roadmapDetails.likes}</h1>
-                <h1 className="clicks"> {roadmapDetails.dislikes}</h1></div>
+                <div className="clicks-section">
+                    <h1 className="clicks"> {roadmapDetails.likes}</h1>
+                    <h1 className="clicks"> {roadmapDetails.dislikes}</h1>
+                </div>
             </div>
 
             <div className="roadmap-details-information">

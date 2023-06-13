@@ -156,8 +156,8 @@ const EditRoadmap = (props) => {
                     </div>
                 );
             })}
-
-            <label className="fieldLabel">
+            {/** 
+             * <label className="fieldLabel">
                 Estimativa de gastos por pessoa
             </label>
             <input
@@ -171,7 +171,8 @@ const EditRoadmap = (props) => {
                 {...register('custoMedio', {})}
                 onChange={() => onChange(custoMedio)}
             />
-            <span>${custoMedio}</span>
+            <span>${custoMedio}</span>    */} 
+            
 
             <label className="fieldLabel">Permite pets?</label>
             <select
@@ -192,7 +193,7 @@ const EditRoadmap = (props) => {
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>
-            <input type="submit" className="form__submit-btn" style={{ width: '50% !important'}}/>
+            <input type="submit" className="form__submit-btn" style={{ width: '50%'}}/>
         </form>
     );
 };

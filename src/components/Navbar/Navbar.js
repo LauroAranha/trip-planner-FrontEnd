@@ -67,7 +67,7 @@ const Navbar = () => {
                 <PopupMenu>
                     <img
                         src={getCurrentUserInformation().photoURL}
-                        alt=""
+                        alt="Profile Pic"
                         className="profile-pic"
                         onClick={handleArrowClick}
                     />

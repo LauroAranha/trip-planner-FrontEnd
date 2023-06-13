@@ -49,29 +49,26 @@ const EditRoadmapModal = (props) => {
                             justifyContent: 'flex-start',
                         }}
                     >
-                        Editar roteiro
-                    </p>{' '}
+                        Editar roteiro:
+                    </p>
                     <p
                         style={{
                             marginLeft: '10px',
                             fontWeight: 'lighter',
-                            justifyContent: 'flex-start',
+                            justifyContent: 'flex-start',                            
                         }}
                     >
+                        
                         {modalInformation.title}
                     </p>
-                    <Button
-                        onClick={handleClose}
-                        style={{
-                            position: 'flex'
-                        }}
-                    >
+                    
                         <FontAwesomeIcon
+                            onClick={handleClose}
                             icon={faClose}
                             className="nav-icon"
                             color="red"
+                            style={{ marginLeft: '117vh', overflow: 'hidden' }}
                         />
-                    </Button>
                 </h2>
                 <EditRoadmapForm
                     handleModalClose={handleClose}

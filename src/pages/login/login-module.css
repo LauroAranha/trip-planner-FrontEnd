@@ -197,10 +197,6 @@
     touch-action: manipulation;
 }
 
-.page-login-btn button:not([disabled]):focus,
-.page-login-btn button:not([disabled]):hover {
-    box-shadow: 0 0 .5rem #42B0FF, -.125rem -.125rem 1rem #42B0FF, .125rem .125rem 1rem #42B0FF;
-}
 
 .page-link-login {
     font-size: 14px;

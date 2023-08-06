@@ -192,10 +192,7 @@ const RegisterForm = ({ handleSubmit, values, setValues, confirmPassword, setCon
                     </select>
                 </div>
                 <ImageUpload onImageChange={handleImageChange} />
-                {/* ... More form fields ... */}
-
                 <div className="form-group">
-                    {/* Render any error messages here */}
                     {values.error && (
                         <div className="row">
                             <div className="col-12">
@@ -205,10 +202,7 @@ const RegisterForm = ({ handleSubmit, values, setValues, confirmPassword, setCon
                     )}
                 </div>
             </div>
-            {/* ... More form fields ... */}
-
             <div className="form-group">
-                {/* Render any error messages here */}
                 {values.error && (
                     <div className="row">
                         <div className="col-12">

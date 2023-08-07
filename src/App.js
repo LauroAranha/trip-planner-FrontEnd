@@ -46,7 +46,7 @@ const App = () => {
                                 <Navbar />
                                 <div className="container">
                                     <Home />
-                                    <MapContainer />
+                                    {/* <MapContainer /> */}
                                 </div>
                             </>
                         }

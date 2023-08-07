@@ -1,0 +1,76 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+O sistema contará com as seguintes entidades, contendo seus respectivos campos:
+-------------------------------------------------------
+Viajante (usuário convencional)
+---------------------------------
+Nome completo (String)
+Email (String)
+Data de nascimento 
+CEP
+Logradouro (String)
+Cidade (String)
+Estado (String)
+Número de residencia (String)
+CPF (String)
+RG (String)
+Telefone (String)
+genero (boolean)
+-------------------------------------------------------
+Agência de turismo
+---------------------------------
+Razão Social (String)
+Nome Fantasia (String)
+Inscrição Estadual (String)
+Email (String)
+CNPJ (String)
+Telefone (String)
+Nome do responsável (String)
+CPF do responsável (String)
+RG do responsável (String)
+CEP da matriz (String)
+Logradouro da matriz (String)
+Cidade da matriz (String)
+Estado da matriz (String)
+-------------------------------------------------------
+Roadmap
+---------------------------------
+Nome (String)
+Descrição (String)
+Cidade (String)
+Ponto de partida (String)
+Ponto de destino (String)
+Recomendação de transporte (Array[carro, bicicleta, transporte publico, a pé])
+Paradas recomendadas (Array[Parada1, Parada2, Parada3, Parada4, Parada5])
+Estimativa de gastos (float)
+Pet Friendly (boolean)
+Permitido pra menores de 18 (boolean)
+visibilidade publica (boolean)
+-------------------------------------------------------
+Moderador
+---------------------------------
+Nome completo (String)
+Email (String)
+Data de nascimento 
+CEP
+Logradouro (String)
+Cidade (String)
+Estado (String)
+Número de residencia (String)
+CPF (String)
+RG (String)
+Telefone (String)
+Genero (boolean)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Os seguintes campos serão adicionados dinamicamente/não serão obrigatórios:
+-------------------------------------------------------
+Roadmap
+---------------------------------
+Likes (int)
+Dislikes (int)
+Comentários (Array[{idUsu1: comment}, {idUsu2: comment}, {idUsu3: comment}...])
+-------------------------------------------------------
+Viajante
+---------------------------------
+Roteiros salvos (Array[idRoteiro1, idRoteiro2, idRoteiro3])
+Foto de perfil (blob)

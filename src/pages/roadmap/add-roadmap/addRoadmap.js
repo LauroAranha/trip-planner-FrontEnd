@@ -8,9 +8,12 @@ import { useForm } from 'react-hook-form';
 import AutoCompleteField from '../../../components/AutoCompleteMapField/AutoCompleteField';
 import { initGoogleMapApiScript } from '../../../components/utils/mapFunctions';
 import { getCurrentUserInformation } from '../../../components/utils/userUtils';
+import ImageUpload from '../../../components/Input/ImageUpload';
 
 const AddRoadmap = () => {
     const navigate = useNavigate();
+
+    const [imageData, setImageData] = useState(null);
 
     const user = getCurrentUserInformation();
     const { email } = user;
@@ -18,7 +21,7 @@ const AddRoadmap = () => {
     const [inputCount, setInputCount] = useState(0);
     const [autoCompleteField, setAutoCompleteField] = useState(0);
 
-    const { register, handleSubmit, watch } = useForm();
+    const { register, handleSubmit, watch, setValue } = useForm();
     const custoMedio = watch('custoMedio');
 
     const handleAddInput = () => {
@@ -27,8 +30,10 @@ const AddRoadmap = () => {
         }
         setAutoCompleteField(autoCompleteField + 1);
     };
-    const onChange = (value) => {
-        console.log(value);
+
+    const handleImageChange = (imageData) => {
+        setImageData(imageData);
+        setValue('imagem', imageData);
     };
 
     useEffect(() => {
@@ -56,13 +61,12 @@ const AddRoadmap = () => {
     }, [inputCount]);
 
     const onSubmit = async (data) => {
-        console.log(data);
         data.userType = getCurrentUserInformation().userType;
         data.userCreatorId = email;
-        data.visibilidadePublica = false;
+
         try {
             const response = await axios.post(
-                'http://localhost:3001/roadmap/add',
+                'roadmap/add',
                 data
             );
 
@@ -73,7 +77,7 @@ const AddRoadmap = () => {
                 console.log('Some pepino occurred debug it');
             }
         } catch (error) {
-            console.log(JSON.stringify(error.response.data).slice(1, -1));
+            console.log(JSON.parse(JSON.stringify(error)));
         }
     };
 
@@ -97,15 +101,9 @@ const AddRoadmap = () => {
                 />
 
                 <label className="fieldLabel">
-                    Imagem thumb roteiro (só coloque links)
+                    Imagem thumb roteiro
                 </label>
-                <input
-                    required
-                    type="text"
-                    placeholder="Link imagem"
-                    className="form__input"
-                    {...register('image', {})}
-                />
+                <ImageUpload onImageChange={handleImageChange} />
 
                 <label className="fieldLabel">Cidade do roteiro</label>
                 <input

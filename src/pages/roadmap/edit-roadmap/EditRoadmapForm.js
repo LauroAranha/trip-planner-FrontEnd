@@ -20,6 +20,16 @@ const EditRoadmap = (props) => {
         console.log(value);
     };
 
+    const [imageData, setImageData] = useState(getCurrentUserInformation().photoURL);
+    const handleImageChange = (imageData) => {
+        setImageData(imageData);
+        setFormData({
+            ...formData,
+            profilepic: imageData
+        });
+    };
+
+
     useEffect(() => {
         const scriptReturned = initGoogleMapApiScript();
         return () => {
@@ -171,8 +181,8 @@ const EditRoadmap = (props) => {
                 {...register('custoMedio', {})}
                 onChange={() => onChange(custoMedio)}
             />
-            <span>${custoMedio}</span>    */} 
-            
+            <span>${custoMedio}</span>    */}
+
 
             <label className="fieldLabel">Permite pets?</label>
             <select
@@ -193,7 +203,7 @@ const EditRoadmap = (props) => {
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>
-            <input type="submit" className="form__submit-btn" style={{ width: '50%'}}/>
+            <input type="submit" className="form__submit-btn" style={{ width: '50%' }} />
         </form>
     );
 };

@@ -96,7 +96,7 @@ const EditUserProfile = () => {
     return (
         <div className="page-edit">
             {/* profile preview */}
-            <h4 className="panel-title">Edit profile</h4>
+            <h4 className="panel-title">Editar perfil</h4>
             <div
                 className="d-flex justify-content-center align-items-center rounded-circle"
                 style={{
@@ -131,6 +131,7 @@ const EditUserProfile = () => {
             {/* edit form */}
             <form className="form" onSubmit={handleSubmit} noValidate>
 
+                <label htmlFor="name">Selecionar nova imagem de perfil</label>
                 <ImageUpload onImageChange={handleImageChange} />
 
                 <div>

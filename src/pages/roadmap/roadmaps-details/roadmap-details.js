@@ -58,10 +58,10 @@ const RoadmapDetails = () => {
                 rating: 0,
             });
         }
-        
-        setTimeout(()=>{
+
+        setTimeout(() => {
             window.location.reload();
-            }, 500);
+        }, 500);
     };
 
     useEffect(() => {

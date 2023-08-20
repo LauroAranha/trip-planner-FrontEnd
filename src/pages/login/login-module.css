@@ -192,8 +192,6 @@
     padding: 0.2rem 1rem;
     text-decoration: none;
     transition: box-shadow .2s ease-in-out;
-    user-select: none;
-    -webkit-user-select: none;
     touch-action: manipulation;
 }
 

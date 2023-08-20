@@ -2,10 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@600&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-* {
-    user-select: none;
-}
-
 .container-login {
     margin-top: 250px;
     margin-left: auto !important;

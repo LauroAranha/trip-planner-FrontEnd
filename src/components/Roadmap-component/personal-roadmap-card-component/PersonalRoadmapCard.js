@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import EditRoadmapModal from '../../../pages/roadmap/edit-roadmap/EditRoadmapModal';
 
 const PersonalRoadmapCard = (props) => {
-    const { imagem, title, description, docId } = props.props;
+    const { image, title, description, docId } = props.props;
     const { setTriggerUpdate, triggerUpdate } = props;
     const [open, setOpen] = useState(false);
 
@@ -45,7 +45,7 @@ const PersonalRoadmapCard = (props) => {
     return (
         <div className="personal-roadmap-content card" style={{ width: '20rem' }}>
             <img
-                src={imagem}
+                src={image}
                 alt="Imagem"
                 className="personal-roadmap-image img-fluid"
                 style={{ width: '100%', height: '200px' }}

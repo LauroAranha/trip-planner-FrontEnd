@@ -39,7 +39,7 @@ const Edit = () => {
     const [iconConfirm, setConfirmPasswordIcon] = useState(faEyeSlash);
 
     // Set the initial state of the image to null
-    const [imagem, setImagem] = useState(null);
+    const [image, setImage] = useState(null);
 
     const [values, setValues] = useState({
         currentEmail: '',
@@ -90,12 +90,12 @@ const Edit = () => {
     };
 
     // Function to handle file selection event
-    function handleImagemSelecionada(event) {
+    function handleImageSelecionada(event) {
         const arquivo = event.target.files[0];
         const leitor = new FileReader();
 
         leitor.onload = function (event) {
-            setImagem(event.target.result);
+            setImage(event.target.result);
         };
 
         leitor.readAsDataURL(arquivo);
@@ -136,8 +136,8 @@ const Edit = () => {
                                                             backgroundColor:
                                                                 'rgb(233, 236, 239)',
                                                             backgroundImage:
-                                                                imagem
-                                                                    ? `url(${imagem})`
+                                                                image
+                                                                    ? `url(${image})`
                                                                     : 'none',
                                                             backgroundSize:
                                                                 'cover',

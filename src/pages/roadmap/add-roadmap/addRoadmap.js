@@ -33,7 +33,7 @@ const AddRoadmap = () => {
 
     const handleImageChange = (imageData) => {
         setImageData(imageData);
-        setValue('imagem', imageData);
+        setValue('image', imageData);
     };
 
     useEffect(() => {

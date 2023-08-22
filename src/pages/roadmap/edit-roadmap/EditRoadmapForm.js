@@ -152,27 +152,29 @@ const EditRoadmap = (props) => {
             {[...Array(inputCount)].map((_, index) => {
                 return (
                     <div>
-                        <AutoCompleteField index={index} register={register} />
+                        <AutoCompleteField index={index} register={register} value={props.props.paradasRecomendadas[index]} />
                     </div>
                 );
             })}
-            {/** 
-             * <label className="fieldLabel">
+            <label className="fieldLabel">
                 Estimativa de gastos por pessoa
             </label>
             <input
-                defaultValue={props.props.custoMedio}
-                min="0"
-                max="1000"
-                type="range"
-                placeholder="Estimativa de gastos por pessoa"
-                className="form__range"
-                step="10"
-                {...register('custoMedio', {})}
-                onChange={() => onChange(custoMedio)}
-            />
-            <span>${custoMedio}</span>    */} 
-            
+                    min="0"
+                    max="1000"
+                    type="number"
+                    placeholder="Estimativa de gastos por pessoa"
+                    className="form__range"
+                    step="10"
+                    {...register('custoMedio', {})}
+                    onChange={() => onChange(custoMedio)}
+                />
+
+{/* {roadmapDetails.paradasRecomendadas[0] ? (<p>Parada 1: {roadmapDetails.paradasRecomendadas[0]}</p>): null}
+                {roadmapDetails.paradasRecomendadas[1] ? <p>Parada 2: {roadmapDetails.paradasRecomendadas[1]}</p>: null}
+                {roadmapDetails.paradasRecomendadas[2] ? <p>Parada 3: {roadmapDetails.paradasRecomendadas[2]}</p>: null}
+                {roadmapDetails.paradasRecomendadas[3] ? <p>Parada 4: {roadmapDetails.paradasRecomendadas[3]}</p>: null}
+                {roadmapDetails.paradasRecomendadas[4] ? <p>Parada 5: {roadmapDetails.paradasRecomendadas[4]}</p>: null} */}
 
             <label className="fieldLabel">Permite pets?</label>
             <select
@@ -193,7 +195,11 @@ const EditRoadmap = (props) => {
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>
-            <input type="submit" className="form__submit-btn" style={{ width: '50%'}}/>
+            <input
+                type="submit"
+                className="page-login-btn"
+                
+            />
         </form>
     );
 };

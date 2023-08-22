@@ -1,9 +1,10 @@
 import './edit-roadmap-module.css';
 
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
+import {getCurrentUserInformation} from "../../../components/utils/userUtils"
 import AutoCompleteField from '../../../components/AutoCompleteMapField/AutoCompleteField';
 import { initGoogleMapApiScript } from '../../../components/utils/mapFunctions';
 
@@ -134,7 +135,17 @@ const EditRoadmap = (props) => {
                 defaultValue={props.props.pontoInicial}
                 {...register('pontoInicial', {})}
             />
-
+            <label className="fieldLabel">Estimativa de gastos por pessoa</label>
+             <input
+                    min="0"
+                    max="1000"
+                    type="range"
+                    className="form__range"
+                    step="10"
+                    {...register('custoMedio', {})}
+                  
+                />
+                <span>${custoMedio}</span>
             <label className="fieldLabel">Destino</label>
             <input
                 type="search"

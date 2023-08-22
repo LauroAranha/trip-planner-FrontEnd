@@ -170,7 +170,7 @@ const AddRoadmap = () => {
                     className="form__range"
                     step="10"
                     {...register('custoMedio', {})}
-                    onChange={() => onChange(custoMedio)}
+                  
                 />
                 <span>${custoMedio}</span>
 

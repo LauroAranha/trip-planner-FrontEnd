@@ -12,6 +12,9 @@ const PersonalRoadmapCard = (props) => {
     const { image, title, description, docId } = props.props;
     const { setTriggerUpdate, triggerUpdate } = props;
     const [open, setOpen] = useState(false);
+    const setModalInformation = (parametro) => {
+        console.log(parametro)
+    };
 
     const handleOpen = (roadmapInformation) => {
         setOpen(true);

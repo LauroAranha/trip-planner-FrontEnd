@@ -7,7 +7,6 @@ import { Helmet } from 'react-helmet';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import 'firebase/auth';
 import axios from 'axios';
-import ContainerList from '../../../components/ConfigList/ContainerList';
 import {
     getCurrentUserInformation,
     getCurrentUserToken,
@@ -129,9 +128,7 @@ const EditUserProfile = () => {
                 />
             </Helmet>
 
-            <ContainerList />
-
-            <div className="col" style={{ marginTop: '-90px' }}>
+            <div className="col" style={{ marginTop: '100px' }}>
                 <h4 className="panel-title">Edit profile</h4>
                 <div className="row">
                     <div className="col mb-3">

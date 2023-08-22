@@ -1,9 +1,5 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
-
-import { faClose } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import EditRoadmapForm from './EditRoadmapForm';
 
 const EditRoadmapModal = (props) => {
@@ -28,6 +24,7 @@ const EditRoadmapModal = (props) => {
             onClose={handleClose}
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description"
+            className=""
         >
             <Box
                 sx={{
@@ -37,43 +34,29 @@ const EditRoadmapModal = (props) => {
                     overflowY: 'scroll',
                 }}
             >
-                <h2
-                    className="edit-roadmap-title"
-                    style={{
-                        display: 'flex',
-                    }}
-                >
-                    <p
-                        style={{
-                            fontWeight: 'bold',
-                            justifyContent: 'flex-start',
-                        }}
-                    >
-                        Editar roteiro:
-                    </p>
-                    <p
-                        style={{
-                            marginLeft: '10px',
-                            fontWeight: 'lighter',
-                            justifyContent: 'flex-start',                            
-                        }}
-                    >
+                <div className="modal-header">
+                    <h2
+                        className="modal-title"
                         
-                        {modalInformation.title}
-                    </p>
-                    
-                        <FontAwesomeIcon
-                            onClick={handleClose}
-                            icon={faClose}
-                            className="nav-icon"
-                            color="red"
-                            style={{ marginLeft: '117vh', overflow: 'hidden' }}
-                        />
-                </h2>
+                    >
+                        Editar roteiro: {modalInformation.title}
+                    </h2>
+                    <button
+                        type="button"
+                        className="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                        onClick={handleClose}
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
                 <EditRoadmapForm
                     handleModalClose={handleClose}
                     props={modalInformation}
                 />
+                </div>
             </Box>
         </Modal>
     );

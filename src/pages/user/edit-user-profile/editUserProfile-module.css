@@ -11,8 +11,8 @@
 /* Style Labels */
 
 .page-edit {
-  margin: 5vh 5vw 0 15vw;
-  height: 100vh;
+  margin: 5vh 5vw 5vh 15vw;
+  height: auto;
 }
 
 .input-container {

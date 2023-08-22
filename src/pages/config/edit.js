@@ -10,7 +10,6 @@ import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import axios from 'axios';
-import ContainerList from '../../components/ConfigList/ContainerList';
 
 document.body.style.overflow = 'hidden';
 
@@ -111,9 +110,9 @@ const Edit = () => {
                     crossOrigin="anonymous"
                 />
             </Helmet>
-            <ContainerList />
+            
             <div className="col" style={{ marginTop: '-90px' }}>
-                <h4 class="panel-title">Edit profile</h4>
+                <h4 class="panel-title">Editar perfil</h4>
                 <div className="row">
                     <div className="col mb-3">
                         <div className="card">

@@ -33,21 +33,19 @@
 
 .feedback-section-icon-like {
     border: none;
-    margin-left: 10px;
+    margin-left:10px;
 }
 
-.clicks-section {
+.clicks-section{
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 100px;
 }
-
-.clicks {
+.clicks{
     font-size: 20px;
-
+   
 }
-
 .roadmap-details-main {
     flex-direction: row;
     width: 40%;
@@ -120,18 +118,4 @@
     background-color: #3fa9f4;
     margin-bottom: 10px;
     border: solid 1px;
-}
-
-.report-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.form__submit-btn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }

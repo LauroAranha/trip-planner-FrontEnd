@@ -8,12 +8,9 @@ import { useForm } from 'react-hook-form';
 import AutoCompleteField from '../../../components/AutoCompleteMapField/AutoCompleteField';
 import { initGoogleMapApiScript } from '../../../components/utils/mapFunctions';
 import { getCurrentUserInformation } from '../../../components/utils/userUtils';
-import ImageUpload from '../../../components/Input/ImageUpload';
 
 const AddRoadmap = () => {
     const navigate = useNavigate();
-
-    const [imageData, setImageData] = useState(null);
 
     const user = getCurrentUserInformation();
     const { email } = user;
@@ -21,7 +18,7 @@ const AddRoadmap = () => {
     const [inputCount, setInputCount] = useState(0);
     const [autoCompleteField, setAutoCompleteField] = useState(0);
 
-    const { register, handleSubmit, watch, setValue } = useForm();
+    const { register, handleSubmit, watch } = useForm();
     const custoMedio = watch('custoMedio');
 
     const handleAddInput = () => {
@@ -30,10 +27,8 @@ const AddRoadmap = () => {
         }
         setAutoCompleteField(autoCompleteField + 1);
     };
-
-    const handleImageChange = (imageData) => {
-        setImageData(imageData);
-        setValue('image', imageData);
+    const onChange = (value) => {
+        console.log(value);
     };
 
     useEffect(() => {
@@ -61,12 +56,13 @@ const AddRoadmap = () => {
     }, [inputCount]);
 
     const onSubmit = async (data) => {
+        console.log(data);
         data.userType = getCurrentUserInformation().userType;
         data.userCreatorId = email;
-
+        data.visibilidadePublica = false;
         try {
             const response = await axios.post(
-                'roadmap/add',
+                'http://localhost:3001/roadmap/add',
                 data
             );
 
@@ -77,7 +73,7 @@ const AddRoadmap = () => {
                 console.log('Some pepino occurred debug it');
             }
         } catch (error) {
-            console.log(JSON.parse(JSON.stringify(error)));
+            console.log(JSON.stringify(error.response.data).slice(1, -1));
         }
     };
 
@@ -101,9 +97,15 @@ const AddRoadmap = () => {
                 />
 
                 <label className="fieldLabel">
-                    Imagem thumb roteiro
+                    Imagem thumb roteiro (só coloque links)
                 </label>
-                <ImageUpload onImageChange={handleImageChange} />
+                <input
+                    required
+                    type="text"
+                    placeholder="Link imagem"
+                    className="form__input"
+                    {...register('image', {})}
+                />
 
                 <label className="fieldLabel">Cidade do roteiro</label>
                 <input
@@ -172,7 +174,7 @@ const AddRoadmap = () => {
                     className="form__range"
                     step="10"
                     {...register('custoMedio', {})}
-                  
+                    onChange={() => onChange(custoMedio)}
                 />
 
                 <label className="fieldLabel">Permite pets?</label>

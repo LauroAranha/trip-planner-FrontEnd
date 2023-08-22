@@ -3,34 +3,46 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import ImageUpload from '../../components/Input/ImageUpload';
-import RegisterForm from './RegisterForm';
 
 const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [imageData, setImageData] = useState(null);
+
+    // State for the main password field
+    const [type, setType] = useState('password');
+    const [icon, setIcon] = useState(faEyeSlash);
+
+    // State for password confirmation field
+    const [typeConfirm, setConfirmPasswordType] = useState('password');
+    const [iconConfirm, setConfirmPasswordIcon] = useState(faEyeSlash);
+
+    const handleToggle = () => {
+        // For the main password field
+        if (type === 'password') {
+            setIcon(faEye);
+            setType('text');
+        } else {
+            setIcon(faEyeSlash);
+            setType('password');
+        }
+    };
+
+    const handleToggleConfirmPassword = () => {
+        if (typeConfirm === 'password') {
+            setConfirmPasswordIcon(faEye);
+            setConfirmPasswordType('text');
+        } else {
+            setConfirmPasswordIcon(faEyeSlash);
+            setConfirmPasswordType('password');
+        }
+    };
+
     const [values, setValues] = useState({
         name: '',
         email: '',
-        birthdate: '',
-        cep: '',
-        address: '',
-        city: '',
-        state: '',
-        cpf: '',
-        rg: '',
-        phone: '',
-        gender: '',
-        profilepic: ''
+        currentPassword: '',
+        error: '',
+        userType: 1,
     });
-
-    const handleImageChange = (imageData) => {
-        setImageData(imageData);
-        setValues({
-            ...values,
-            profilepic: imageData
-        })
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,12 +50,15 @@ const Register = () => {
         console.log(values);
 
         try {
-            console.log(await axios.post('http://localhost:3001/user/register', values));
+            const response = await axios.post(
+                'http://localhost:3001/user/register',
+                values
+            );
+            console.log(response);
         } catch (error) {
             console.log(error);
         }
     };
-
     return (
         <div className="page-login">
             <section className="ftco-section">
@@ -75,14 +90,109 @@ const Register = () => {
                                 >
                                     <div className="container-input-login">
                                         <div className="form-group">
-                                            <RegisterForm
-                                                handleSubmit={handleSubmit}
-                                                values={values}
-                                                setValues={setValues}
-                                                confirmPassword={confirmPassword}
-                                                setConfirmPassword={setConfirmPassword}
-                                                handleImageChange={handleImageChange}
+                                            <input
+                                                type="text"
+                                                name="displayName"
+                                                className="form-control"
+                                                placeholder="Insira seu nome"
+                                                value={values.name}
+                                                onChange={(e) =>
+                                                    setValues({
+                                                        ...values,
+                                                        name: e.target.value,
+                                                    })
+                                                }
+                                                required
                                             />
+                                        </div>
+                                        <div className="form-group">
+                                            <input
+                                                type="text"
+                                                name="displayName"
+                                                className="form-control"
+                                                placeholder="Insira seu sobrenome"
+                                                value={values.lastName}
+                                                onChange={(e) =>
+                                                    setValues({
+                                                        ...values,
+                                                        lastName:
+                                                            e.target.value,
+                                                    })
+                                                }
+                                                required
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                className="form-control"
+                                                placeholder="Insira seu email"
+                                                value={values.email}
+                                                onChange={(e) =>
+                                                    setValues({
+                                                        ...values,
+                                                        email: e.target.value,
+                                                    })
+                                                }
+                                                required
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <div className="login-password-input">
+                                                <input
+                                                    id="password-field"
+                                                    type={type}
+                                                    name="password"
+                                                    className="form-control"
+                                                    placeholder="Insira sua senha"
+                                                    value={
+                                                        values.currentPassword
+                                                    }
+                                                    onChange={(e) =>
+                                                        setValues({
+                                                            ...values,
+                                                            currentPassword:
+                                                                e.target.value,
+                                                        })
+                                                    }
+                                                    required
+                                                />
+                                                <span
+                                                    className="field-icon toggle-password login-icon-eye"
+                                                    onClick={handleToggle}
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={icon}
+                                                    />
+                                                </span>
+                                            </div>
+                                            <div className="login-password-input">
+                                                <input
+                                                    id="password-field"
+                                                    type={typeConfirm}
+                                                    name="confirmPassword"
+                                                    className="form-control"
+                                                    placeholder="Confirme sua senha"
+                                                    value={confirmPassword}
+                                                    onChange={(e) =>
+                                                        setConfirmPassword(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    required
+                                                />
+                                                <span
+                                                    className="field-icon toggle-password login-icon-eye"
+                                                    onClick={
+                                                        handleToggleConfirmPassword
+                                                    }
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={iconConfirm}
+                                                    />
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="page-login-btn">
@@ -131,6 +241,19 @@ const Register = () => {
                                                 </Link>
                                             </a>
                                         </div>
+                                        {/*
+                                        <div className="d-flex flex-column align-items-center links">
+                                            É uma agencia e tem login?{' '}
+                                            <a href="#" className="ml-2">
+                                                <Link
+                                                    to="login-agency"
+                                                    className="link-login"
+                                                >
+                                                    Fazer login-agência
+                                                </Link>
+                                            </a>
+                                        </div> 
+                                        */}
                                     </div>
                                 </form>
                             </div>

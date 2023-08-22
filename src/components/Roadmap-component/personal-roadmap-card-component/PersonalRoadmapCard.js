@@ -12,12 +12,10 @@ const PersonalRoadmapCard = (props) => {
     const { image, title, description, docId } = props.props;
     const { setTriggerUpdate, triggerUpdate } = props;
     const [open, setOpen] = useState(false);
-    const setModalInformation = (parametro) => {
-        console.log(parametro)
-    };
 
     const handleOpen = (roadmapInformation) => {
         setOpen(true);
+      
     };
 
     const handleClose = () => {
@@ -45,14 +43,6 @@ const PersonalRoadmapCard = (props) => {
     };
 
     return (
-        <div className="personal-roadmap-content card" style={{ width: '20rem' }}>
-            <img
-                src={image}
-                alt="Imagem"
-                className="personal-roadmap-image img-fluid"
-                style={{ width: '100%', height: '200px' }}
-            />
-            <div className="card-body">
         <div
             className="personal-roadmap-content card"
             style={{ width: '20rem' }}

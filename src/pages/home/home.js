@@ -11,7 +11,7 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('roadmap/getRecommendedRoadmaps').then((res) => {
+        axios.get('roadmap/recommendedRoadmaps').then((res) => {
             const responseData = res.data.data;
             setRecommendedRoadmapList(responseData);
             setIsLoading(false);
@@ -48,7 +48,7 @@ const Home = () => {
                     })
                 )}
             </div>
-            <h1 className="main-container-title" style={{ marginTop: '5%' }}>Public Road Maps</h1>
+            <h1 className="main-container-title" style={{marginTop: '5%'}}>Public Road Maps</h1>
             <div className="main-roadmap-cards-container">
                 {isLoading ? (
                     <p>carregando</p>
@@ -67,7 +67,7 @@ const Home = () => {
                     })
                 )}
             </div>
-            <h1 className="main-container-title" style={{ marginTop: '3%' }}>Nearby Attractions</h1>
+            <h1 className="main-container-title" style={{marginTop: '3%'}}>Nearby Attractions</h1>
         </div>
     );
 };

@@ -1,10 +1,9 @@
 import './edit-roadmap-module.css';
 
-import { useEffect,useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
-import {getCurrentUserInformation} from "../../../components/utils/userUtils"
 import AutoCompleteField from '../../../components/AutoCompleteMapField/AutoCompleteField';
 import { initGoogleMapApiScript } from '../../../components/utils/mapFunctions';
 
@@ -20,16 +19,6 @@ const EditRoadmap = (props) => {
     const onChange = (value) => {
         console.log(value);
     };
-
-    const [imageData, setImageData] = useState(getCurrentUserInformation().photoURL);
-    const handleImageChange = (imageData) => {
-        setImageData(imageData);
-        setFormData({
-            ...formData,
-            profilepic: imageData
-        });
-    };
-
 
     useEffect(() => {
         const scriptReturned = initGoogleMapApiScript();
@@ -135,17 +124,7 @@ const EditRoadmap = (props) => {
                 defaultValue={props.props.pontoInicial}
                 {...register('pontoInicial', {})}
             />
-            <label className="fieldLabel">Estimativa de gastos por pessoa</label>
-             <input
-                    min="0"
-                    max="1000"
-                    type="range"
-                    className="form__range"
-                    step="10"
-                    {...register('custoMedio', {})}
-                  
-                />
-                <span>${custoMedio}</span>
+
             <label className="fieldLabel">Destino</label>
             <input
                 type="search"
@@ -181,18 +160,21 @@ const EditRoadmap = (props) => {
                 Estimativa de gastos por pessoa
             </label>
             <input
-                defaultValue={props.props.custoMedio}
-                min="0"
-                max="1000"
-                type="range"
-                placeholder="Estimativa de gastos por pessoa"
-                className="form__range"
-                step="10"
-                {...register('custoMedio', {})}
-                onChange={() => onChange(custoMedio)}
-            />
-            <span>${custoMedio}</span>    */}
+                    min="0"
+                    max="1000"
+                    type="number"
+                    placeholder="Estimativa de gastos por pessoa"
+                    className="form__range"
+                    step="10"
+                    {...register('custoMedio', {})}
+                    onChange={() => onChange(custoMedio)}
+                />
 
+{/* {roadmapDetails.paradasRecomendadas[0] ? (<p>Parada 1: {roadmapDetails.paradasRecomendadas[0]}</p>): null}
+                {roadmapDetails.paradasRecomendadas[1] ? <p>Parada 2: {roadmapDetails.paradasRecomendadas[1]}</p>: null}
+                {roadmapDetails.paradasRecomendadas[2] ? <p>Parada 3: {roadmapDetails.paradasRecomendadas[2]}</p>: null}
+                {roadmapDetails.paradasRecomendadas[3] ? <p>Parada 4: {roadmapDetails.paradasRecomendadas[3]}</p>: null}
+                {roadmapDetails.paradasRecomendadas[4] ? <p>Parada 5: {roadmapDetails.paradasRecomendadas[4]}</p>: null} */}
 
             <label className="fieldLabel">Permite pets?</label>
             <select
@@ -213,7 +195,11 @@ const EditRoadmap = (props) => {
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>
-            <input type="submit" className="form__submit-btn" style={{ width: '50%'}}/>
+            <input
+                type="submit"
+                className="page-login-btn"
+                
+            />
         </form>
     );
 };

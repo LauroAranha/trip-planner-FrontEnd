@@ -64,6 +64,9 @@
 }
 @media screen and (max-width: 850px) {
     .links_list {
+        margin-left: -2%;
+    }
+    .profile-pic{
         margin-left: 20%;
     }
 }

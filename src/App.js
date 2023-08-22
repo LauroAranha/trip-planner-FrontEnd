@@ -15,8 +15,8 @@ import RoadmapDetails from './pages/roadmap/roadmaps-details/roadmap-details';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
-import AgencyRegister from './pages/Agency/AgencyRegister';
-import AgencyHome from './pages/Agency/AgencyHome';
+import AgencyRegister from './pages/agency/AgencyRegister'; //mudei pra agency minusculo pq no meu pc tava assim
+import AgencyHome from './pages/agency/AgencyHome';//mudei pra agency minusculo pq no meu pc tava assim
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 
@@ -46,7 +46,7 @@ const App = () => {
                                 <Navbar />
                                 <div className="container">
                                     <Home />
-                                    <MapContainer />
+                                    {/* <MapContainer /> */}
                                 </div>
                             </>
                         }

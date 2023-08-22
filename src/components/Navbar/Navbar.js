@@ -78,7 +78,7 @@ const Navbar = () => {
                             <img
                                 id="circle-avatar"
                                 className="text-center mx-auto mb-4"
-                                src={getCurrentUserInformation().photoUxRL}
+                                src={getCurrentUserInformation().photoURL}
                                 alt=""
                             />
                             <h5 className="text-center mb-0">

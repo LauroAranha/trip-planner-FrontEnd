@@ -1,9 +1,7 @@
 import './editUserProfile-module.css';
 
 import { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { Helmet } from 'react-helmet';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import 'firebase/auth';
 import axios from 'axios';
@@ -11,122 +9,123 @@ import {
     getCurrentUserInformation,
     getCurrentUserToken,
 } from '../../../components/utils/userUtils';
+import ImageUpload from '../../../components/Input/ImageUpload';
 
 const EditUserProfile = () => {
-    const [newPassword, setNewPassword] = useState('');
-    const [newEmail, setNewEmail] = useState('');
-    const [newName, setNewName] = useState('');
-    const [newLastName, setNewLastName] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-    const [showNewPassword, setShowNewPassword] = useState(false);
-
     const { uid } = getCurrentUserInformation();
 
-    const handlePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
-
-    const handleNewPasswordVisibility = () => {
-        setShowNewPassword(!showNewPassword);
-    };
-
-    // State for the main password field
-    const [type, setType] = useState('password');
-    const [icon, setIcon] = useState(faEyeSlash);
-
-    // State for password confirmation field
-    const [typeConfirm, setConfirmPasswordType] = useState('password');
-    const [iconConfirm, setConfirmPasswordIcon] = useState(faEyeSlash);
-
-    // Set the initial state of the image to null
-    const [imagem, setImagem] = useState(getCurrentUserInformation().photoURL);
-
-    const [values, setValues] = useState({
-        name: '',
-        lastName: '',
-        email: '',
-        currentPassword: '',
+    const [imageData, setImageData] = useState(getCurrentUserInformation().photoURL);
+    const [userId, setUserId] = useState("");
+    const [docId, setDocId] = useState("");
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        birthdate: "",
+        password: "",
+        cep: "",
+        rg: "",
+        cpf: "",
+        gender: "",
+        phone: "",
+        city: "",
+        state: "",
+        profilepic: "",
     });
 
-    const handleToggle = () => {
-        // For the main password field
-        if (type === 'password') {
-            setIcon(faEye);
-            setType('text');
-        } else {
-            setIcon(faEyeSlash);
-            setType('password');
-        }
-    };
-
-    const handleToggleConfirmPassword = () => {
-        if (typeConfirm === 'password') {
-            setConfirmPasswordIcon(faEye);
-            setConfirmPasswordType('text');
-        } else {
-            setConfirmPasswordIcon(faEyeSlash);
-            setConfirmPasswordType('password');
-        }
+    const handleImageChange = (imageData) => {
+        setImageData(imageData);
+        setFormData({
+            ...formData,
+            profilepic: imageData
+        });
     };
 
     useEffect(() => {
         const fetchData = async () => {
-            await axios
-                .get(`http://localhost:3001/user/get/${uid}`)
-                .then((response) => {
-                    setValues(response.data.data);
-                    setNewEmail(response.data.data.email);
-                    setNewPassword(response.data.data.currentPassword);
-                    setNewName(response.data.data.name);
-                    setNewLastName(response.data.data.lastName);
-                    console.log(response);
+            try {
+                const response = await axios.get(`user/get/${uid}`);
+                const { name, email, birthdate, password, cep, rg, cpf, gender, phone, city, state, docId, userId } = response.data.data;
+
+                setUserId(userId);
+                setDocId(docId);
+                setFormData({
+                    name,
+                    email,
+                    birthdate: new Date(birthdate).toISOString().split('T')[0],
+                    password,
+                    cep,
+                    rg,
+                    cpf,
+                    gender,
+                    phone,
+                    city,
+                    state,
                 });
+
+                console.log(response);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
         };
+
         fetchData();
-    }, []);
+    }, [uid]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await axios.put(
-            'http://localhost:3001/user/edit',
-            {
-                ...values,
-                email: newEmail,
-                currentPassword: newPassword,
-                name: newName,
-                lastName: newLastName,
-            },
-            {
-                headers: {
-                    auth: getCurrentUserToken(),
-                },
-            }
-        );
+        try {
+            formData.userId = userId;
+            formData.docId = docId;
+
+            await axios.put(
+                'user/edit',
+                formData,
+                {
+                    headers: {
+                        auth: getCurrentUserToken(),
+                    },
+                }
+            );
+            console.log("edited")
+        } catch (error) {
+            console.error("Error updating user data:", error);
+        }
     };
-
-    // Function to handle file selection event
-    function handleImagemSelecionada(event) {
-        const arquivo = event.target.files[0];
-        const leitor = new FileReader();
-
-        leitor.onload = function (event) {
-            setImagem(event.target.result);
-        };
-
-        leitor.readAsDataURL(arquivo);
-    }
 
     return (
         <div className="page-edit">
-            <Helmet>
-                <link
-                    rel="stylesheet"
-                    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-                    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-                    crossOrigin="anonymous"
-                />
-            </Helmet>
+            {/* profile preview */}
+            <h4 className="panel-title">Editar perfil</h4>
+            <div
+                className="d-flex justify-content-center align-items-center rounded-circle"
+                style={{
+                    height: '160px',
+                    width: '170px',
+                    backgroundColor:
+                        'rgb(233, 236, 239)',
+                    backgroundImage:
+                        imageData
+                            ? `url(${imageData})`
+                            : 'none',
+                    backgroundSize:
+                        'cover',
+                    backgroundPosition:
+                        'center',
+                    border: '3px solid rgb(215, 215, 215)',
+                    borderWidth: '4px',
+                    borderStyle:
+                        'solid',
+                }}
+                onMouseOver={(e) => {
+                    e.target.style.boxShadow =
+                        '0 0 10px 0 #42B0FF';
+                }}
+                onMouseOut={(e) => {
+                    e.target.style.boxShadow =
+                        'none';
+                }}
+            />
 
             <div className="col" style={{ marginTop: '100px' }}>
                 <h4 className="panel-title">Edit profile</h4>
@@ -213,215 +212,152 @@ const EditUserProfile = () => {
                                 </div>
                             </div>
                         </div>
+=======
+            <div src={formData.profilepic}></div>
+            {/* edit form */}
+            <form className="form" onSubmit={handleSubmit} noValidate>
+
+                <label htmlFor="name">Selecionar nova imagem de perfil</label>
+                <ImageUpload onImageChange={handleImageChange} />
+
+                <div>
+                    <label htmlFor="name">Nome</label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    />
+                </div>
+
+                {/* email e celular */}
+                <div className="input-container">
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            className="form-control"
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="phone">Celular</label>
+                        <input
+                            className="form-control"
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        />
                     </div>
                 </div>
-            </div>
-            <div className="tab-content pt-3">
-                <div className="tab-pane active">
-                    <form className="form" onSubmit={handleSubmit} noValidate>
-                        <div className="row">
-                            <div className="col">
-                                <div className="row">
-                                    <div className="col">
-                                        <div className="form-group">
-                                            <label htmlFor="name">Name</label>
-                                            <input
-                                                className="form-control"
-                                                type="text"
-                                                name="name"
-                                                defaultValue={values.name}
-                                                onChange={(e) => {
-                                                    setNewName(e.target.value);
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col">
-                                        <div className="form-group">
-                                            <label htmlFor="username">
-                                                Last Name
-                                            </label>
-                                            <input
-                                                className="form-control"
-                                                type="text"
-                                                name="displayName"
-                                                defaultValue={values.lastName}
-                                                onChange={(e) =>
-                                                    setNewLastName(
-                                                        e.target.value
-                                                    )
-                                                }
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col">
-                                        <div className="form-group">
-                                            <label htmlFor="email">Email</label>
-                                            <input
-                                                className="form-control"
-                                                type="email"
-                                                name="email"
-                                                defaultValue={values.email}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col">
-                                        <div className="form-group">
-                                            <label htmlFor="email">
-                                                New Email
-                                            </label>
-                                            <input
-                                                className="form-control"
-                                                type="email"
-                                                name="email"
-                                                placeholder="user@example.com"
-                                                defaultValue={newEmail}
-                                                onChange={(e) => {
-                                                    setNewEmail(e.target.value);
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-12 col-sm-6 mb-3">
-                                <div className="row">
-                                    <div className="col">
-                                        <div className="form-group">
-                                            <label htmlFor="current-password">
-                                                Current Password
-                                            </label>
-                                            <div className="input-group position-relative mb-3">
-                                                <input
-                                                    type={
-                                                        showPassword
-                                                            ? 'text'
-                                                            : 'password'
-                                                    }
-                                                    className="form-control"
-                                                    placeholder="••••••"
-                                                    defaultValue={
-                                                        values.currentPassword
-                                                    }
-                                                    style={{ width: '100%' }}
-                                                />
-                                                <div className="input-group-append">
-                                                    <span
-                                                        className="input-group-text position-absolute border-0"
-                                                        style={{
-                                                            right: '10px',
-                                                            top: '57%',
-                                                            transform:
-                                                                'translateY(-50%)',
-                                                            backgroundColor:
-                                                                'transparent',
-                                                            borderColor:
-                                                                'transparent',
-                                                            cursor: 'pointer',
-                                                        }}
-                                                        onClick={
-                                                            handlePasswordVisibility
-                                                        }
-                                                    >
-                                                        <FontAwesomeIcon
-                                                            icon={
-                                                                showPassword
-                                                                    ? faEye
-                                                                    : faEyeSlash
-                                                            }
-                                                        />
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        className="row"
-                                        style={{
-                                            marginLeft: '1px',
-                                            width: '100%',
-                                        }}
-                                    >
-                                        <div className="col">
-                                            <div className="form-group">
-                                                <label htmlFor="confirm-password">
-                                                    New Password
-                                                </label>
-                                                <input
-                                                    className="form-control mb-3"
-                                                    type={
-                                                        showNewPassword
-                                                            ? 'text'
-                                                            : 'password'
-                                                    }
-                                                    placeholder="••••••"
-                                                    defaultValue={newPassword}
-                                                    onChange={(e) => {
-                                                        setNewPassword(
-                                                            e.target.value
-                                                        );
-                                                    }}
-                                                />
-                                                <div className="input-group-append">
-                                                    <span
-                                                        className="input-group-text position-absolute border-0"
-                                                        style={{
-                                                            right: '24px',
-                                                            top: '57%',
-                                                            transform:
-                                                                'translateY(-55%)',
-                                                            backgroundColor:
-                                                                'transparent',
-                                                            borderColor:
-                                                                'transparent',
-                                                            cursor: 'pointer',
-                                                        }}
-                                                        onClick={
-                                                            handleNewPasswordVisibility
-                                                        }
-                                                    >
-                                                        <FontAwesomeIcon
-                                                            icon={
-                                                                showNewPassword
-                                                                    ? faEye
-                                                                    : faEyeSlash
-                                                            }
-                                                        />
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col d-flex justify-content-end">
-                                        {values.error && <p>{values.error}</p>}{' '}
-                                        <button
-                                            className="btn btn-success btn-rounded btn-lg"
-                                            type="submit"
-                                            style={{
-                                                borderRadius: '30px',
-                                                marginTop: '30px',
-                                                height: '60px',
-                                                backgroundColor: '#42B0FF',
-                                                border: 'none',
-                                            }}
-                                        >
-                                            Save Changes
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+
+                <div>
+                    <label htmlFor="password">Senha</label>
+                    <input
+                        className="form-control"
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    />
                 </div>
-            </div>
+
+                {/* rg e cpf */}
+                <div className="input-container">
+                    <div>
+                        <label htmlFor="rg">RG</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="rg"
+                            value={formData.rg}
+                            onChange={(e) => setFormData({ ...formData, rg: e.target.value })}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="cpf">CPF</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="cpf"
+                            value={formData.cpf}
+                            onChange={(e) => setFormData({ ...formData, cpf: e.target.value })}
+                        />
+                    </div>
+                </div>
+
+                {/* data de nascimento e genero */}
+                <div className="input-container">
+                    <div>
+                        <label htmlFor="birthdate">Data de nascimento</label>
+                        <input
+                            className="form-control"
+                            type="date"
+                            name="birthdate"
+                            value={formData.birthdate}
+                            onChange={(e) => setFormData({ ...formData, birthdate: e.target.value })}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="gender">Gênero</label>
+                        <select
+                            className="form-control"
+                            name="gender"
+                            value={formData.gender}
+                            onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                        >
+                            <option value="male">Masculino</option>
+                            <option value="female">Feminino</option>
+                            <option value="others">Outros</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label htmlFor="cep">CEP</label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        name="cep"
+                        value={formData.cep}
+                        onChange={(e) => setFormData({ ...formData, cep: e.target.value })}
+                    />
+                </div>
+
+                {/* cidade e estado */}
+                <div className="input-container">
+                    <div>
+                        <label htmlFor="city">Cidade</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="city"
+                            value={formData.city}
+                            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="state">Estado</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="state"
+                            value={formData.state}
+                            onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+                        />
+                    </div>
+                </div>
+                <button
+                    className="save-btn btn btn-success btn-rounded btn-lg"
+                    type="submit"
+                >
+                    Salvar alterações
+                </button>
+            </form>
         </div>
     );
 };

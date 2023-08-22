@@ -12,6 +12,8 @@ import {
     faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { AiFillLike, AiFillDislike } from 'react-icons/ai';
+import { Modal, Button, Box, Typography } from '@mui/material'; // Import Modal and other necessary components from MUI
+
 const RoadmapDetails = () => {
     const { roadmapId } = useParams();
     const [roadmapDetails, setRoadmapDetails] = useState('');
@@ -21,12 +23,26 @@ const RoadmapDetails = () => {
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
 
+    const [values, setValues] = useState([]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            values.roadmapId = roadmapId;
+            await axios.post('roadmap/report', { ...values })
+            alert("roadmap denunciado com sucesso")
+            setOpen(false)
+        } catch (error) {
+            setErrorMessage('Invalid username or password');
+        }
+    };
+
     const handleLike = async () => {
         const abc = await getCurrentUserInformation().uid;
         setLiked(!liked);
         setDisliked(false);
 
-        if (liked == false) {
+        if (liked === false) {
             axios.put('http://localhost:3001/roadmap/edit/feedback', {
                 documentId: roadmapId,
                 userId: abc,
@@ -47,7 +63,7 @@ const RoadmapDetails = () => {
         setDisliked(!disliked);
         setLiked(false);
 
-        if (disliked == false) {
+        if (disliked === false) {
             axios.put('http://localhost:3001/roadmap/edit/feedback', {
                 documentId: roadmapId,
                 userId: abc,
@@ -82,6 +98,19 @@ const RoadmapDetails = () => {
         setCopied(true);
     };
 
+    // Modal State
+    const [open, setOpen] = useState(false);
+
+    // Open Modal
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    // Close Modal
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <div className="roadmap-details-box">
             <div className="roadmap-details-main">
@@ -111,6 +140,61 @@ const RoadmapDetails = () => {
                             color={disliked ? 'red' : 'black'}
                         />
                     </button>
+                    <Button variant="outlined" color="primary" onClick={handleOpen}>
+                        Denunciar roadmap
+                    </Button>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                    >
+                        <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 800, bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
+                            <h1>
+                                Denunciar roteiro
+                            </h1>
+                            <form
+                                action="#"
+                                className="signin-form"
+                                onSubmit={handleSubmit}
+                            >
+                                <p>Motivo da denúncia</p>
+                                <input
+                                    type="text"
+                                    name="email"
+                                    className="form-control"
+                                    placeholder="Insira o motivo"
+                                    value={values.email}
+                                    onChange={(e) =>
+                                        setValues({
+                                            ...values,
+                                            reason: e.target.value,
+                                        })
+                                    }
+                                    required
+                                />
+                                <p>Descrição</p>
+                                <textarea
+                                    name="description"
+                                    className="form-control"
+                                    placeholder="Insira a descricao"
+                                    value={values.email}
+                                    onChange={(e) =>
+                                        setValues({
+                                            ...values,
+                                            description: e.target.value,
+                                        })
+                                    }
+                                    required
+                                />
+                                <button
+                                    type="submit"
+                                    className="form-control btn btn-primary submit px-3"
+                                    style={{ 'marginTop': '1vw' }}
+                                >
+                                    Enviar denúncia
+                                </button>
+                            </form>
+                        </Box>
+                    </Modal>
                 </div>
                 <div className="clicks-section">
                     <h1 className="clicks"> {roadmapDetails.likes}</h1>
@@ -186,7 +270,7 @@ const RoadmapDetails = () => {
                 )}
                 <h2 className="share">Gostou do roteiro? Compartilhe!</h2>
                 <button className="button-link" onClick={handleCopyLink}>
-                    {copied ? 'URL na aréa de transferência!' : 'Copiar URL'}
+                    {copied ? 'URL na área de transferência!' : 'Copiar URL'}
                 </button>
             </div>
         </div>

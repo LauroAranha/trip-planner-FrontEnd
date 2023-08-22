@@ -2,10 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@600&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-* {
-    user-select: none;
-}
-
 .container-login {
     margin-top: 250px;
     margin-left: auto !important;
@@ -14,112 +10,145 @@
     margin-top: -40%;
 }
 
-.bg-banner{
+.bg-banner {
     background-color: #42B0FF;
     background-size: cover;
     background-position: center;
     height: 100vh;
 }
 
-.banner-text{width:90%;  bottom:40px; padding-left: 150px; margin-top: 40%;}
-.banner-text h2{color:#fff; font-size: 45px; font-family: 'Pacifico', sans-serif;}
-.banner-text h2:after{content:" "; width:380px; height:4px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
-.banner-text p{color:#fff; font-size: 18px; margin-top: 30px;}
+.banner-text {
+    width: 90%;
+    bottom: 40px;
+    padding-left: 150px;
+    margin-top: 40%;
+}
 
-@media screen and (max-width: 1920px){
-    .container-login{
+.banner-text h2 {
+    color: #fff;
+    font-size: 45px;
+    font-family: 'Pacifico', sans-serif;
+}
+
+.banner-text h2:after {
+    content: " ";
+    width: 380px;
+    height: 4px;
+    background: #FFF;
+    display: block;
+    margin-top: 20px;
+    border-radius: 3px;
+}
+
+.banner-text p {
+    color: #fff;
+    font-size: 18px;
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 1920px) {
+    .container-login {
         margin-right: 0 !important;
-        
+
     }
 }
-@media screen and (max-width: 1850px){
-    .container-login{
-        
+
+@media screen and (max-width: 1850px) {
+    .container-login {
+
         margin-top: -50% !important;
     }
-   
+
 }
-@media screen and (max-width: 1650px){
-    .container-login{
+
+@media screen and (max-width: 1650px) {
+    .container-login {
         margin-right: -5% !important;
         margin-top: -50% !important;
     }
-    .banner-text{ 
-        margin-top: 45%; 
-    }
-}
-@media screen and (max-width: 1550px){
-    .container-login {
-        margin-right: -10% !important;
-        margin-top: -55% !important;   
-    }
-    .banner-text{ 
-        margin-top: 55%; 
-    }
-}
-@media screen and (max-width: 1350px){
-    .container-login {
-        margin-right: -15% !important;
-        margin-top: -65% !important;   
-    }
-    .banner-text { 
-        margin-top: 75%; 
-    }
-}
-@media screen and (max-width: 1150px){
-    .container-login{
-        margin-right: -20% !important;
-        margin-top: -75% !important;   
-    }
-    .banner-text h2{ 
-        font-size:40px;
-    }
-    .banner-text h2:after{ 
-        width:300px;
-    }
-}
-@media screen and (max-width: 991px){
-    .container-login{
-        margin-right: 12% !important;
-        margin-top: -100% !important;   
-    }
-    .bg-banner{
-        background-color: transparent;
-        color: transparent;
-    }
-    .banner-text h2{
-        color: transparent;
-    }
-}
-@media screen and (max-width: 767px){
-    .container-login {
-        margin-right: 15% !important;  
-        margin-top: 35% !important;   
+
+    .banner-text {
+        margin-top: 45%;
     }
 }
 
-.container-input-login input{
+@media screen and (max-width: 1550px) {
+    .container-login {
+        margin-right: -10% !important;
+        margin-top: -55% !important;
+    }
+
+    .banner-text {
+        margin-top: 55%;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    .container-login {
+        margin-right: -15% !important;
+        margin-top: -65% !important;
+    }
+
+    .banner-text {
+        margin-top: 75%;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .container-login {
+        margin-right: -20% !important;
+        margin-top: -75% !important;
+    }
+
+    .banner-text h2 {
+        font-size: 40px;
+    }
+
+    .banner-text h2:after {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .container-login {
+        margin-right: 12% !important;
+        margin-top: -100% !important;
+    }
+
+    .bg-banner {
+        background-color: transparent;
+        color: transparent;
+    }
+
+    .banner-text h2 {
+        color: transparent;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container-login {
+        margin-right: 15% !important;
+        margin-top: 35% !important;
+    }
+}
+
+.container-input-login input {
     color: rgb(37, 37, 37);
     font-family: 'Poppins', sans-serif !important;
     height: 60px;
     border-radius: 15px;
     outline: 0;
-    border: #85F4FF 3px solid;
 }
 
-.container-input-login input:not(:placeholder-shown) + label{
+.container-input-login input:not(:placeholder-shown)+label {
     transform: translateY(-14px) scale(.8);
-}
-
-.container-input-login input:not(:placeholder-shown){
-    border-bottom: #85F4FF 10px solid;
 }
 
 .container-input-login input:focus {
     border-color: #42B0FF;
 }
 
-.container-input-login input:focus + label {
+.container-input-login input:focus+label {
     border-color: #42B0FF;
 }
 
@@ -141,13 +170,12 @@
     right: 15px;
     transform: translateY(-50%);
     cursor: pointer;
-}  
+}
 
-.page-login-btn button{
+.page-login-btn button {
     width: 100%;
     background: #42B0FF;
     border: 0;
-    border-color: #42B0FF 1rem;
     border-radius: 22px;
     color: #FFFFFF;
     text-shadow: 0 0 20px #fff;
@@ -160,24 +188,19 @@
     padding: 0.2rem 1rem;
     text-decoration: none;
     transition: box-shadow .2s ease-in-out;
-    user-select: none;
-    -webkit-user-select: none;
     touch-action: manipulation;
 }
 
-.page-login-btn button:not([disabled]):focus,
-.page-login-btn button:not([disabled]):hover {
-    box-shadow: 0 0 .5rem #42B0FF, -.125rem -.125rem 1rem #42B0FF, .125rem .125rem 1rem #42B0FF;
-}
 
 .page-link-login {
     font-size: 14px;
     font-family: 'inherit';
-    font-family: "Noto Sans Mono", monospace; 
+    font-family: "Noto Sans Mono", monospace;
     text-align: right;
     margin-top: 6px;
     margin-right: 10px;
 }
+
 .page-link-login a {
     color: #42B0FF !important;
     text-decoration: none;
@@ -240,7 +263,7 @@
     margin-bottom: 20px;
 }
 
-.modal-body input{
+.modal-body input {
     color: rgb(37, 37, 37);
     font-family: 'Poppins', sans-serif !important;
     height: 60px;

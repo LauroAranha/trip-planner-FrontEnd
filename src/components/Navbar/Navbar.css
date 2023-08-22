@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&family=Nunito:wght@200;300&family=Pacifico&display=swap');
 
-* {
-    user-select: none;
-    text-decoration: none;
-}
-
 .navbar {
     display: flex;
     box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 10px 0px;
@@ -50,9 +45,10 @@
 
 @media screen and (max-width: 1920px) {
     .links_list li a {
-        padding: 0.7em 1.2em;   
+        padding: 0.7em 1.2em;
     }
 }
+
 @media screen and (max-width: 1250px) {
     .nav-logo {
         margin-left: 0;
@@ -62,6 +58,7 @@
         padding: 0.5em 1em;
     }
 }
+
 @media screen and (max-width: 850px) {
     .links_list {
         margin-left: -2%;
@@ -88,6 +85,7 @@
     .links_list .option .nav-icon {
         margin: 0 2px;
     }
+
     .nav-logo {
         height: 5vh;
     }
@@ -169,7 +167,7 @@
 
 .profile-list {
     margin: 12px;
-    text-decoration: none !important;  
+    text-decoration: none !important;
 }
 
 .profile-logout {
@@ -185,7 +183,7 @@
     color: #fff;
     border-radius: 30px;
     font-weight: bold;
-    
+
 }
 
 .icon {

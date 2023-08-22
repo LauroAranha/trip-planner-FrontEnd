@@ -2,7 +2,6 @@ import './roadmap-details.css';
 
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getCurrentUserInformation } from '../../../components/utils/userUtils';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -13,25 +12,32 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { AiFillLike, AiFillDislike } from 'react-icons/ai';
 import { Modal, Button, Box, Typography } from '@mui/material'; // Import Modal and other necessary components from MUI
+import { getCurrentUserInformation } from '../../../components/utils/userUtils';
 
 const RoadmapDetails = () => {
     const { roadmapId } = useParams();
     const [roadmapDetails, setRoadmapDetails] = useState('');
+    const userInfo = getCurrentUserInformation();
 
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
 
     const [values, setValues] = useState([]);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (event, userInfo) => {
+        event.preventDefault();
         try {
+            values.name = userInfo.name;
+            values.email = userInfo.email;
+            values.userId = userInfo.userId;
+            values.status = "open";
+            values.date = Date.now();
             values.roadmapId = roadmapId;
             await axios.post('roadmap/report', { ...values })
             alert("roadmap denunciado com sucesso")
             setOpen(false)
         } catch (error) {
-            setErrorMessage('Invalid username or password');
+            console.log('deu ruim: ' + error)
         }
     };
 
@@ -150,7 +156,7 @@ const RoadmapDetails = () => {
                             <form
                                 action="#"
                                 className="signin-form"
-                                onSubmit={handleSubmit}
+                                onSubmit={event => handleSubmit(event, userInfo)}
                             >
                                 <p>Motivo da denúncia</p>
                                 <input

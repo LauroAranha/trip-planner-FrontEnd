@@ -15,6 +15,8 @@ import { AiFillLike, AiFillDislike } from 'react-icons/ai';
 const RoadmapDetails = () => {
     const { roadmapId } = useParams();
     const [roadmapDetails, setRoadmapDetails] = useState('');
+    const [paradasRecomendadas, setParadasRecomendadas] = useState();
+    const [isLoading, setIsLoading] = useState(true);
 
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
@@ -58,16 +60,18 @@ const RoadmapDetails = () => {
                 rating: 0,
             });
         }
-        
-        setTimeout(()=>{
+
+        setTimeout(() => {
             window.location.reload();
-            }, 500);
+        }, 500);
     };
 
     useEffect(() => {
         axios.get(`roadmap/get/${roadmapId}`).then((res) => {
             const responseData = res.data.data;
             setRoadmapDetails(responseData);
+            setParadasRecomendadas(responseData.paradasRecomendadas)
+            setIsLoading(false);
         });
     }, []);
 
@@ -131,9 +135,22 @@ const RoadmapDetails = () => {
                 <h2>Ponto de partida</h2>
                 <p>{roadmapDetails.pontoInicial}</p>
 
+                <h2>Paradas recomendadas</h2>
+
+                {isLoading ? (
+                    <p>carregando</p>
+                ) : (
+                    paradasRecomendadas &&
+                    paradasRecomendadas.map((object) => {
+                        return (
+                            <p>{object}</p>
+                        );
+                    })
+                )}
+
                 <h2>Ponto final</h2>
                 <p>{roadmapDetails.pontoFinal}</p>
-                {roadmapDetails.petsOk ? (
+                {roadmapDetails.petsOk === 'Sim' ? (
                     <div className="labelWithIcon">
                         <h2>Pet friendly</h2>
                         <FontAwesomeIcon
@@ -150,7 +167,6 @@ const RoadmapDetails = () => {
                         />
                     </div>
                 )}
-
                 {roadmapDetails.criancaOk ? (
                     <div className="labelWithIcon">
                         <h2>Aconselhável a menores de idade</h2>

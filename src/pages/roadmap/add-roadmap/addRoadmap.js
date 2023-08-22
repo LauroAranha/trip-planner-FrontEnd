@@ -160,21 +160,22 @@ const AddRoadmap = () => {
                 <button type="button" onClick={handleAddInput}>
                     Add Input
                 </button>
-
+                
+                
                 <label className="fieldLabel">
                     Estimativa de gastos por pessoa
                 </label>
+                
                 <input
                     min="0"
                     max="1000"
-                    type="range"
+                    type="number"
                     placeholder="Estimativa de gastos por pessoa"
                     className="form__range"
                     step="10"
                     {...register('custoMedio', {})}
                     onChange={() => onChange(custoMedio)}
                 />
-                <span>${custoMedio}</span>
 
                 <label className="fieldLabel">Permite pets?</label>
                 <select className="form__select" {...register('petsOk')}>

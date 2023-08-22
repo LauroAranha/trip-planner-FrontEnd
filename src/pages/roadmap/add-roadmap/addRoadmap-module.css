@@ -41,17 +41,4 @@
     padding-right: 30px;
 }
 
-/* Form submit button */
-.form input[type="submit"] {
-    background-color: #008CBA;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    width: 20%;
-    margin: 0 auto;
-}
 
-.form input[type="submit"]:hover {
-    background-color: #006080;
-}

@@ -2,7 +2,6 @@ import './roadmap-details.css';
 
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getCurrentUserInformation } from '../../../components/utils/userUtils';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,14 +11,36 @@ import {
     faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { AiFillLike, AiFillDislike } from 'react-icons/ai';
+import { Modal, Button, Box, Typography } from '@mui/material'; // Import Modal and other necessary components from MUI
+import { getCurrentUserInformation } from '../../../components/utils/userUtils';
+
 const RoadmapDetails = () => {
     const { roadmapId } = useParams();
     const [roadmapDetails, setRoadmapDetails] = useState('');
-    const [paradasRecomendadas, setParadasRecomendadas] = useState();
-    const [isLoading, setIsLoading] = useState(true);
+    const userInfo = getCurrentUserInformation();
 
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
+
+
+    const [values, setValues] = useState([]);
+
+    const handleSubmit = async (event, userInfo) => {
+        event.preventDefault();
+        try {
+            values.name = userInfo.name;
+            values.email = userInfo.email;
+            values.userId = userInfo.userId;
+            values.status = "open";
+            values.date = Date.now();
+            values.roadmapId = roadmapId;
+            await axios.post('roadmap/report', { ...values })
+            alert("roadmap denunciado com sucesso")
+            setOpen(false)
+        } catch (error) {
+            console.log('deu ruim: ' + error)
+        }
+    };
 
     const handleLike = async () => {
         const abc = await getCurrentUserInformation().uid;

@@ -15,7 +15,7 @@ const PersonalRoadmapCard = (props) => {
 
     const handleOpen = (roadmapInformation) => {
         setOpen(true);
-        setModalInformation(roadmapInformation);
+      
     };
 
     const handleClose = () => {
@@ -43,19 +43,24 @@ const PersonalRoadmapCard = (props) => {
     };
 
     return (
-        <div className="personal-roadmap-content card" style={{width: '20rem'}}>
-                <img
-                    src={image}
-                    alt="Imagem"
-                    className="personal-roadmap-image img-fluid"
-                    style={{ width: '100%', height: '200px' }}
-                />
-                <div className="card-body">
+        <div
+            className="personal-roadmap-content card"
+            style={{ width: '20rem' }}
+        >
+            <img
+                src={image}
+                alt="Imagem"
+                className="personal-roadmap-image img-fluid"
+                style={{ width: '100%', height: '200px' }}
+            />
+            <div className="card-body">
                 <Link to={`/roadmap/${docId}`}>
                     <h2 className="card-title">{title}</h2>
                 </Link>
-                    <p className="card-text">{handleLongDescriptions(description)}</p>
-                </div>
+                <p className="card-text">
+                    {handleLongDescriptions(description)}
+                </p>
+            </div>
             <div className="personal-roadmap-buttons">
                 <button
                     className="edit-button btn btn-primary"

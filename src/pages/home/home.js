@@ -37,13 +37,16 @@ const Home = () => {
                     recommendedRoadmapList &&
                     recommendedRoadmapList.map((object) => {
                         return (
-                            <Link to={`/roadmap/${object.docId}`}>
-                                <RoadmapSquare
-                                    image={object.image}
-                                    title={object.title}
-                                    description={object.description}
-                                />
-                            </Link>
+                            <RoadmapSquare
+                                image={object.image}
+                                title={
+                                    <Link to={`/roadmap/${object.docId}`}>
+                                        {object.title}
+                                        </Link>
+                                    }
+                                description={object.description}
+                            />
+                        
                         );
                     })
                 )}

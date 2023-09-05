@@ -14,6 +14,11 @@ import { AiFillLike, AiFillDislike } from 'react-icons/ai';
 import { Modal, Button, Box, Typography } from '@mui/material'; // Import Modal and other necessary components from MUI
 import { getCurrentUserInformation } from '../../../components/utils/userUtils';
 
+const isRoadmapSaved = (roadmapId) => {
+    const savedRoadmaps = JSON.parse(localStorage.getItem('savedRoadmaps')) || [];
+    return savedRoadmaps.includes(roadmapId);
+};
+
 const RoadmapDetails = () => {
     const { roadmapId } = useParams();
     const [roadmapDetails, setRoadmapDetails] = useState('');
@@ -21,6 +26,7 @@ const RoadmapDetails = () => {
 
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
+    const [saved, setSaved] = useState(isRoadmapSaved(roadmapId));
 
     const [values, setValues] = useState([]);
 
@@ -92,7 +98,42 @@ const RoadmapDetails = () => {
             setRoadmapDetails(responseData);
         });
     }, []);
-
+    
+    const handleSave = async () => {
+        const userId = getCurrentUserInformation().uid;
+        try {
+            if (saved) {
+                await axios.post('http://localhost:3001/roadmap/unsave', {
+                    userId: userId,
+                    roadmapId: roadmapId,
+                });
+    
+                const savedRoadmaps = JSON.parse(localStorage.getItem('savedRoadmaps')) || [];
+                const updatedSavedRoadmaps = savedRoadmaps.filter((savedId) => savedId !== roadmapId);
+                localStorage.setItem('savedRoadmaps', JSON.stringify(updatedSavedRoadmaps));
+                setSaved(false);
+    
+                alert('Roteiro removido dos salvos com sucesso');
+            } else {
+                await axios.post('http://localhost:3001/roadmap/save', {
+                    userId: userId,
+                    roadmapId: roadmapId,
+                });
+    
+                const savedRoadmaps = JSON.parse(localStorage.getItem('savedRoadmaps')) || [];
+                savedRoadmaps.push(roadmapId);
+                localStorage.setItem('savedRoadmaps', JSON.stringify(savedRoadmaps));
+                setSaved(true);
+    
+                alert('Roteiro salvo com sucesso');
+            }
+        } catch (error) {
+            console.error('Erro ao salvar ou remover o roteiro:', error);
+            alert('Ocorreu um erro ao salvar ou remover o roteiro.');
+        }
+    };
+    
+    
     const [copied, setCopied] = useState(false);
 
     const handleCopyLink = () => {
@@ -145,6 +186,11 @@ const RoadmapDetails = () => {
                     <Button variant="outlined" color="primary" onClick={handleOpen}>
                         Denunciar roadmap
                     </Button>
+
+                    <button onClick={handleSave}>
+                        {saved ? 'Roteiro Salvo' : 'Salvar Roteiro'}
+                    </button>
+            
                     <Modal
                         open={open}
                         onClose={handleClose}

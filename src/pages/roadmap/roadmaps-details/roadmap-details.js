@@ -103,28 +103,19 @@ const RoadmapDetails = () => {
         const userId = getCurrentUserInformation().uid;
         try {
             if (saved) {
-                await axios.post('http://localhost:3001/roadmap/unsave', {
-                    userId: userId,
-                    roadmapId: roadmapId,
-                });
-    
-                const savedRoadmaps = JSON.parse(localStorage.getItem('savedRoadmaps')) || [];
-                const updatedSavedRoadmaps = savedRoadmaps.filter((savedId) => savedId !== roadmapId);
-                localStorage.setItem('savedRoadmaps', JSON.stringify(updatedSavedRoadmaps));
+                await axios.delete(`http://localhost:3001/roadmap/unsave/${userId}/${roadmapId}`);
                 setSaved(false);
-    
                 alert('Roteiro removido dos salvos com sucesso');
             } else {
                 await axios.post('http://localhost:3001/roadmap/save', {
                     userId: userId,
                     roadmapId: roadmapId,
+                    title: roadmapDetails.title,
+                    description: roadmapDetails.description,
+                    image: roadmapDetails.image,
                 });
     
-                const savedRoadmaps = JSON.parse(localStorage.getItem('savedRoadmaps')) || [];
-                savedRoadmaps.push(roadmapId);
-                localStorage.setItem('savedRoadmaps', JSON.stringify(savedRoadmaps));
                 setSaved(true);
-    
                 alert('Roteiro salvo com sucesso');
             }
         } catch (error) {
@@ -132,7 +123,6 @@ const RoadmapDetails = () => {
             alert('Ocorreu um erro ao salvar ou remover o roteiro.');
         }
     };
-    
     
     const [copied, setCopied] = useState(false);
 

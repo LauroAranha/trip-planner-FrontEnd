@@ -11,7 +11,6 @@
     height: 20vh;
     display: inline-table;
     background-color: #42B0FF;
-    font-family: 'Inter', sans-serif;
 }
 
 .personal-roadmap-container {
@@ -37,28 +36,28 @@
 }
 
 .map-title {
-    font-family: 'Poppins', sans-serif;
     font-weight: none;
 }
 
 .add-button {
+    display: block;
     appearance: none;
     backface-visibility: hidden;
     background-color: #27ae60;
-    border-radius: 10px;
+    border-radius: 30px;
     border-style: none;
     box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
     color: #fff;
     cursor: pointer;
-    font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     line-height: 1.5;
     margin-top: 25px;
-    margin-left: 5px;
+    margin-left: 0.9rem;
     padding: 15px 20px;
     position: relative;
     text-align: center;
+    margin-right: 3rem;
 }
 
 .add-button:hover {
@@ -66,8 +65,17 @@
     opacity: 1;
     transform: translateY(0);
     transition-duration: .35s;
+    text-decoration: none !important;
+    text-decoration-line: none;
 }
 
 .add-button:hover {
     box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
+
+@media screen and (max-width: 700px) {
+    .add-button {
+        border-radius: 50px;
+        font-size: 12px;
+    }
 }

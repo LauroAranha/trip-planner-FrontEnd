@@ -7,15 +7,29 @@
 }
 
 .personal-roadmap-content {
-    margin: 1.1rem;
-    border-radius: 15px !important;
+    margin: 0.8rem;
+    border-radius: 10px !important;
+    border: 2.5px solid rgba(0,0,0,.125) !important;
 }
 
 .personal-roadmap-image {
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+
+.card-text {
+    white-space: nowrap;
+    word-break: break-all; /* Adicionando esta linha para forçar a quebra de palavras */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130%;
+}
+
+.card-title {
+    font-size: 20px;
 }
 
 .personal-roadmap-buttons {

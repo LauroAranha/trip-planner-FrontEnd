@@ -3,44 +3,60 @@ import './roadmaps-module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getCurrentUserInformation } from '../../components/utils/userUtils';
-import RoadmapSquare from '../../components/Roadmap-component/RoadmapSquare';
 
+import SavesRoadmapCard from '../../components/Roadmap-component/personal-roadmap-card-component/SaveRoadmapCard';
 
 const RoadmapSaves = () => {
 
-    // const [savedRoadmapIds, setSavedRoadmapIds] = useState([]);
-    // const [savedRoadmaps, setSavedRoadmaps] = useState([]);
-    // const userInfo = getCurrentUserInformation();
-    
-    // useEffect(() => {
-    //     const fetchSavedRoadmapIds = async () => {
-    //         try {
-    //             const response = await axios.post('http://localhost:3001/roadmap/savedRoadmapIds', {
-    //             userId: userInfo.userId,
-    //             });
-    
-    //             setSavedRoadmapIds(response.data.savedRoadmapIds);
-    //             } catch (error) {
-    //                 console.error('Erro ao buscar IDs dos roteiros salvos:', error);
-    //             }
-    //     };
-    //     fetchSavedRoadmapIds();
-    // }, [userInfo.userId]);
+    const [savedRoadmaps, setSavedRoadmaps] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+    const [triggerUpdate, setTriggerUpdate] = useState(true);
+
+    const user = getCurrentUserInformation();
+    const userId = user.uid;
+
+    useEffect(() => {
+    const fetchSavedRoadmaps = async () => {
+        console.log(getCurrentUserInformation());
+        try {
+            const res = await axios.get(
+                `roadmap/getSavedRoadmaps/${userId}`
+            );
+            const responseData = res.data.data;
+            setSavedRoadmaps(responseData);
+            setIsLoading(false);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    fetchSavedRoadmaps();
+}, [triggerUpdate]);
 
     return (
-        <div>
-            <h1>Roteiros Salvos</h1>
-            <div className="saved-roadmap-cards-container">
-                {savedRoadmaps.map((roadmap) => (
-                    <RoadmapSquare
-                        key={roadmap.docId}
-                        image={roadmap.image}
-                        title={roadmap.title}
-                        description={roadmap.description}
-                    />
-                ))}
+        <div className="personal-roadmap-container">
+        <div className="main-container">
+            <h1 className="personal-roadmap-title">Roteiros Salvos</h1>
+            <div className="personal-roadmap-container-grid">
+                {isLoading ? (
+                    <p>carregando</p>
+                ) : (
+                    savedRoadmaps &&
+                    savedRoadmaps.map(
+                        (roadmapInformation) => {
+                            return (
+                                <SavesRoadmapCard
+                                    props={roadmapInformation}
+                                    setTriggerUpdate={setTriggerUpdate}
+                                    triggerUpdate={triggerUpdate}
+                                />
+                            );
+                        }
+                    )
+                )}
             </div>
         </div>
+    </div>
     );
 };
 

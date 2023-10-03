@@ -32,25 +32,17 @@ const EditRoadmap = (props) => {
 
 
     useEffect(() => {
-        const scriptReturned = initGoogleMapApiScript();
-        return () => {
-            // Clean up by removing the script and window property
-            document.body.removeChild(scriptReturned);
-            delete window.scriptReturned;
-        };
-    }, []);
-    useEffect(() => {
         const autoCompleteOptions = {
             componentRestrictions: { country: 'br' },
             types: ['establishment'],
         };
         if (autoCompleteField) {
-            new window.google.maps.places.Autocomplete(
-                document.getElementById(
-                    `inputFieldAut${autoCompleteField - 1}`
-                ),
-                autoCompleteOptions
-            );
+            // new window.google.maps.places.Autocomplete(
+            //     document.getElementById(
+            //         `inputFieldAut${autoCompleteField - 1}`
+            //     ),
+            //     autoCompleteOptions
+            // );
         }
     }, [inputCount]);
 

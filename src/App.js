@@ -10,13 +10,14 @@ import Login from './pages/login/login';
 import Register from './pages/register/register';
 import EditUserProfile from './pages/user/edit-user-profile/editUserProfile';
 import Roadmap from './pages/roadmap/roadmap';
+import RoadmapSaves from './pages/roadmap/roadmapSaves';
 import AddRoadmap from './pages/roadmap/add-roadmap/addRoadmap';
 import RoadmapDetails from './pages/roadmap/roadmaps-details/roadmap-details';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import MapContainer from './components/Map/MapContainer';
-import AgencyRegister from './pages/agency/AgencyRegister'; //mudei pra agency minusculo pq no meu pc tava assim
-import AgencyHome from './pages/agency/AgencyHome';//mudei pra agency minusculo pq no meu pc tava assim
+import AgencyRegister from './pages/Agency/AgencyRegister'; //mudei pra agency minusculo pq no meu pc tava assim
+import AgencyHome from './pages/Agency/AgencyHome';//mudei pra agency minusculo pq no meu pc tava assim
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 
@@ -66,6 +67,17 @@ const App = () => {
                                 <Navbar />
                                 <div className="container">
                                     <Roadmap />
+                                </div>
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/roadmapSaves"
+                        element={
+                            <>
+                                <Navbar />
+                                <div className="container">
+                                    <RoadmapSaves />
                                 </div>
                             </>
                         }

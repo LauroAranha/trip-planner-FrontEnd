@@ -6,7 +6,6 @@ import './addRoadmap-module.css';
 
 import { useForm } from 'react-hook-form';
 import AutoCompleteField from '../../../components/AutoCompleteMapField/AutoCompleteField';
-import { initGoogleMapApiScript } from '../../../components/utils/mapFunctions';
 import { getCurrentUserInformation } from '../../../components/utils/userUtils';
 import ImageUpload from '../../../components/Input/ImageUpload';
 
@@ -37,26 +36,18 @@ const AddRoadmap = () => {
     };
 
     useEffect(() => {
-        const scriptReturned = initGoogleMapApiScript();
-        return () => {
-            // Clean up by removing the script and window property
-            document.body.removeChild(scriptReturned);
-            delete window.scriptReturned;
-        };
-    }, []);
-    useEffect(() => {
         const autoCompleteOptions = {
             componentRestrictions: { country: 'br' },
             types: ['establishment'],
         };
         if (autoCompleteField) {
             // eslint-disable-next-line no-new
-            new window.google.maps.places.Autocomplete(
-                document.getElementById(
-                    `inputFieldAut${autoCompleteField - 1}`
-                ),
-                autoCompleteOptions
-            );
+            // new window.google.maps.places.Autocomplete(
+            //     document.getElementById(
+            //         `inputFieldAut${autoCompleteField - 1}`
+            //     ),
+            //     autoCompleteOptions
+            // );
         }
     }, [inputCount]);
 

@@ -206,7 +206,7 @@ const EditRoadmap = (props) => {
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>
-            <input type="submit" className="form__submit-btn" style={{ width: '50%' }} />
+            <input type="submit" className="form__submit-btn" style={{ width: '50%' }} value="Editar Roadmap" />
         </form>
     );
 };

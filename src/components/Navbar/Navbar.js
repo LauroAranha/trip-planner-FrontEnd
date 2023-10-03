@@ -12,6 +12,7 @@ import {
     faHouse,
     faMapLocationDot,
     faAngleDown,
+    faBookmark,
 } from '@fortawesome/free-solid-svg-icons';
 import logo from './img/logo.png';
 import { getCurrentUserInformation } from '../utils/userUtils';
@@ -60,6 +61,19 @@ const Navbar = () => {
                             className="nav-icon"
                         />
                         <span className="text">Roteiros</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/roadmapSaves"
+                        className="option"
+                        onClick={handleLinkClick}
+                    >
+                        <FontAwesomeIcon
+                            icon={faBookmark}
+                            className="nav-icon"
+                        />
+                        <span className="text">Roteiros Salvos</span>
                     </Link>
                 </li>
             </li>

@@ -26,7 +26,7 @@ const RoadmapDetails = () => {
 
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
-    const [saved, setSaved] = useState(isRoadmapSaved(roadmapId));
+    const [saved, setSaved] = useState(false);
 
     const [values, setValues] = useState([]);
 
@@ -93,10 +93,20 @@ const RoadmapDetails = () => {
     };
 
     useEffect(() => {
+        const userId = getCurrentUserInformation().uid;
         axios.get(`roadmap/get/${roadmapId}`).then((res) => {
             const responseData = res.data.data;
             setRoadmapDetails(responseData);
         });
+
+        axios.get(`roadmap/getSaved/${userId}/${roadmapId}`).then((res) => {
+            if(res.data.data) {
+                setSaved(true)
+            }
+            else {
+                setSaved(false)
+            }
+        })
     }, []);
     
     const handleSave = async () => {

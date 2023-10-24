@@ -1,28 +1,20 @@
 import './edit-roadmap-module.css';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import Switch from '@mui/material/Switch';
-
 import axios from 'axios';
 
 import AutoCompleteField from '../../../components/AutoCompleteMapField/AutoCompleteField';
 import { initGoogleMapApiScript } from '../../../components/utils/mapFunctions';
 
-import { getCurrentUserInformation } from '../../../components/utils/userUtils';
-
 const EditRoadmap = (props) => {
-    console.log(props);
-
-    const user = getCurrentUserInformation();
-
-    const [inputCount, setInputCount] = useState(5);
-    const [autoCompleteField, setAutoCompleteField] = useState(0);
+    const inputCount = 5;
+    const autoCompleteField = 0;
 
     const { register, handleSubmit, watch } = useForm();
     const custoMedio = watch('custoMedio');
 
-    const { handleModalClose } = props
+    const { handleModalClose } = props;
 
     const onChange = (value) => {
         console.log(value);
@@ -76,7 +68,9 @@ const EditRoadmap = (props) => {
 
     return (
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
-            <label className="fieldLabel">Definir visibilidade do roteiro como pública</label>
+            <label className="fieldLabel">
+                Definir visibilidade do roteiro como pública
+            </label>
             <select
                 className="form__select"
                 defaultValue={props.props.visibilidadePublica}
@@ -158,26 +152,29 @@ const EditRoadmap = (props) => {
             {[...Array(inputCount)].map((_, index) => {
                 return (
                     <div>
-                        <AutoCompleteField index={index} register={register} />
+                        <AutoCompleteField index={index} register={register} value={props.props.paradasRecomendadas[index]} />
                     </div>
                 );
             })}
-
             <label className="fieldLabel">
                 Estimativa de gastos por pessoa
             </label>
             <input
-                defaultValue={props.props.custoMedio}
-                min="0"
-                max="1000"
-                type="range"
-                placeholder="Estimativa de gastos por pessoa"
-                className="form__range"
-                step="10"
-                {...register('custoMedio', {})}
-                onChange={() => onChange(custoMedio)}
-            />
-            <span>${custoMedio}</span>
+                    min="0"
+                    max="1000"
+                    type="number"
+                    placeholder="Estimativa de gastos por pessoa"
+                    className="form__range"
+                    step="10"
+                    {...register('custoMedio', {})}
+                    onChange={() => onChange(custoMedio)}
+                />
+
+{/* {roadmapDetails.paradasRecomendadas[0] ? (<p>Parada 1: {roadmapDetails.paradasRecomendadas[0]}</p>): null}
+                {roadmapDetails.paradasRecomendadas[1] ? <p>Parada 2: {roadmapDetails.paradasRecomendadas[1]}</p>: null}
+                {roadmapDetails.paradasRecomendadas[2] ? <p>Parada 3: {roadmapDetails.paradasRecomendadas[2]}</p>: null}
+                {roadmapDetails.paradasRecomendadas[3] ? <p>Parada 4: {roadmapDetails.paradasRecomendadas[3]}</p>: null}
+                {roadmapDetails.paradasRecomendadas[4] ? <p>Parada 5: {roadmapDetails.paradasRecomendadas[4]}</p>: null} */}
 
             <label className="fieldLabel">Permite pets?</label>
             <select
@@ -198,8 +195,11 @@ const EditRoadmap = (props) => {
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>
-
-            <input type="submit" className="form__submit-btn" />
+            <input
+                type="submit"
+                className="page-login-btn"
+                
+            />
         </form>
     );
 };

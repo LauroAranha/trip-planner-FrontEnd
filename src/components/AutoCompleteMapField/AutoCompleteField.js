@@ -1,7 +1,7 @@
 import './AutoCompleteField.css';
 
 const AutoCompleteField = (props) => {
-    const { index, register } = props;
+    const { index, register, value } = props;
     const inputId = `inputFieldAut${index}`;
 
     return (
@@ -13,6 +13,7 @@ const AutoCompleteField = (props) => {
                 placeholder={`Input ${index + 1}`}
                 className="form"
                 {...register(`paradasRecomendadas.${index}`, {})}
+                defaultValue={value}
             />
         </div>
     );

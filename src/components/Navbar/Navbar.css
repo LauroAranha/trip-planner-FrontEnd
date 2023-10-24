@@ -11,7 +11,7 @@
     box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 10px 0px;
     justify-content: flex-end;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 0.1rem 1rem;
 }
 
 .navbar :first-child {
@@ -19,8 +19,9 @@
 }
 
 .nav-logo {
-    width: 200px;
-    height: 75px;
+    width: 100%;
+    margin-left: 200px;
+    height: 6.2vh;
 }
 
 .brand {
@@ -30,20 +31,70 @@
 .links_list {
     display: flex;
     list-style: none;
-    margin-left: auto;
-    margin-top: ;
+    margin-left: 30%;
 }
 
 .links_list li {
     margin-right: 1.5em;
+    margin-right: 25px;
 }
 
 .links_list li a {
-    padding: 0.7em 1em;
+    padding: 0.7em 1.2em;
+}
+
+.links_list .option {
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 1920px) {
+    .links_list li a {
+        padding: 0.7em 1.2em;   
+    }
+}
+@media screen and (max-width: 1250px) {
+    .nav-logo {
+        margin-left: 0;
+    }
+
+    .links_list li a {
+        padding: 0.5em 1em;
+    }
+}
+@media screen and (max-width: 850px) {
+    .links_list {
+        margin-left: -2%;
+    }
+    .profile-pic{
+        margin-left: 20%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .links_list {
+        margin-left: auto;
+    }
+
+    .links_list li a {
+        padding: 1em 1.1em;
+        font-size: 15px;
+    }
+
+    .links_list .option .text {
+        display: none;
+    }
+
+    .links_list .option .nav-icon {
+        margin: 0 2px;
+    }
+    .nav-logo {
+        height: 5vh;
+    }
 }
 
 .option:hover {
-    background: #2698ea;
+    background: #3499e1;
     color: rgb(255, 255, 255);
     text-shadow: 0 0 1px #fff;
 }
@@ -87,9 +138,12 @@
 
 .profile-interface {
     background-color: rgb(255, 255, 255);
-    border-radius: 20px;
+    border-radius: 20px !important;
     box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 10px 0px;
     position: absolute;
+    margin-top: 60px;
+    margin-right: 100px;
+    width: 100%;
 }
 
 .profile-interface li {
@@ -102,8 +156,7 @@
 .profile-option {
     font-family: 'Nunito', sans-serif;
     color: black;
-    /* ou a cor que desejar */
-    padding: 10px 20px;
+    padding: 20px 30px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
@@ -111,14 +164,28 @@
 
 .profile-option:hover {
     background-color: #f5f5f5;
-    border-radius: 12px;
+    border-radius: 5px;
 }
+
+.profile-list {
+    margin: 12px;
+    text-decoration: none !important;  
+}
+
+.profile-logout {
+    background-color: red !important;
+    border-radius: 10px !important;
+    border: 0 !important;
+    width: 60px;
+}
+
 
 .option {
     background-color: #42B0FF;
     color: #fff;
     border-radius: 30px;
     font-weight: bold;
+    
 }
 
 .icon {
@@ -129,7 +196,6 @@
     display: inline-block;
     margin-top: -4px;
     margin-right: 4px;
-    /* Ajuste o valor da margem conforme necessário */
 }
 
 .option {
@@ -141,18 +207,6 @@
 .option span {
     display: inline;
     vertical-align: middle;
-}
-
-@media screen and (max-width: 1920px) {
-    .links_list li a {
-        padding: 1em 1em;
-    }
-}
-
-@media screen and (max-width: 1650px) {
-    .links_list li a {
-        padding: 0.6em 0.3em;
-    }
 }
 
 #circle-avatar {

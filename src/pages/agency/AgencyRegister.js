@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+import MaskedInput from 'react-text-mask';
 import axios from 'axios';
 
-const Register = () => {
+const AgencyRegister = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     // State for the main password field
@@ -41,24 +42,16 @@ const Register = () => {
         email: '',
         currentPassword: '',
         error: '',
-        userType: 1,
+        userType: 2,
     });
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         console.log(values);
-
-        try {
-            const response = await axios.post(
-                'http://localhost:3001/user/register',
-                values
-            );
-            console.log(response);
-        } catch (error) {
-            console.log(error);
-        }
+        axios.post('http://localhost:3001/user/register', values);
     };
+
     return (
         <div className="page-login">
             <section className="ftco-section">
@@ -66,9 +59,7 @@ const Register = () => {
                     <div className="banner-text">
                         <h2>📍 Trip Planner</h2>
                         <p>
-                            Você criando uma conta, poderá registrar todas as
-                            suas viagens, além de poder acumular pontos e criar
-                            grupos com seus amigos.
+                        Você criando uma conta, poderá cadastrar todos os roteiros da sua agência.
                         </p>
                     </div>
                 </div>
@@ -94,7 +85,7 @@ const Register = () => {
                                                 type="text"
                                                 name="displayName"
                                                 className="form-control"
-                                                placeholder="Insira seu nome"
+                                                placeholder="Insira o nome da agência"
                                                 value={values.name}
                                                 onChange={(e) =>
                                                     setValues({
@@ -107,32 +98,83 @@ const Register = () => {
                                         </div>
                                         <div className="form-group">
                                             <input
-                                                type="text"
-                                                name="displayName"
+                                                type="email"
+                                                name="email"
                                                 className="form-control"
-                                                placeholder="Insira seu sobrenome"
-                                                value={values.lastName}
+                                                placeholder="Insira um email"
+                                                value={values.email}
                                                 onChange={(e) =>
                                                     setValues({
                                                         ...values,
-                                                        lastName:
-                                                            e.target.value,
+                                                        email: e.target.value,
                                                     })
                                                 }
                                                 required
                                             />
                                         </div>
                                         <div className="form-group">
-                                            <input
-                                                type="email"
-                                                name="email"
+                                            <MaskedInput
+                                                type="text"
+                                                name="cnpj"
                                                 className="form-control"
-                                                placeholder="Insira seu email"
-                                                value={values.email}
+                                                placeholder="Insira o CNPJ da agência"
+                                                mask={[
+                                                    /\d/,
+                                                    /\d/,
+                                                    '.',
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '.',
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '/',
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '-',
+                                                    /\d/,
+                                                    /\d/,
+                                                ]}
+                                                value={values.cnpj}
                                                 onChange={(e) =>
                                                     setValues({
                                                         ...values,
-                                                        email: e.target.value,
+                                                        cnpj: e.target.value,
+                                                    })
+                                                }
+                                                required
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <MaskedInput
+                                                type="text"
+                                                name="cpf"
+                                                className="form-control"
+                                                placeholder="Insira o CPF"
+                                                mask={[
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '.',
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '.',
+                                                    /\d/,
+                                                    /\d/,
+                                                    /\d/,
+                                                    '-',
+                                                    /\d/,
+                                                    /\d/,
+                                                ]}
+                                                value={values.cpf}
+                                                onChange={(e) =>
+                                                    setValues({
+                                                        ...values,
+                                                        cpf: e.target.value,
                                                     })
                                                 }
                                                 required
@@ -231,10 +273,10 @@ const Register = () => {
                                             </a>
                                         </div>
                                         <div className="d-flex flex-column align-items-center links">
-                                            É uma agencia de turismo?{' '}
+                                            Não é uma agência?{' '}
                                             <a href="#" className="ml-2">
                                                 <Link
-                                                    to="/register-agency"
+                                                    to="/register"
                                                     className="link-login"
                                                 >
                                                     Cadastre-se aqui
@@ -242,18 +284,18 @@ const Register = () => {
                                             </a>
                                         </div>
                                         {/*
-                                        <div className="d-flex flex-column align-items-center links">
-                                            É uma agencia e tem login?{' '}
-                                            <a href="#" className="ml-2">
-                                                <Link
-                                                    to="login-agency"
-                                                    className="link-login"
-                                                >
-                                                    Fazer login-agência
-                                                </Link>
-                                            </a>
-                                        </div> 
-                                        */}
+                                    <div className="d-flex flex-column align-items-center links">
+                                        É uma agencia e tem login?{' '}
+                                        <a href="#" className="ml-2">
+                                            <Link
+                                                to="login-agency"
+                                                className="link-login"
+                                            >
+                                                Fazer login-agência
+                                            </Link>
+                                        </a>
+                                    </div> 
+                                    */}
                                     </div>
                                 </form>
                             </div>
@@ -265,4 +307,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default AgencyRegister;

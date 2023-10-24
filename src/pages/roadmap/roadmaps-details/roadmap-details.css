@@ -13,6 +13,39 @@
     justify-content: space-around;
 }
 
+.feedback-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 5vw;
+    gap: 40px;
+}
+
+.feedback-section-icon {
+    width: 110%;
+    height: 110%;
+    padding: 1vw;
+}
+
+.feedback-section-icon-dislike {
+    border: none;
+}
+
+.feedback-section-icon-like {
+    border: none;
+    margin-left:10px;
+}
+
+.clicks-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+}
+.clicks{
+    font-size: 20px;
+   
+}
 .roadmap-details-main {
     flex-direction: row;
     width: 40%;

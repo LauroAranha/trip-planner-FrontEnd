@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.button-text {
+    color: #ffffff;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.personal-roadmap-content {
+    margin: 1.1rem;
+    border-radius: 15px !important;
+}
+
+.personal-roadmap-image {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.personal-roadmap-buttons {
+    margin-top: 2px;
+    
+}
+.personal-roadmap-buttons button{
+    border-radius: 14px !important;
+    border-style: none !important;
+    box-sizing: border-box !important;
+    color: #FFFFFF !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    height: 40px !important; 
+}
+
+.personal-roadmap-buttons button {
+    margin: 0.8rem;
+    margin-left: 12%;
+    font-size: 20px;
+    border-radius: 12px;
+}
+
+.edit-button {
+    background-color: #27ae60!important;
+}
+
+.delete-button {
+    background-color: #CB2027 !important;
+    
+}
+
+.edit-button:hover,
+.edit-button:focus {
+    background-color: #23a157 !important;
+}
+
+.delete-button:hover,
+.delete-button:focus {
+    background-color: #b71d22 !important;
+}
